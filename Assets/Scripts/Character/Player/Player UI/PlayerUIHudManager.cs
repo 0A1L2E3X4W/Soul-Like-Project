@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class PlayerUIHudManager : MonoBehaviour
+{
+    [Header("STATUS BARS")]
+    [SerializeField] private StatusBar staminaBar;
+
+    public void RefreshHUD()
+    {
+        staminaBar.gameObject.SetActive(false);
+        staminaBar.gameObject.SetActive(true);
+    }
+
+    public void SetNewStaminaVal(float oldVal, float newVal)
+    {
+        staminaBar.SetStat(Mathf.RoundToInt(newVal));
+    }
+
+    public void SetMaxStaminaVal(int maxStamina)
+    {
+        staminaBar.SetMaxStat(maxStamina);
+    }
+}
