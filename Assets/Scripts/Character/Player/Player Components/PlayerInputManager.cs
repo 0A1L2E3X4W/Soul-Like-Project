@@ -25,6 +25,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("PLAYER ACTION INPUT")]
     [SerializeField] private bool dodgeInput = false;
     [SerializeField] private bool sprintInput = false;
+    [SerializeField] private bool jumpInput = false;
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
 
+            playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -110,6 +112,7 @@ public class PlayerInputManager : MonoBehaviour
 
         HandleDodgeInput();
         HandleSprintInput();
+        HandleJumpInput();
     }
 
     // PLAYER MOVEMENT
@@ -137,7 +140,7 @@ public class PlayerInputManager : MonoBehaviour
     }
 
 
-    #region ACTION INPUTS
+    // ACTIONS
     private void HandleDodgeInput()
     {
         if (dodgeInput)
@@ -158,5 +161,14 @@ public class PlayerInputManager : MonoBehaviour
             player.playerNetworkManager.isSprinting.Value = false;
         }
     }
-    #endregion
+
+    private void HandleJumpInput()
+    {
+        if (jumpInput)
+        {
+            jumpInput = false;
+
+            player.playerLocomotionManager.AttemptPerformJump();
+        }
+    }
 }
