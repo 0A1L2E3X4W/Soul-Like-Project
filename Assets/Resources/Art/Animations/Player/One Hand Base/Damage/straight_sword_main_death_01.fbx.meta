@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 8034d5812252e934cb992ad3e2d539c4
+guid: e562f53bcf53c36469f98977749b69c5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
-      74: 4351752844515222478
-    second: core_oh_sprint_F_01
+      74: -2357311216784244441
+    second: straight_sword_main_death_01
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -20,7 +20,12 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'straight_sword_main_death_01' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Hips' has translation animation
+      that will be discarded.\n\t'Hips' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'Hand_R' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -34,18 +39,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: core_oh_sprint_F_01
-      takeName: core_oh_sprint_F_01
+      name: straight_sword_main_death_01
+      takeName: straight_sword_main_death_01
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 68
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

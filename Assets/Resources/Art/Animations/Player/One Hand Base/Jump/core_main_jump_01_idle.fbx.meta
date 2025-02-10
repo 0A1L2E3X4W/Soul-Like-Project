@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 8034d5812252e934cb992ad3e2d539c4
+guid: 3269750ba5972884288ef4b83b4c9dc3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
-      74: 4351752844515222478
-    second: core_oh_sprint_F_01
+      74: 5252732915974851826
+    second: core_main_jump_01_idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -17,10 +17,14 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'core_main_jump_01_idle' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Hips' has translation animation
+      that will be discarded.\n\t'Hips' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -34,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: core_oh_sprint_F_01
-      takeName: core_oh_sprint_F_01
+      name: core_main_jump_01_idle
+      takeName: core_main_jump_01_idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -75,7 +79,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 1
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -715,7 +719,7 @@ ModelImporter:
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 0
-  remapMaterialsIfMaterialImportModeIsNone: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

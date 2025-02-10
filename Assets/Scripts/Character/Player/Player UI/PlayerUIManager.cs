@@ -7,6 +7,7 @@ public class PlayerUIManager : MonoBehaviour
 
     [Header("MANAGER")]
     [HideInInspector] public PlayerUIHudManager playerUIHudManager;
+    [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
     [Header("Network Join")]
     [SerializeField] bool startGameAsClient;
@@ -17,6 +18,7 @@ public class PlayerUIManager : MonoBehaviour
         else { Destroy(gameObject); }
 
         playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+        playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
     }
 
     private void Start()

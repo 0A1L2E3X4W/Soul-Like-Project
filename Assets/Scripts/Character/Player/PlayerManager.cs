@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,9 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
     [HideInInspector] public PlayerEffectsManager playerEffectsManager;
+
+    [Header("DEBUG MENU")]
+    [SerializeField] private bool respawnCharacter = false;
 
     protected override void Awake()
     {
@@ -33,6 +37,8 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager.HandleAllMovement();
 
         playerStatsManager.RegenerateStamina();
+
+        DebugMenu();
     }
 
     protected override void LateUpdate()
@@ -63,8 +69,11 @@ public class PlayerManager : CharacterManager
 
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenerationTimer;
         }
+
+        playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHp;
     }
 
+    // SAVE & LOAD
     public void SaveGameToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
     {
         currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -101,5 +110,39 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
 
         PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaVal(playerNetworkManager.maxStamina.Value);
+    }
+
+    // DEATH & RESPAWN
+    public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnim = false)
+    {
+        if (IsOwner)
+        {
+            PlayerUIManager.Instance.playerUIPopUpManager.SendDeathPopUp();
+        }
+
+        return base.ProcessDeathEvent(manuallySelectDeathAnim);
+    }
+
+    public override void ReviveCharacter()
+    {
+        base.ReviveCharacter();
+
+        if (IsOwner)
+        {
+            isDead.Value = false;
+            playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
+            playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
+
+            playerAnimatorManager.PlayTargetActionAnim("Empty", false);
+        }
+    }
+
+    private void DebugMenu()
+    {
+        if (respawnCharacter)
+        {
+            respawnCharacter = false;
+            ReviveCharacter();
+        }
     }
 }

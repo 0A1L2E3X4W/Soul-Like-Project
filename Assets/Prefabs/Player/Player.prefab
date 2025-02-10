@@ -562,6 +562,8 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
   characterEffectsManager: {fileID: 0}
+  isDead:
+    m_InternalValue: 0
   isPerformingAction: 0
   applyRootMotion: 0
   canRotate: 1
@@ -603,10 +605,16 @@ MonoBehaviour:
   isSprinting:
     m_InternalValue: 0
   endurance:
-    m_InternalValue: 10
+    m_InternalValue: 1
+  vitality:
+    m_InternalValue: 1
   currentStamina:
     m_InternalValue: 0
   maxStamina:
+    m_InternalValue: 0
+  currentHealth:
+    m_InternalValue: 0
+  maxHealth:
     m_InternalValue: 0
   characterName:
     m_InternalValue:

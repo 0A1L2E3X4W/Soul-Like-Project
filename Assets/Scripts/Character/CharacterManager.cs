@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
     [HideInInspector] public CharacterStatsManager characterStatsManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+
+    [Header("STATUS")]
+    public NetworkVariable<bool> isDead = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("FLAGS")]
     public bool isPerformingAction = false;
@@ -61,6 +65,29 @@ public class CharacterManager : NetworkBehaviour
     }
 
     protected virtual void LateUpdate()
+    {
+
+    }
+
+    // DEATH
+    public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnim = false)
+    {
+        if (IsOwner)
+        {
+            characterNetworkManager.currentHealth.Value = 0;
+            isDead.Value = true;
+
+            if (!manuallySelectDeathAnim)
+            {
+                characterAnimatorManager.PlayTargetActionAnim("Death_01", true);
+            }
+        }
+
+        yield return new WaitForSeconds(5);
+    }
+
+    // RESPAWN CHARACTER
+    public virtual void ReviveCharacter()
     {
 
     }

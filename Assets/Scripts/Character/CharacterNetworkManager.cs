@@ -28,9 +28,9 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("STATS")]
     public NetworkVariable<int> endurance =
-        new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> vitality =
-            new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+            new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("RESOURCES")]
     public NetworkVariable<float> currentStamina =
@@ -45,6 +45,22 @@ public class CharacterNetworkManager : NetworkBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+    }
+
+    public virtual void CheckHp(int oldVal, int newVal)
+    {
+        if (currentHealth.Value <= 0)
+        {
+            StartCoroutine(character.ProcessDeathEvent());
+        }
+
+        if (character.IsOwner)
+        {
+            if (currentHealth.Value > maxHealth.Value)
+            {
+                currentHealth.Value = maxHealth.Value;
+            }
+        }
     }
 
     #region PLAY TARGET ANIMATIONS
