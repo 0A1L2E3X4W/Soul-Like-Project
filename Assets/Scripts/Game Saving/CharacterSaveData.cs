@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class CharacterSaveData : MonoBehaviour
+[System.Serializable]
+public class CharacterSaveData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("WORLD INDEX")]
+    public int sceneIndex = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("CHARACTER NAME")]
+    public string characterName = "Character";
+
+    [Header("TIME PLAYED")]
+    public float secondsPlayed;
+
+    [Header("WORLD COORDINATES")]
+    public float xPos;
+    public float yPos;
+    public float zPos;
 }

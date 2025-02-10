@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager
 {
@@ -50,6 +51,7 @@ public class PlayerManager : CharacterManager
         {
             PlayerCamera.Instance.player = this;
             PlayerInputManager.Instance.player = this;
+            WorldSaveGameManager.Instance.player = this;
 
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.Instance.playerUIHudManager.SetNewStaminaVal;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenerationTimer;
@@ -58,5 +60,24 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.Value = playerStatsManager.CalcuStaminaBasedOnEnduranceLV(playerNetworkManager.endurance.Value);
             PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaVal(playerNetworkManager.maxStamina.Value);
         }
+    }
+
+    public void SaveGameToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+    {
+        currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // CHARACTER INFO
+        currentCharacterData.characterName = playerNetworkManager.characterName.Value.ToString(); // NAME
+        currentCharacterData.xPos = transform.position.x; // POS X
+        currentCharacterData.yPos = transform.position.y; // POS Y
+        currentCharacterData.zPos = transform.position.z; // POS Z
+    }
+
+    public void LoadGameFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
+    {
+        playerNetworkManager.characterName.Value = currentCharacterData.characterName;
+
+        Vector3 myPos = new(currentCharacterData.xPos, currentCharacterData.yPos, currentCharacterData.zPos);
+        transform.position = myPos;
     }
 }
