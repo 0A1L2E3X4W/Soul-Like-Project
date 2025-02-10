@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 3772982453111213788}
   - component: {fileID: 3065978345885485658}
   - component: {fileID: -7649883426742956672}
+  - component: {fileID: 7297628794228016210}
   - component: {fileID: 7807536484518568745}
   - component: {fileID: -8166198282541689750}
   - component: {fileID: 2080740265233767486}
@@ -560,6 +561,7 @@ MonoBehaviour:
   characterLocomotionManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterStatsManager: {fileID: 0}
+  characterEffectsManager: {fileID: 0}
   isPerformingAction: 0
   applyRootMotion: 0
   canRotate: 1
@@ -571,6 +573,7 @@ MonoBehaviour:
   playerLocomotionManager: {fileID: 0}
   playerSoundFXManager: {fileID: 0}
   playerStatsManager: {fileID: 0}
+  playerEffectsManager: {fileID: 0}
 --- !u!114 &3772982453111213788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +724,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationDelay: 0.8
   staminaRegenerationAmount: 2
+--- !u!114 &7297628794228016210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047826177486086097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6e233b94c45a54fb9fe5b7089f4ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testEffect: {fileID: 11400000, guid: b63969b0702bd9c409a5b684677254ee, type: 2}
+  processEffect: 0
 --- !u!143 &7807536484518568745
 CharacterController:
   m_ObjectHideFlags: 0

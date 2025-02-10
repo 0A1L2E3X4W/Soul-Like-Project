@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
+    [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
     protected override void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerManager : CharacterManager
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
         playerSoundFXManager = GetComponent<PlayerSoundFXManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
     }
 
     protected override void Update()
