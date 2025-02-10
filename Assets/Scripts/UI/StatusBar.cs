@@ -7,9 +7,9 @@ public class StatusBar : MonoBehaviour
     protected Slider slider;
     protected RectTransform rectTransform;
 
-    //[Header("BAR OPTIONS")]
-    //[SerializeField] protected bool scaleBarLengthWithStats = false;
-    //[SerializeField] protected float widthScaleMultiplier = 1f;
+    [Header("BAR OPTIONS")]
+    [SerializeField] protected bool scaleBarLengthWithStats = false;
+    [SerializeField] protected float widthScaleMultiplier = 1f;
 
     protected virtual void Awake()
     {
@@ -32,11 +32,11 @@ public class StatusBar : MonoBehaviour
         slider.maxValue = maxVal;
         slider.value = maxVal;
 
-        //if (scaleBarLengthWithStats)
-        //{
-        //    rectTransform.sizeDelta = new(maxVal * widthScaleMultiplier, rectTransform.sizeDelta.y);
+        if (scaleBarLengthWithStats)
+        {
+            rectTransform.sizeDelta = new(maxVal * widthScaleMultiplier, rectTransform.sizeDelta.y);
 
-        //    PlayerUIManager.Instance.playerUIHudManager.RefreshHUD();
-        //}
+            PlayerUIManager.Instance.playerUIHudManager.RefreshHUD();
+        }
     }
 }

@@ -17,4 +17,18 @@ public class PlayerNetworkManager : CharacterNetworkManager
 
         player = GetComponent<PlayerManager>();
     }
+
+    public void SetNewMaxHealthVal(int oldVitality, int newVitality)
+    {
+        maxHealth.Value = player.playerStatsManager.CalcuHealthBasedOnVitalityLV(newVitality);
+        PlayerUIManager.Instance.playerUIHudManager.SetMaxHealthVal(maxHealth.Value);
+        currentHealth.Value = maxHealth.Value;
+    }
+
+    public void SetNewMaxStaminaVal(int oldEndurance, int newEndurance)
+    {
+        maxStamina.Value = player.playerStatsManager.CalcuStaminaBasedOnEnduranceLV(newEndurance);
+        PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaVal(maxStamina.Value);
+        currentStamina.Value = maxStamina.Value;
+    }
 }

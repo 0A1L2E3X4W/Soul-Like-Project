@@ -16,6 +16,7 @@ public class PlayerStatsManager : CharacterStatsManager
     {
         base.Start();
 
-        //CalcuStaminaBasedOnEnduranceLV(player.playerNetworkManager.endurance.Value);
+        CalcuStaminaBasedOnEnduranceLV(player.playerNetworkManager.endurance.Value);
+        CalcuHealthBasedOnVitalityLV(player.playerNetworkManager.vitality.Value);
     }
 }

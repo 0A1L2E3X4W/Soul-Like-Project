@@ -29,11 +29,17 @@ public class CharacterNetworkManager : NetworkBehaviour
     [Header("STATS")]
     public NetworkVariable<int> endurance =
         new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> vitality =
+            new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("RESOURCES")]
     public NetworkVariable<float> currentStamina =
         new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> maxStamina =
+        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> currentHealth =
+            new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> maxHealth =
         new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     protected virtual void Awake()

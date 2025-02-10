@@ -21,6 +21,15 @@ public class CharacterStatsManager : MonoBehaviour
 
     }
 
+    public int CalcuHealthBasedOnVitalityLV(int vitality)
+    {
+        float health = 0f;
+
+        health = vitality * 15f;
+
+        return Mathf.RoundToInt(health);
+    }
+
     public int CalcuStaminaBasedOnEnduranceLV(int endurance)
     {
         float stamina = 0f;
