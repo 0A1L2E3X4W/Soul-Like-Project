@@ -80,6 +80,11 @@ public class PlayerManager : CharacterManager
         // EQUIP
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+
+        if (IsOwner && !IsServer)
+        {
+            LoadGameFromCurrentCharacterData(ref WorldSaveGameManager.Instance.currentCharacterData);
+        }
     }
 
     // SAVE & LOAD

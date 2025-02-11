@@ -25,6 +25,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("FLAGS")]
     public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("STATS")]
     public NetworkVariable<int> endurance =

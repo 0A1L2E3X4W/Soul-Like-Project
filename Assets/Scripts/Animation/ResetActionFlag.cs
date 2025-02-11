@@ -20,7 +20,7 @@ public class ResetActionFlag : StateMachineBehaviour
 
         if (character.IsOwner)
         {
-            character.isJumping = false;
+            character.characterNetworkManager.isJumping.Value = false;
         }
     }
 

@@ -15,7 +15,7 @@ public class ResetIsJumping : StateMachineBehaviour
 
         if (character.IsOwner)
         {
-            character.isJumping = false;
+            character.characterNetworkManager.isJumping.Value = false;
         }
     }
 

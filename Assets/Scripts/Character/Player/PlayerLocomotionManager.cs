@@ -130,7 +130,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     // JUMP & FREE FALL
     private void HandleJumpingMovement()
     {
-        if (player.isJumping)
+        if (player.playerNetworkManager.isJumping.Value)
         {
             player.characterController.Move(Time.deltaTime * jumpForwardSpeed * jumpDirection);
         }
@@ -215,14 +215,14 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if (player.playerNetworkManager.currentStamina.Value <= 0)
             return;
 
-        if (player.isJumping)
+        if (player.playerNetworkManager.isJumping.Value)
             return;
 
         if (!player.isGrounded)
             return;
 
         player.playerAnimatorManager.PlayTargetActionAnim("Main_Jump_01", false);
-        player.isJumping = true;
+        player.playerNetworkManager.isJumping.Value = true;
 
         player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
