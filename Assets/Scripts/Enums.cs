@@ -16,3 +16,8 @@ public enum CharacterSlot
     NullSlot,
 }
 
+public enum WeaponSlot
+{
+    RightHand,
+    LeftHand,
+}

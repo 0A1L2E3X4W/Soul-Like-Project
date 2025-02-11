@@ -15,6 +15,8 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
     [HideInInspector] public CharacterStatsManager characterStatsManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+    [HideInInspector] public CharacterEquipmentManager characterEquipmentManager;
+    [HideInInspector] public CharacterInventoryManager characterInventoryManager;
 
     [Header("STATUS")]
     public NetworkVariable<bool> isDead = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -40,6 +42,8 @@ public class CharacterManager : NetworkBehaviour
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
+        characterEquipmentManager = GetComponent<CharacterEquipmentManager>();
+        characterInventoryManager = GetComponent<CharacterInventoryManager>();
     }
 
     protected virtual void Update()

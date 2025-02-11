@@ -11,6 +11,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
     [HideInInspector] public PlayerEffectsManager playerEffectsManager;
+    [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
     [Header("DEBUG MENU")]
     [SerializeField] private bool respawnCharacter = false;
@@ -25,6 +27,8 @@ public class PlayerManager : CharacterManager
         playerSoundFXManager = GetComponent<PlayerSoundFXManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
     }
 
     protected override void Update()
