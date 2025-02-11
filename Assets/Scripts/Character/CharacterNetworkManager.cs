@@ -64,7 +64,7 @@ public class CharacterNetworkManager : NetworkBehaviour
         }
     }
 
-    #region PLAY TARGET ANIMATIONS
+    // PLAY TARGET ANIMATIONS
     [ServerRpc]
     public void NotifyServerOfActionAnimServerRpc(ulong clientID, string animID, bool applyRootMotion)
     {
@@ -88,5 +88,29 @@ public class CharacterNetworkManager : NetworkBehaviour
         character.applyRootMotion = applyRootMotion;
         character.anim.CrossFade(animID, 0.2f);
     }
-    #endregion
+
+    // PLAY ATTACK ACTION ANIMATIONS
+    [ServerRpc]
+    public void NotifyServerOfAtkActionAnimServerRpc(ulong clientID, string animID, bool applyRootMotion)
+    {
+        if (IsServer)
+        {
+            PlayAtkActionAnimForAllClientClientRpc(clientID, animID, applyRootMotion);
+        }
+    }
+
+    [ClientRpc]
+    public void PlayAtkActionAnimForAllClientClientRpc(ulong clientID, string animID, bool applyRootMotion)
+    {
+        if (clientID != NetworkManager.Singleton.LocalClientId)
+        {
+            PerformAtkActionAnimFromServer(animID, applyRootMotion);
+        }
+    }
+
+    private void PerformAtkActionAnimFromServer(string animID, bool applyRootMotion)
+    {
+        character.applyRootMotion = applyRootMotion;
+        character.anim.CrossFade(animID, 0.2f);
+    }
 }

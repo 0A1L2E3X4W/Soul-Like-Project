@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e7df848fb87e14ba7e8179da7cf082, type: 3}
   m_Name: WEP_Straight Sword
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 2
   itemName: Old Straight Sword
   itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   itemText: Old Sword
@@ -28,3 +28,4 @@ MonoBehaviour:
   holyDamage: 0
   poiseDamage: 25
   baseStaminaCost: 20
+  oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}

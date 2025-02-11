@@ -89,4 +89,37 @@ public class PlayerNetworkManager : CharacterNetworkManager
             isUsingLeftHand.Value = true;
         }
     }
+
+    // ITEM ACTION
+    [ServerRpc]
+    public void NotifyServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID)
+    {
+        if (IsServer)
+        {
+            NotifyServerOfWeaponActionClientRpc(clientID, actionID, weaponID);
+        }
+    }
+
+    [ClientRpc]
+    private void NotifyServerOfWeaponActionClientRpc(ulong clientID, int actionID, int weaponID)
+    {
+        if (clientID != NetworkManager.Singleton.LocalClientId)
+        {
+            PerformWeaponBasedAction(actionID, weaponID);
+        }
+    }
+
+    private void PerformWeaponBasedAction(int actionID, int weaponID)
+    {
+        WeaponItemAction weaponAction = WorldActionManager.Instance.GetWeaponItemAction(actionID);
+
+        if (weaponAction != null)
+        {
+            weaponAction.AttemptPerformAction(player, WorldItemDatabase.Instance.GetWeaponByID(weaponID));
+        }
+        else
+        {
+            Debug.LogError("ACTION is NULL");
+        }
+    }
 }

@@ -22,8 +22,8 @@ public class PlayerCombatManager : CharacterCombatManager
         {
             weaponAction.AttemptPerformAction(player, weaponPerformingAction);
 
-            //player.playerNetworkManager.NotifyServerOfWeaponActionServerRpc(
-            //    NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.itemID);
+            player.playerNetworkManager.NotifyServerOfWeaponActionServerRpc(
+                NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.itemID);
         }
     }
 }
