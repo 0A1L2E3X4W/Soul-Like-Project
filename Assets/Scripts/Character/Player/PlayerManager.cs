@@ -16,6 +16,7 @@ public class PlayerManager : CharacterManager
 
     [Header("DEBUG MENU")]
     [SerializeField] private bool respawnCharacter = false;
+    [SerializeField] private bool switchRightWeapon = false;
 
     protected override void Awake()
     {
@@ -75,6 +76,10 @@ public class PlayerManager : CharacterManager
         }
 
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHp;
+
+        // EQUIP
+        playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
     }
 
     // SAVE & LOAD
@@ -147,6 +152,12 @@ public class PlayerManager : CharacterManager
         {
             respawnCharacter = false;
             ReviveCharacter();
+        }
+
+        if (switchRightWeapon)
+        {
+            switchRightWeapon = false;
+            playerEquipmentManager.SwitchRightWeapon();
         }
     }
 }

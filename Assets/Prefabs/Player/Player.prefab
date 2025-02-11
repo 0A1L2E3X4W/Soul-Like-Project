@@ -583,6 +583,7 @@ MonoBehaviour:
   playerEquipmentManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   respawnCharacter: 0
+  switchRightWeapon: 0
 --- !u!114 &3772982453111213788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +693,16 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  currentWeaponBeingUsed:
+    m_InternalValue: 0
+  currentRightHandWeaponID:
+    m_InternalValue: 0
+  currentLeftHandWeaponID:
+    m_InternalValue: 0
+  isUsingRightHand:
+    m_InternalValue: 0
+  isUsingLeftHand:
+    m_InternalValue: 0
 --- !u!114 &3065978345885485658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,8 +750,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandSlot: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
   leftHandSlot: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
 --- !u!114 &558594587427866616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,18 +766,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ecc58a4507e85489745fb86824ec84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRightHandWeapon: {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
-  currentLeftHandWeapon: {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  currentLeftHandWeapon: {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
   rightHandWeaponIndex: 0
   weaponsInRightHandSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
   leftHandWeaponIndex: 0
   weaponsInLeftHandSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
 --- !u!114 &-7649883426742956672
 MonoBehaviour:
   m_ObjectHideFlags: 0

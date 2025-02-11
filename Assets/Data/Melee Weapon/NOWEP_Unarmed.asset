@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e7df848fb87e14ba7e8179da7cf082, type: 3}
+  m_Name: NOWEP_Unarmed
+  m_EditorClassIdentifier: 
+  itemID: 0
+  itemName: 
+  itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemText: 
+  weaponModel: {fileID: 2494600810836545864, guid: 7408ea6ff258ee944b894a34b47760b9, type: 3}
+  strengthRequire: 1
+  dexterityRequire: 1
+  intelligenteRequire: 0
+  faithRequire: 0
+  physicalDamage: 50
+  magicDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  holyDamage: 0
+  poiseDamage: 10
+  baseStaminaCost: 10

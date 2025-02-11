@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8060300357020702315}
   - component: {fileID: 143669807898702732}
+  - component: {fileID: 8243332800125780172}
   m_Layer: 10
   m_Name: Damage Collider
   m_TagString: Untagged
@@ -55,6 +56,25 @@ CapsuleCollider:
   m_Height: 1.12
   m_Direction: 1
   m_Center: {x: -0.0000003054738, y: 0.84, z: -0.00000017136335}
+--- !u!114 &8243332800125780172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200518910903713243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0370dd122584f4f48b02bceb9d457e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
+  physicalDamage: 0
+  magicDamage: 0
+  fireDamage: 0
+  lightningDamage: 0
+  holyDamage: 0
+  characterCausingDamage: {fileID: 0}
 --- !u!1 &2373194034884314902
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4617385318799170873}
+  - component: {fileID: 6242647183219827291}
   m_Layer: 0
   m_Name: Wep_StraightSword_01
   m_TagString: Untagged
@@ -174,6 +195,18 @@ Transform:
   - {fileID: 1131201057464719492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6242647183219827291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041866964253896751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a562662105b2614fbcaf7af160cb074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7660813698922762261
 GameObject:
   m_ObjectHideFlags: 0
