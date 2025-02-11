@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -68,6 +69,11 @@ public class CharacterManager : NetworkBehaviour
         }
     }
 
+    protected virtual void Start()
+    {
+        IgnoreOwnColliders();
+    }
+
     protected virtual void LateUpdate()
     {
 
@@ -94,5 +100,28 @@ public class CharacterManager : NetworkBehaviour
     public virtual void ReviveCharacter()
     {
 
+    }
+
+    // DAMAGEBLE COLLIDERS
+    protected virtual void IgnoreOwnColliders()
+    {
+        Collider charactercontrollerCollider = GetComponent<Collider>();
+        Collider[] damagableColliders = GetComponentsInChildren<Collider>();
+        List<Collider> ignoredColliders = new();
+
+        foreach (var collider in damagableColliders)
+        {
+            ignoredColliders.Add(collider);
+        }
+
+        ignoredColliders.Add(charactercontrollerCollider);
+
+        foreach (var collider in ignoredColliders)
+        {
+            foreach (var otherCollider in ignoredColliders)
+            {
+                Physics.IgnoreCollision(collider, otherCollider, true);
+            }
+        }
     }
 }
