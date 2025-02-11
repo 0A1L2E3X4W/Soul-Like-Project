@@ -27,6 +27,9 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private bool sprintInput = false;
     [SerializeField] private bool jumpInput = false;
 
+    [Header("BUMPER INPUTS")]
+    [SerializeField] private bool rbInput = false;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -76,11 +79,16 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
 
+            // TAP ACTION
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
 
+            // HOLD ACTION
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+
+            // RIGHT BUMPER
+            playerControls.PlayerActions.RB.performed += i => rbInput = true;
         }
 
         playerControls.Enable();
@@ -113,6 +121,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
+
+        HandleRbInput();
     }
 
     // PLAYER MOVEMENT
@@ -138,7 +148,6 @@ public class PlayerInputManager : MonoBehaviour
         cameraHorizontalInput = cameraInput.x;
         cameraVerticalInput = cameraInput.y;
     }
-
 
     // ACTIONS
     private void HandleDodgeInput()
@@ -169,6 +178,20 @@ public class PlayerInputManager : MonoBehaviour
             jumpInput = false;
 
             player.playerLocomotionManager.AttemptPerformJump();
+        }
+    }
+
+    private void HandleRbInput()
+    {
+        if (rbInput)
+        {
+            rbInput = false;
+
+            player.playerNetworkManager.SetCharacterActionHand(true);
+
+            player.playerCombatManager.PerformWeaponBasedAction(
+                player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
+                player.playerInventoryManager.currentRightHandWeapon);
         }
     }
 }

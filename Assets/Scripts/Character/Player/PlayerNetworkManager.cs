@@ -70,9 +70,23 @@ public class PlayerNetworkManager : CharacterNetworkManager
         //}
     }
 
-    //public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)
-    //{
-    //    WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
-    //    player.playerCombatManager.currentWeaponBeingUsed = newWeapon;
-    //}
+    public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)
+    {
+        WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
+        player.playerCombatManager.currentWeaponBeingUsed = newWeapon;
+    }
+
+    public void SetCharacterActionHand(bool isRightHandAction)
+    {
+        if (isRightHandAction)
+        {
+            isUsingLeftHand.Value = false;
+            isUsingRightHand.Value = true;
+        }
+        else
+        {
+            isUsingRightHand.Value = false;
+            isUsingLeftHand.Value = true;
+        }
+    }
 }

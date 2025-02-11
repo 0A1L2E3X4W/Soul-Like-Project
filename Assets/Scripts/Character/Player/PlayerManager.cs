@@ -13,6 +13,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerEffectsManager playerEffectsManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
 
     [Header("DEBUG MENU")]
     [SerializeField] private bool respawnCharacter = false;
@@ -30,6 +31,7 @@ public class PlayerManager : CharacterManager
         playerEffectsManager = GetComponent<PlayerEffectsManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
     }
 
     protected override void Update()
@@ -80,6 +82,7 @@ public class PlayerManager : CharacterManager
         // EQUIP
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         if (IsOwner && !IsServer)
         {

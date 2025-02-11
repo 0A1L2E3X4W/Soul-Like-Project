@@ -18,6 +18,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterEquipmentManager characterEquipmentManager;
     [HideInInspector] public CharacterInventoryManager characterInventoryManager;
+    [HideInInspector] public CharacterCombatManager characterCombatManager;
 
     [Header("STATUS")]
     public NetworkVariable<bool> isDead = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -44,6 +45,7 @@ public class CharacterManager : NetworkBehaviour
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterEquipmentManager = GetComponent<CharacterEquipmentManager>();
         characterInventoryManager = GetComponent<CharacterInventoryManager>();
+        characterCombatManager = GetComponent<CharacterCombatManager>();
     }
 
     protected virtual void Update()

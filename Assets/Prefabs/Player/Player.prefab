@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 6767748777062615}
   - component: {fileID: 3772982453111213788}
   - component: {fileID: 3065978345885485658}
+  - component: {fileID: -2983802582786596300}
   - component: {fileID: -6715717714024879221}
   - component: {fileID: 558594587427866616}
   - component: {fileID: -7649883426742956672}
@@ -621,7 +622,6 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   isGrounded: 1
-  isJumping: 0
   playerAnimatorManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
@@ -659,6 +659,8 @@ MonoBehaviour:
   moveAmount:
     m_InternalValue: 0
   isSprinting:
+    m_InternalValue: 0
+  isJumping:
     m_InternalValue: 0
   endurance:
     m_InternalValue: 1
@@ -784,6 +786,18 @@ MonoBehaviour:
   jumpForwardSpeed: 5
   jumpStaminaCost: 20
   freeFallSpeed: 2
+--- !u!114 &-2983802582786596300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047826177486086097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af6913934ceb034b92623b6dd0941af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-6715717714024879221
 MonoBehaviour:
   m_ObjectHideFlags: 0
