@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -9,12 +10,45 @@ public class CharacterAnimatorManager : MonoBehaviour
     private int vertical;
     private int horizontal;
 
+    [Header("DAMAGE ANIM")]
+    [SerializeField] private string hitForwardMedium01 = "Hit_Forward_Medium_01";
+    [SerializeField] private string hitForwardMedium02 = "Hit_Forward_Medium_02";
+    [SerializeField] private string hitBackwardMedium01 = "Hit_Backward_Medium_01";
+    [SerializeField] private string hitBackwardMedium02 = "Hit_Backward_Medium_02";
+    [SerializeField] private string hitLeftMedium01 = "Hit_Left_Medium_01";
+    [SerializeField] private string hitLeftMedium02 = "Hit_Left_Medium_02";
+    [SerializeField] private string hitRightMedium01 = "Hit_Right_Medium_01";
+    [SerializeField] private string hitRightMedium02 = "Hit_Right_Medium_02";
+    [Space]
+    public string finalDamageAnimPlayed;
+
+    [Header("DAMAGE ANIM LIST")]
+    public List<string> forwardMidDamage = new();
+    public List<string> backwardMidDamage = new();
+    public List<string> rightMidDamage = new();
+    public List<string> leftMidDamage = new();
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
 
         vertical = Animator.StringToHash("Vertical");
         horizontal = Animator.StringToHash("Horizontal");
+    }
+
+    protected virtual void Start()
+    {
+        forwardMidDamage.Add(hitForwardMedium01);
+        forwardMidDamage.Add(hitForwardMedium02);
+
+        backwardMidDamage.Add(hitBackwardMedium01);
+        backwardMidDamage.Add(hitBackwardMedium02);
+
+        rightMidDamage.Add(hitRightMedium01);
+        rightMidDamage.Add(hitRightMedium02);
+
+        leftMidDamage.Add(hitLeftMedium01);
+        leftMidDamage.Add(hitLeftMedium02);
     }
 
     // LOCOMOTION
@@ -69,5 +103,29 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.canRotate = canRotate;
 
         character.characterNetworkManager.NotifyServerOfAtkActionAnimServerRpc(NetworkManager.Singleton.LocalClientId, targetAnim, applyRootMotion);
+    }
+
+    public string GetRandomAnimFromList(List<string> animList)
+    {
+        List<string> finalList = new();
+
+        foreach (var item in animList)
+        {
+            finalList.Add(item);
+        }
+
+        finalList.Remove(finalDamageAnimPlayed);
+
+        for (int i = finalList.Count - 1; i > -1; i--)
+        {
+            if (finalList[i] == null)
+            {
+                finalList.RemoveAt(i);
+            }
+        }
+
+        int randomIndex = Random.Range(0, finalList.Count);
+
+        return finalList[randomIndex];
     }
 }
