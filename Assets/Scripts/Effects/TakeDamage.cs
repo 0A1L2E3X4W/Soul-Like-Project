@@ -41,6 +41,8 @@ public class TakeDamage : InstanceCharacterEffect
             return;
 
         CalcuDamage(character);
+        PlayDamageSFX(character);
+        PlayDamageVFX(character);
     }
 
     private void CalcuDamage(CharacterManager character)
@@ -59,5 +61,17 @@ public class TakeDamage : InstanceCharacterEffect
 
         character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
         Debug.Log("TAKE DAMAGE: " + finalDamageDealt);
+    }
+
+    private void PlayDamageVFX(CharacterManager character)
+    {
+        character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+    }
+
+    private void PlayDamageSFX(CharacterManager character)
+    {
+        AudioClip physicalSFX = WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(WorldSoundFXManager.Instance.physicalSFX);
+
+        character.characterSoundFXManager.PlaySFX(physicalSFX);
     }
 }

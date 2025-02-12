@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager
@@ -61,6 +62,8 @@ public class PlayerManager : CharacterManager
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
 
         if (IsOwner)
         {
@@ -127,6 +130,28 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
 
         PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaVal(playerNetworkManager.maxStamina.Value);
+    }
+
+    public void LoadOtherPlayerIntoServer()
+    {
+        playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
+        playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+    }
+
+    private void OnClientConnectedCallback(ulong clientID)
+    {
+        WorldGameSessionManager.Instance.AddPlayerToActiveList(this);
+
+        if (!IsServer && IsOwner)
+        {
+            foreach (var player in WorldGameSessionManager.Instance.players)
+            {
+                if (player != this)
+                {
+                    player.LoadOtherPlayerIntoServer();
+                }
+            }
+        }
     }
 
     // DEATH & RESPAWN

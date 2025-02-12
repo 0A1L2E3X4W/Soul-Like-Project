@@ -11,6 +11,9 @@ public class WorldEffectsManager : MonoBehaviour
     [Header("INSTANCE EFFECTS")]
     [SerializeField] List<InstanceCharacterEffect> instanceEffects;
 
+    [Header("VFX")]
+    public GameObject bloodSplatterVFX;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }

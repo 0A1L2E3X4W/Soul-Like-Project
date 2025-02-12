@@ -45,3 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollSFX: {fileID: 8300000, guid: a8f77bf279812d141bae01407b48abb5, type: 3}
+  physicalSFX:
+  - {fileID: 8300000, guid: 164c4cd428e81554a89f938451aae22f, type: 3}
+  - {fileID: 8300000, guid: 5c25a8b6c2ef9624caf832fe0d756bbd, type: 3}
+  - {fileID: 8300000, guid: 616758222d84f6f47b8b9dd6a3e5d3b8, type: 3}
+  - {fileID: 8300000, guid: 7ed99645cac6f06438be178db3df164c, type: 3}
+  - {fileID: 8300000, guid: 7b85f48408e15f748a6a7de0f94963cf, type: 3}
+  - {fileID: 8300000, guid: 5d5f587ae155eb94f867257211a96f5e, type: 3}
+  - {fileID: 8300000, guid: 5ed176f89f549d24a83fa420c256201e, type: 3}
+  - {fileID: 8300000, guid: 0e1457ebf7dc95b4db34ba2fa89929fc, type: 3}
