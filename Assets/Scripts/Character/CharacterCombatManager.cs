@@ -8,6 +8,9 @@ public class CharacterCombatManager : MonoBehaviour
     [Header("ATK TARGET")]
     public CharacterManager currentTarget;
 
+    [Header("ATK TYPE")]
+    public AtkType currentAtkType;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();

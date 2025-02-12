@@ -21,3 +21,8 @@ public enum WeaponSlot
     RightHand,
     LeftHand,
 }
+
+public enum AtkType
+{
+    LightAtk01,
+}

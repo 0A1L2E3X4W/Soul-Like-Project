@@ -113,4 +113,52 @@ public class CharacterNetworkManager : NetworkBehaviour
         character.applyRootMotion = applyRootMotion;
         character.anim.CrossFade(animID, 0.2f);
     }
+
+    // DAMAGE
+    [ServerRpc(RequireOwnership = false)]
+    public void NotifyServerOfCharacterDamageServerRpc(ulong damagedCharacterID, ulong characterCausingDamageID,
+        float physicalDamage, float magicDamage, float holyDamage, float fireDamage, float lightningDamage, float poiseDamage,
+        float angleHitFrom, float contactPointX, float contactPointY, float contackPointZ)
+    {
+        if (IsServer)
+        {
+            NotifyServerOfCharacterDamageClientRpc(damagedCharacterID, characterCausingDamageID,
+                physicalDamage, magicDamage, holyDamage, fireDamage, lightningDamage, poiseDamage,
+                angleHitFrom, contactPointX, contactPointY, contackPointZ);
+        }
+    }
+
+    [ClientRpc]
+    private void NotifyServerOfCharacterDamageClientRpc(ulong damagedCharacterID, ulong characterCausingDamageID,
+        float physicalDamage, float magicDamage, float holyDamage, float fireDamage, float lightningDamage, float poiseDamage,
+        float angleHitFrom, float contactPointX, float contactPointY, float contackPointZ)
+    {
+        ProcessDamageFromServer(damagedCharacterID, characterCausingDamageID,
+                physicalDamage, magicDamage, holyDamage, fireDamage, lightningDamage, poiseDamage,
+                angleHitFrom, contactPointX, contactPointY, contackPointZ);
+    }
+
+    private void ProcessDamageFromServer(ulong damagedCharacterID, ulong characterCausingDamageID,
+        float physicalDamage, float magicDamage, float holyDamage, float fireDamage, float lightningDamage, float poiseDamage,
+        float angleHitFrom, float contactPointX, float contactPointY, float contackPointZ)
+    {
+        CharacterManager damagedCharacter =
+            NetworkManager.Singleton.SpawnManager.SpawnedObjects[damagedCharacterID].gameObject.GetComponent<CharacterManager>();
+        CharacterManager characterCausingDamage =
+            NetworkManager.Singleton.SpawnManager.SpawnedObjects[characterCausingDamageID].gameObject.GetComponent<CharacterManager>();
+
+        TakeDamage damageEffect = Instantiate(WorldEffectsManager.Instance.takeDamageEffect);
+
+        damageEffect.physicalDamage = physicalDamage;
+        damageEffect.magicDamage = magicDamage;
+        damageEffect.holyDamage = holyDamage;
+        damageEffect.fireDamage = fireDamage;
+        damageEffect.lightningDamage = lightningDamage;
+        damageEffect.poiseDamage = poiseDamage;
+        damageEffect.angleHitFrom = angleHitFrom;
+        damageEffect.contactPoint = new Vector3(contactPointX, contactPointY, contackPointZ);
+        damageEffect.characterCausingDamage = characterCausingDamage;
+
+        damagedCharacter.characterEffectsManager.ProcessInstanceEffect(damageEffect);
+    }
 }

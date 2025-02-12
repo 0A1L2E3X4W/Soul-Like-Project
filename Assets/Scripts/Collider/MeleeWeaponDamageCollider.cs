@@ -5,6 +5,9 @@ public class MeleeWeaponDamageCollider : DamageCollider
     [Header("CHARACTER WHO ATK")]
     public CharacterManager characterCausingDamage;
 
+    [Header("WEAPON ATK MODIFIERS")]
+    public float lightAtkModifier_01;
+
     protected override void Awake()
     {
         base.Awake();
@@ -34,8 +37,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
     protected override void DamageTarget(CharacterManager damageTarget)
     {
-        base.DamageTarget(damageTarget);
-
         if (charactersDamaged.Contains(damageTarget))
             return;
 
@@ -53,13 +54,22 @@ public class MeleeWeaponDamageCollider : DamageCollider
         damageEffect.angleHitFrom = Vector3.SignedAngle(
             characterCausingDamage.transform.forward, damageTarget.transform.forward, Vector3.up);
 
+        switch (characterCausingDamage.characterCombatManager.currentAtkType)
+        {
+            case AtkType.LightAtk01:
+                ApplyAtkDamageModifiers(lightAtkModifier_01, damageEffect);
+                break;
+            default:
+                break;
+        }
+
         if (characterCausingDamage.IsOwner)
         {
-            //damageTarget.characterNetworkManager.NotifyServerOfCharacterDamageServerRpc(
-            //    damageTarget.NetworkObjectId, characterCausingDamage.NetworkObjectId,
-            //    damageEffect.physicalDamage, damageEffect.magicDamage, damageEffect.holyDamage, damageEffect.fireDamage, damageEffect.lightningDamage,
-            //    damageEffect.poiseDamage, damageEffect.angleHitFrom,
-            //    damageEffect.contactPoint.x, damageEffect.contactPoint.y, damageEffect.contactPoint.z);
+            damageTarget.characterNetworkManager.NotifyServerOfCharacterDamageServerRpc(
+                damageTarget.NetworkObjectId, characterCausingDamage.NetworkObjectId,
+                damageEffect.physicalDamage, damageEffect.magicDamage, damageEffect.holyDamage, damageEffect.fireDamage, damageEffect.lightningDamage,
+                damageEffect.poiseDamage, damageEffect.angleHitFrom,
+                damageEffect.contactPoint.x, damageEffect.contactPoint.y, damageEffect.contactPoint.z);
         }
 
         //damageTarget.characterEffectsManager.ProcessInstanceEffect(damageEffect);

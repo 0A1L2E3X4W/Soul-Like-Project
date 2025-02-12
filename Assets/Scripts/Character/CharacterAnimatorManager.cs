@@ -56,10 +56,10 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
     // PLAY ATTACK ANIM
-    public virtual void PlayTargetAtkActionAnim(string targetAnim,
+    public virtual void PlayTargetAtkActionAnim(AtkType atkType, string targetAnim,
             bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
-        //character.characterCombatManager.currentAtkType = atkType;
+        character.characterCombatManager.currentAtkType = atkType;
         //character.characterCombatManager.lastAtkAnimPerformed = targetAnim;
 
         character.applyRootMotion = applyRootMotion;

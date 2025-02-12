@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e7df848fb87e14ba7e8179da7cf082, type: 3}
   m_Name: WEP_Broad Sword
   m_EditorClassIdentifier: 
-  itemID: 0
+  itemID: 1
   itemName: Old Broad Sword
   itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   itemText: Old Sword
@@ -27,4 +27,7 @@ MonoBehaviour:
   lightningDamage: 0
   holyDamage: 0
   poiseDamage: 35
+  lightAtkModifier_01: 0.8
   baseStaminaCost: 35
+  lightAtkStaminaCostMultiplier: 0.8
+  oh_RB_Action: {fileID: 0}

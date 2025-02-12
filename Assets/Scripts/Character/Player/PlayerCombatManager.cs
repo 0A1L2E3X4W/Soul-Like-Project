@@ -26,4 +26,27 @@ public class PlayerCombatManager : CharacterCombatManager
                 NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.itemID);
         }
     }
+
+    public virtual void DrainStaminaBasedAtk()
+    {
+        if (!player.IsOwner)
+            return;
+
+        if (currentWeaponBeingUsed == null)
+            return;
+
+        float staminaDeducted = 0f;
+
+        switch (currentAtkType)
+        {
+            case AtkType.LightAtk01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAtkStaminaCostMultiplier;
+                break;
+            default:
+                break;
+        }
+
+        Debug.Log("STAMINA COST: " + staminaDeducted);
+        player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
+    }
 }

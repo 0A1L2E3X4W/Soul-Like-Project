@@ -221,4 +221,29 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             SwitchLeftWeapon();
         }
     }
+
+    // DAMAGE COLLIDER
+    public void OpenDamageCollider()
+    {
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            rightWeaponManager.meleeWeaponDamageCollider.EnableDamageCollider();
+        }
+        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        {
+            leftWeaponManager.meleeWeaponDamageCollider.EnableDamageCollider();
+        }
+    }
+
+    public void CloseDamageCollider()
+    {
+        if (player.playerNetworkManager.isUsingRightHand.Value)
+        {
+            rightWeaponManager.meleeWeaponDamageCollider.DisableDamageCollider();
+        }
+        else if (player.playerNetworkManager.isUsingLeftHand.Value)
+        {
+            leftWeaponManager.meleeWeaponDamageCollider.DisableDamageCollider();
+        }
+    }
 }
