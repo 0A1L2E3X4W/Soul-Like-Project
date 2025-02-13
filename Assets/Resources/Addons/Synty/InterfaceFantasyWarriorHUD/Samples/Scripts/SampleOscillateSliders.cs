@@ -27,14 +27,18 @@ namespace Synty.Interface.FantasyWarriorHUD.Samples
 
         private void Reset()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             sliders = FindObjectsOfType<Slider>().ToList();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private void Start()
         {
             if (autoGetSliders)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 sliders = FindObjectsOfType<Slider>().ToList();
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
 

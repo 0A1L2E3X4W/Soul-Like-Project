@@ -30,6 +30,12 @@ public class PlayerInputManager : MonoBehaviour
     [Header("BUMPER INPUTS")]
     [SerializeField] private bool rbInput = false;
 
+    [Header("LOCK ON INPUT")]
+    [SerializeField] private bool lockOnInput = false;
+    [SerializeField] private bool lockOnLeftInput = false;
+    [SerializeField] private bool lockOnRightInput = false;
+    private Coroutine lockOnCoroutine;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -89,6 +95,11 @@ public class PlayerInputManager : MonoBehaviour
 
             // RIGHT BUMPER
             playerControls.PlayerActions.RB.performed += i => rbInput = true;
+
+            // LOCK ON
+            playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            playerControls.PlayerActions.SeekRightTarget.performed += i => lockOnRightInput = true;
+            playerControls.PlayerActions.SeekLeftTarget.performed += i => lockOnLeftInput = true;
         }
 
         playerControls.Enable();
@@ -115,6 +126,9 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleLockOnInput();
+        HandleSwitchLockOnTargetInput();
+
         HandleMovementInput();
         HandleCameraInput();
 
@@ -123,6 +137,80 @@ public class PlayerInputManager : MonoBehaviour
         HandleJumpInput();
 
         HandleRbInput();
+    }
+
+    // LOCK ON
+    private void HandleLockOnInput()
+    {
+        if (player.playerNetworkManager.isLockedOn.Value)
+        {
+            if (player.playerCombatManager.currentTarget == null)
+                return;
+
+            if (player.playerCombatManager.currentTarget.isDead.Value)
+            {
+                player.playerNetworkManager.isLockedOn.Value = false;
+            }
+
+            if (lockOnCoroutine != null)
+                StopCoroutine(lockOnCoroutine);
+
+            lockOnCoroutine = StartCoroutine(PlayerCamera.Instance.WaitFindNewTarget());
+        }
+
+        if (lockOnInput && player.playerNetworkManager.isLockedOn.Value)
+        {
+            lockOnInput = false;
+            PlayerCamera.Instance.ClearLockOnTargets();
+            player.playerNetworkManager.isLockedOn.Value = false;
+            return;
+        }
+
+        if (lockOnInput && !player.playerNetworkManager.isLockedOn.Value)
+        {
+            lockOnInput = false;
+
+            PlayerCamera.Instance.HandleLocateLockOnTarget();
+
+            if (PlayerCamera.Instance.nearestLockOnTarget != null)
+            {
+                player.playerCombatManager.SetTarget(PlayerCamera.Instance.nearestLockOnTarget);
+                player.playerNetworkManager.isLockedOn.Value = true;
+            }
+        }
+    }
+
+    private void HandleSwitchLockOnTargetInput()
+    {
+        if (lockOnLeftInput)
+        {
+            lockOnLeftInput = false;
+
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                PlayerCamera.Instance.HandleLocateLockOnTarget();
+
+                if (PlayerCamera.Instance.leftLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.Instance.leftLockOnTarget);
+                }
+            }
+        }
+
+        if (lockOnRightInput)
+        {
+            lockOnRightInput = false;
+
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                PlayerCamera.Instance.HandleLocateLockOnTarget();
+
+                if (PlayerCamera.Instance.rightLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.Instance.rightLockOnTarget);
+                }
+            }
+        }
     }
 
     // PLAYER MOVEMENT
@@ -139,7 +227,14 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
-        player.playerAnimatorManager.UpdateAnimatorMovementParams(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+        if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
+        {
+            player.playerAnimatorManager.UpdateAnimatorMovementParams(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+        }
+        else
+        {
+            player.playerAnimatorManager.UpdateAnimatorMovementParams(horizontalInput, verticalInput, player.playerNetworkManager.isSprinting.Value);
+        }
     }
 
     // CAMERA

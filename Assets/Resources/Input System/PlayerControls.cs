@@ -272,6 +272,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""46add6fb-195c-4eea-806b-5879d5fe69cd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SeekLeftTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""45f6dc86-55ef-491a-8127-c14b5fdb99b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SeekRightTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""4eff6067-510a-4532-9f6d-96b035a820cc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -373,6 +400,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""RB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08002edb-61fc-4778-8a2b-c77c9baf8b9b"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfbe97e9-8f8d-43dc-8e1f-e681d54f747d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b11aff7-0bc2-4ba2-88a2-9fe88c7b24bd"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SeekLeftTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18b7c480-471f-4836-a9aa-6cc86b0f8130"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SeekRightTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -430,6 +501,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
+        m_PlayerActions_SeekLeftTarget = m_PlayerActions.FindAction("SeekLeftTarget", throwIfNotFound: true);
+        m_PlayerActions_SeekRightTarget = m_PlayerActions.FindAction("SeekRightTarget", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -598,6 +672,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_LockOn;
+    private readonly InputAction m_PlayerActions_SeekLeftTarget;
+    private readonly InputAction m_PlayerActions_SeekRightTarget;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -606,6 +683,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
+        public InputAction @SeekLeftTarget => m_Wrapper.m_PlayerActions_SeekLeftTarget;
+        public InputAction @SeekRightTarget => m_Wrapper.m_PlayerActions_SeekRightTarget;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -627,6 +707,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @LockOn.started += instance.OnLockOn;
+            @LockOn.performed += instance.OnLockOn;
+            @LockOn.canceled += instance.OnLockOn;
+            @SeekLeftTarget.started += instance.OnSeekLeftTarget;
+            @SeekLeftTarget.performed += instance.OnSeekLeftTarget;
+            @SeekLeftTarget.canceled += instance.OnSeekLeftTarget;
+            @SeekRightTarget.started += instance.OnSeekRightTarget;
+            @SeekRightTarget.performed += instance.OnSeekRightTarget;
+            @SeekRightTarget.canceled += instance.OnSeekRightTarget;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -643,6 +732,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @LockOn.started -= instance.OnLockOn;
+            @LockOn.performed -= instance.OnLockOn;
+            @LockOn.canceled -= instance.OnLockOn;
+            @SeekLeftTarget.started -= instance.OnSeekLeftTarget;
+            @SeekLeftTarget.performed -= instance.OnSeekLeftTarget;
+            @SeekLeftTarget.canceled -= instance.OnSeekLeftTarget;
+            @SeekRightTarget.started -= instance.OnSeekRightTarget;
+            @SeekRightTarget.performed -= instance.OnSeekRightTarget;
+            @SeekRightTarget.canceled -= instance.OnSeekRightTarget;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -720,6 +818,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
+        void OnSeekLeftTarget(InputAction.CallbackContext context);
+        void OnSeekRightTarget(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

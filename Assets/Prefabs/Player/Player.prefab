@@ -34,6 +34,7 @@ Transform:
   - {fileID: 6175213117291061621}
   - {fileID: 6958440299992045043}
   - {fileID: 5611772968805112878}
+  - {fileID: 5462706764816923567}
   m_Father: {fileID: 742423760171758237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8993750439223726971
@@ -273,6 +274,37 @@ Transform:
   m_Children:
   - {fileID: 5595701966089740691}
   m_Father: {fileID: 3186262928551038524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &738185170526588345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5462706764816923567}
+  m_Layer: 7
+  m_Name: Lock On Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5462706764816923567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738185170526588345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4482961893040652118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &969286737566313855
 GameObject:
@@ -615,6 +647,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterEquipmentManager: {fileID: 0}
   characterInventoryManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
   isDead:
     m_InternalValue: 0
   isPerformingAction: 0
@@ -630,6 +663,7 @@ MonoBehaviour:
   playerEffectsManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerCombatManager: {fileID: 0}
   respawnCharacter: 0
   switchRightWeapon: 0
 --- !u!114 &3772982453111213788
@@ -661,6 +695,8 @@ MonoBehaviour:
   isSprinting:
     m_InternalValue: 0
   isJumping:
+    m_InternalValue: 0
+  isLockedOn:
     m_InternalValue: 0
   endurance:
     m_InternalValue: 1
@@ -798,6 +834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af6913934ceb034b92623b6dd0941af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  currentAtkType: 0
+  lockOnTransform: {fileID: 5462706764816923567}
+  currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &-6715717714024879221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6e233b94c45a54fb9fe5b7089f4ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 0}
   testEffect: {fileID: 11400000, guid: b63969b0702bd9c409a5b684677254ee, type: 2}
   processEffect: 0
 --- !u!143 &7807536484518568745
@@ -1029,6 +1070,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5450b00f7b41d78469d69a5d51e75280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitForwardMedium01: Hit_Forward_Medium_01
+  hitForwardMedium02: Hit_Forward_Medium_02
+  hitBackwardMedium01: Hit_Backward_Medium_01
+  hitBackwardMedium02: Hit_Backward_Medium_02
+  hitLeftMedium01: Hit_Left_Medium_01
+  hitLeftMedium02: Hit_Left_Medium_02
+  hitRightMedium01: Hit_Right_Medium_01
+  hitRightMedium02: Hit_Right_Medium_02
+  finalDamageAnimPlayed: 
+  forwardMidDamage: []
+  backwardMidDamage: []
+  rightMidDamage: []
+  leftMidDamage: []
 --- !u!114 &979792449994522011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,6 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262c3f082dd4ed741aec1be85aab1596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGrunts: []
 --- !u!1 &1074428374520301073
 GameObject:
   m_ObjectHideFlags: 0

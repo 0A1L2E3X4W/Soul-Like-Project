@@ -108,23 +108,60 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation()
     {
+        if (player.isDead.Value)
+            return;
+
         if (!player.canRotate)
             return;
-        
-        targetRotateDirection = Vector3.zero;
-        targetRotateDirection = PlayerCamera.Instance.cameraObj.transform.forward * verticalMovement;
-        targetRotateDirection += PlayerCamera.Instance.cameraObj.transform.right * horizontalMovement;
-        targetRotateDirection.Normalize();
-        targetRotateDirection.y = 0f;
 
-        if (targetRotateDirection == Vector3.zero)
+        if (player.playerNetworkManager.isLockedOn.Value || isRolling)
         {
-            targetRotateDirection = transform.forward;
-        }
+            if (player.playerNetworkManager.isSprinting.Value)
+            {
+                Vector3 targetDir = Vector3.zero;
+                targetDir = PlayerCamera.Instance.cameraObj.transform.forward * verticalMovement;
+                targetDir += PlayerCamera.Instance.cameraObj.transform.right * horizontalMovement;
+                targetDir.Normalize();
+                targetDir.y = 0f;
 
-        Quaternion newRotation = Quaternion.LookRotation(targetRotateDirection);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = targetRotation;
+                if (targetDir == Vector3.zero) { targetDir = transform.forward; }
+
+                Quaternion targetRotation = Quaternion.LookRotation(targetDir);
+                Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = finalRotation;
+            }
+            else
+            {
+                if (player.playerCombatManager.currentTarget == null)
+                    return;
+
+                Vector3 targetDir;
+                targetDir = player.playerCombatManager.currentTarget.transform.position - transform.position;
+                targetDir.y = 0f;
+                targetDir.Normalize();
+
+                Quaternion targetRotation = Quaternion.LookRotation(targetDir);
+                Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = finalRotation;
+            }
+        }
+        else
+        {
+            targetRotateDirection = Vector3.zero;
+            targetRotateDirection = PlayerCamera.Instance.cameraObj.transform.forward * verticalMovement;
+            targetRotateDirection += PlayerCamera.Instance.cameraObj.transform.right * horizontalMovement;
+            targetRotateDirection.Normalize();
+            targetRotateDirection.y = 0f;
+
+            if (targetRotateDirection == Vector3.zero)
+            {
+                targetRotateDirection = transform.forward;
+            }
+
+            Quaternion newRotation = Quaternion.LookRotation(targetRotateDirection);
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = targetRotation;
+        }
     }
 
     // JUMP & FREE FALL
@@ -170,6 +207,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.transform.rotation = playerRotation;
 
             player.playerAnimatorManager.PlayTargetActionAnim("Roll_Forward_01", true, true);
+            isRolling = true;
         }
         else
         {

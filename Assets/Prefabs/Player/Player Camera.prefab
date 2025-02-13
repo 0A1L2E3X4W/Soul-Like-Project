@@ -59,6 +59,16 @@ MonoBehaviour:
   cameraSmoothSpeed: 1
   horizontalLookAngle: 0
   verticalLookAngle: 0
+  lockOnRadius: 20
+  minViewAngle: -60
+  maxViewAngle: 50
+  lockOnTargetFollowSpeed: 0.2
+  unlockedOnCameraHeight: 1.65
+  lockedOnCameraHeight: 2
+  setCameraHeightSpeed: 0.05
+  nearestLockOnTarget: {fileID: 0}
+  leftLockOnTarget: {fileID: 0}
+  rightLockOnTarget: {fileID: 0}
 --- !u!1 &7740750985391872111
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +231,7 @@ Transform:
   m_GameObject: {fileID: 8252392305099971708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

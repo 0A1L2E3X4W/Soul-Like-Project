@@ -26,6 +26,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     [Header("FLAGS")]
     public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("STATS")]
     public NetworkVariable<int> endurance =
@@ -43,11 +44,16 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<int> maxHealth =
         new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    [Header("TARGET")]
+    public NetworkVariable<ulong> currentTargetNetworkID =
+            new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
     }
 
+    // STATS
     public virtual void CheckHp(int oldVal, int newVal)
     {
         if (currentHealth.Value <= 0)
@@ -61,6 +67,25 @@ public class CharacterNetworkManager : NetworkBehaviour
             {
                 currentHealth.Value = maxHealth.Value;
             }
+        }
+    }
+
+    // TARGET
+    public void OnTargetIDChanged(ulong oldID, ulong newID)
+    {
+        if (!IsOwner)
+        {
+            character.characterCombatManager.currentTarget =
+                NetworkManager.Singleton.SpawnManager.SpawnedObjects[newID].gameObject.GetComponent<CharacterManager>();
+        }
+    }
+
+    // LOCK ON
+    public void OnIsLockedOnChanged(bool oldVal, bool isLockedOn)
+    {
+        if (!isLockedOn)
+        {
+            character.characterCombatManager.currentTarget = null;
         }
     }
 

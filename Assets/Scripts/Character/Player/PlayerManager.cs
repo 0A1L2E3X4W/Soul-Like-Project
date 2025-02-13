@@ -80,7 +80,12 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenerationTimer;
         }
 
+        // STATS
         playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHp;
+
+        // LOCK ON
+        playerNetworkManager.isLockedOn.OnValueChanged += playerNetworkManager.OnIsLockedOnChanged;
+        playerNetworkManager.currentTargetNetworkID.OnValueChanged += playerNetworkManager.OnTargetIDChanged;
 
         // EQUIP
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
@@ -136,6 +141,11 @@ public class PlayerManager : CharacterManager
     {
         playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
         playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+
+        if (playerNetworkManager.isLockedOn.Value)
+        {
+            playerNetworkManager.OnTargetIDChanged(0, playerNetworkManager.currentTargetNetworkID.Value);
+        }
     }
 
     private void OnClientConnectedCallback(ulong clientID)

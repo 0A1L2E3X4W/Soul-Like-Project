@@ -49,4 +49,14 @@ public class PlayerCombatManager : CharacterCombatManager
         Debug.Log("STAMINA COST: " + staminaDeducted);
         player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
     }
+
+    public override void SetTarget(CharacterManager newTarget)
+    {
+        base.SetTarget(newTarget);
+
+        if (player.IsOwner)
+        {
+            PlayerCamera.Instance.SetLockedOnCameraHeight();
+        }
+    }
 }
