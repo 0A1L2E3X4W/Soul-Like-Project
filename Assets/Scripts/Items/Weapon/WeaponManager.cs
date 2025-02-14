@@ -21,5 +21,7 @@ public class WeaponManager : MonoBehaviour
         meleeWeaponDamageCollider.holyDamage = weapon.holyDamage;
 
         meleeWeaponDamageCollider.lightAtkModifier_01 = weapon.lightAtkModifier_01;
+        meleeWeaponDamageCollider.heavyAtkModifier_01 = weapon.heavyAtkModifier_01;
+        meleeWeaponDamageCollider.chargedAtkModifier_01 = weapon.chargedAtkModifier_01;
     }
 }

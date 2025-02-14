@@ -28,6 +28,11 @@ MonoBehaviour:
   holyDamage: 0
   poiseDamage: 10
   lightAtkModifier_01: 0.8
+  heavyAtkModifier_01: 1.2
+  chargedAtkModifier_01: 1.8
   baseStaminaCost: 10
   lightAtkStaminaCostMultiplier: 0.8
+  heavyAtkStaminaCostMultiplier: 1.2
+  chargedAtkStaminaCostMultiplier: 1.8
   oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 59d19f0cb9c86ca4989d06437ce6d808, type: 2}

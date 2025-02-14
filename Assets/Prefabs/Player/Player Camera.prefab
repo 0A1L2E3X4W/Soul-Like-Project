@@ -62,7 +62,7 @@ MonoBehaviour:
   lockOnRadius: 20
   minViewAngle: -60
   maxViewAngle: 50
-  lockOnTargetFollowSpeed: 0.2
+  lockOnTargetFollowSpeed: 1
   unlockedOnCameraHeight: 1.65
   lockedOnCameraHeight: 2
   setCameraHeightSpeed: 0.05

@@ -92,10 +92,46 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
+        // ANIM FLAGS
+        playerNetworkManager.isChargingAtk.OnValueChanged += playerNetworkManager.OnIsChargingAtkChanged;
+
         if (IsOwner && !IsServer)
         {
             LoadGameFromCurrentCharacterData(ref WorldSaveGameManager.Instance.currentCharacterData);
         }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
+
+        if (IsOwner)
+        {
+            playerNetworkManager.vitality.OnValueChanged -= playerNetworkManager.SetNewMaxHealthVal;
+            playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaVal;
+
+            playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.Instance.playerUIHudManager.SetNewHealthVal;
+            playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.Instance.playerUIHudManager.SetNewStaminaVal;
+
+            playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenerationTimer;
+        }
+
+        // STATS
+        playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHp;
+
+        // LOCK ON
+        playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
+        playerNetworkManager.currentTargetNetworkID.OnValueChanged -= playerNetworkManager.OnTargetIDChanged;
+
+        // EQUIP
+        playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        // ANIM FLAGS
+        playerNetworkManager.isChargingAtk.OnValueChanged -= playerNetworkManager.OnIsChargingAtkChanged;
     }
 
     // SAVE & LOAD

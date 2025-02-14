@@ -27,6 +27,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isChargingAtk = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("STATS")]
     public NetworkVariable<int> endurance =
@@ -87,6 +88,12 @@ public class CharacterNetworkManager : NetworkBehaviour
         {
             character.characterCombatManager.currentTarget = null;
         }
+    }
+
+    // CHARGED ATTACK
+    public void OnIsChargingAtkChanged(bool oldStatus, bool newStatus)
+    {
+        character.anim.SetBool("IsChargingAtk", isChargingAtk.Value);
     }
 
     // PLAY TARGET ANIMATIONS

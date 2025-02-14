@@ -30,6 +30,10 @@ public class PlayerInputManager : MonoBehaviour
     [Header("BUMPER INPUTS")]
     [SerializeField] private bool rbInput = false;
 
+    [Header("TRIGGER INPUTS")]
+    [SerializeField] private bool rtInput = false;
+    [SerializeField] private bool holdRTInput = false;
+
     [Header("LOCK ON INPUT")]
     [SerializeField] private bool lockOnInput = false;
     [SerializeField] private bool lockOnLeftInput = false;
@@ -96,6 +100,11 @@ public class PlayerInputManager : MonoBehaviour
             // RIGHT BUMPER
             playerControls.PlayerActions.RB.performed += i => rbInput = true;
 
+            // RIGHT TRIGGER
+            playerControls.PlayerActions.RT.performed += i => rtInput = true;
+            playerControls.PlayerActions.HoldRT.performed += i => holdRTInput = true;
+            playerControls.PlayerActions.HoldRT.canceled += i => holdRTInput = false;
+
             // LOCK ON
             playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
             playerControls.PlayerActions.SeekRightTarget.performed += i => lockOnRightInput = true;
@@ -137,6 +146,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleJumpInput();
 
         HandleRbInput();
+        HandleRtInput();
+        HandleHoldRtInput();
     }
 
     // LOCK ON
@@ -276,6 +287,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    // TRIGGER & BUMPER
     private void HandleRbInput()
     {
         if (rbInput)
@@ -287,6 +299,31 @@ public class PlayerInputManager : MonoBehaviour
             player.playerCombatManager.PerformWeaponBasedAction(
                 player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
                 player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleRtInput()
+    {
+        if (rtInput)
+        {
+            rtInput = false;
+
+            player.playerNetworkManager.SetCharacterActionHand(true);
+
+            player.playerCombatManager.PerformWeaponBasedAction(
+                player.playerInventoryManager.currentRightHandWeapon.oh_RT_Action,
+                player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleHoldRtInput()
+    {
+        if (player.isPerformingAction)
+        {
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                player.playerNetworkManager.isChargingAtk.Value = holdRTInput;
+            }
         }
     }
 }

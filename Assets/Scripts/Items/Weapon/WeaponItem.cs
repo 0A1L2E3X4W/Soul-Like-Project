@@ -23,11 +23,16 @@ public class WeaponItem : Item
 
     [Header("ATTACK MODIFIER")]
     public float lightAtkModifier_01 = 0.8f;
+    public float heavyAtkModifier_01 = 1.2f;
+    public float chargedAtkModifier_01 = 1.8f;
 
     [Header("STAMINA COST")]
     public int baseStaminaCost = 10;
     public float lightAtkStaminaCostMultiplier = 0.8f;
+    public float heavyAtkStaminaCostMultiplier = 1.2f;
+    public float chargedAtkStaminaCostMultiplier = 1.8f;
 
     [Header("ACTIONS")]
     public WeaponItemAction oh_RB_Action;
+    public WeaponItemAction oh_RT_Action;
 }

@@ -25,4 +25,9 @@ public enum WeaponSlot
 public enum AtkType
 {
     LightAtk01,
+    LightAtk02,
+    HeavyAtk01,
+    HeavyAtk02,
+    ChargedAtk01,
+    ChargedAtk02,
 }
