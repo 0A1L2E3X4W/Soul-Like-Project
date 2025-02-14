@@ -22,4 +22,30 @@ public class WorldUtilityManager : MonoBehaviour
     public LayerMask GetCharacterLayers() { return characterLayer; }
 
     public LayerMask GetEnvironmentLayers() { return environmentLayer; }
+
+    public bool AbleAtkTarget(CharacterGroup atkCharacter, CharacterGroup targetCharacter)
+    {
+        if (atkCharacter == CharacterGroup.team01)
+        {
+            switch (targetCharacter)
+            {
+                case CharacterGroup.team01: return false;
+                case CharacterGroup.team02: return true;
+                default:
+                    break;
+            }
+        }
+        else if (atkCharacter == CharacterGroup.team02)
+        {
+            switch (targetCharacter)
+            {
+                case CharacterGroup.team01: return true;
+                case CharacterGroup.team02: return false;
+                default:
+                    break;
+            }
+        }
+
+        return false;
+    }
 }

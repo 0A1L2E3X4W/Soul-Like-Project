@@ -16,6 +16,12 @@ public enum CharacterSlot
     NullSlot,
 }
 
+public enum CharacterGroup
+{
+    team01,
+    team02,
+}
+
 public enum WeaponSlot
 {
     RightHand,

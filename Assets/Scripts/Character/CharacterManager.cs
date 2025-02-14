@@ -20,6 +20,9 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterInventoryManager characterInventoryManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
 
+    [Header("CHARACTER GROUP")]
+    public CharacterGroup characterGroup;
+
     [Header("STATUS")]
     public NetworkVariable<bool> isDead = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -78,6 +81,11 @@ public class CharacterManager : NetworkBehaviour
     protected virtual void LateUpdate()
     {
 
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        
     }
 
     // DEATH
