@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 2
   itemName: Old Straight Sword
-  itemIcon: {fileID: 21300000, guid: 74013ec66ac5b93439df85e31cc0e7a6, type: 3}
+  itemIcon: {fileID: 21300000, guid: 27b4e53ec0017d041a7b90a9b65d449d, type: 3}
   itemText: Old Sword
   weaponModel: {fileID: 7041866964253896751, guid: 8a6d791c356359c47886c92fbec73c1e, type: 3}
   strengthRequire: 1

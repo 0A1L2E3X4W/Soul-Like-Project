@@ -94,7 +94,7 @@ public class CharacterAnimatorManager : MonoBehaviour
             bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
         character.characterCombatManager.currentAtkType = atkType;
-        //character.characterCombatManager.lastAtkAnimPerformed = targetAnim;
+        character.characterCombatManager.lastAtkAnimPerformed = targetAnim;
 
         character.applyRootMotion = applyRootMotion;
         character.anim.CrossFade(targetAnim, 0.2f);

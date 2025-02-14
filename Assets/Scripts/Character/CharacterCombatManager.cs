@@ -15,11 +15,20 @@ public class CharacterCombatManager : NetworkBehaviour
     [Header("LOCK ON")]
     public Transform lockOnTransform;
 
+    [Header("FLAGS")]
+    public bool canComboOnMainHand = false;
+    public bool canPerformRollAtk = false;
+    public bool canPerformBackStepAtk = false;
+
+    [Header("LAST PERFORMED ACTION ANIM")]
+    public string lastAtkAnimPerformed;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
     }
 
+    // TARGET
     public virtual void SetTarget(CharacterManager newTarget)
     {
         if (character.IsOwner)
@@ -34,5 +43,16 @@ public class CharacterCombatManager : NetworkBehaviour
                 currentTarget = null;
             }
         }
+    }
+
+    // COMBO
+    public virtual void EnableCombo()
+    {
+
+    }
+
+    public virtual void DisableCombo()
+    {
+
     }
 }
