@@ -130,6 +130,12 @@ MonoBehaviour:
   lightningDamage: 0
   holyDamage: 0
   characterCausingDamage: {fileID: 0}
+  lightAtkModifier_01: 0
+  lightAtkModifier_02: 0
+  heavyAtkModifier_01: 0
+  heavyAtkModifier_02: 0
+  chargedAtkModifier_01: 0
+  chargedAtkModifier_02: 0
 --- !u!135 &1028381138424225601
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -149,7 +155,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7289796691031898568
 GameObject:

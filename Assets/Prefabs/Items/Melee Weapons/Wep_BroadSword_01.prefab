@@ -218,9 +218,9 @@ CapsuleCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.18
-  m_Height: 1.28
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: -0.000000077871285, y: 0.83, z: -0.000000018536499}
+  m_Center: {x: -0.000000077871285, y: 0.74, z: -0.000000018536499}
 --- !u!114 &9077773525788896696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +240,9 @@ MonoBehaviour:
   lightningDamage: 0
   holyDamage: 0
   characterCausingDamage: {fileID: 0}
+  lightAtkModifier_01: 0
+  lightAtkModifier_02: 0
+  heavyAtkModifier_01: 0
+  heavyAtkModifier_02: 0
+  chargedAtkModifier_01: 0
+  chargedAtkModifier_02: 0
