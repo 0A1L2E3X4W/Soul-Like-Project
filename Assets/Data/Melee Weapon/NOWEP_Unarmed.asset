@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 0
   itemName: 
-  itemIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemIcon: {fileID: 0}
   itemText: 
   weaponModel: {fileID: 2494600810836545864, guid: 7408ea6ff258ee944b894a34b47760b9, type: 3}
   strengthRequire: 1

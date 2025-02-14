@@ -27,6 +27,10 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private bool sprintInput = false;
     [SerializeField] private bool jumpInput = false;
 
+    [Header("SWITCH ITEMS / WEAPONS SLOTS")]
+    [SerializeField] private bool switchRightSlotInput = false;
+    [SerializeField] private bool switchLeftSlotInput = false;
+
     [Header("BUMPER INPUTS")]
     [SerializeField] private bool rbInput = false;
 
@@ -92,6 +96,8 @@ public class PlayerInputManager : MonoBehaviour
             // TAP ACTION
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+            playerControls.PlayerActions.SwitchRightWeapon.performed += i => switchRightSlotInput = true;
+            playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switchLeftSlotInput = true;
 
             // HOLD ACTION
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -148,6 +154,9 @@ public class PlayerInputManager : MonoBehaviour
         HandleRbInput();
         HandleRtInput();
         HandleHoldRtInput();
+
+        HandleSwitchRightSlotInput();
+        HandleSwitchLeftSlotInput();
     }
 
     // LOCK ON
@@ -324,6 +333,25 @@ public class PlayerInputManager : MonoBehaviour
             {
                 player.playerNetworkManager.isChargingAtk.Value = holdRTInput;
             }
+        }
+    }
+
+    // SWITCH SLOT
+    private void HandleSwitchRightSlotInput()
+    {
+        if (switchRightSlotInput)
+        {
+            switchRightSlotInput = false;
+            player.playerEquipmentManager.SwitchRightWeapon();
+        }
+    }
+
+    private void HandleSwitchLeftSlotInput()
+    {
+        if (switchLeftSlotInput)
+        {
+            switchLeftSlotInput = false;
+            player.playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 }

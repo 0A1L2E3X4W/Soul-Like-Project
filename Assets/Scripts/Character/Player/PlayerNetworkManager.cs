@@ -52,10 +52,10 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player.playerInventoryManager.currentRightHandWeapon = newWeapon;
         player.playerEquipmentManager.LoadRightWeapon();
 
-        //if (player.IsOwner)
-        //{
-        //    PlayerUIManager.Instance.playerUIHudManager.SetRightQuickSlotIcon(newID);
-        //}
+        if (player.IsOwner)
+        {
+            PlayerUIManager.Instance.playerUIHudManager.SetRightQuickSlotIcon(newID);
+        }
     }
 
     public void OnCurrentLeftHandWeaponIDChange(int oldID, int newID)
@@ -64,10 +64,10 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player.playerInventoryManager.currentLeftHandWeapon = newWeapon;
         player.playerEquipmentManager.LoadLeftWeapon();
 
-        //if (player.IsOwner)
-        //{
-        //    PlayerUIManager.Instance.playerUIHudManager.SetLeftQuickSlotIcon(newID);
-        //}
+        if (player.IsOwner)
+        {
+            PlayerUIManager.Instance.playerUIHudManager.SetLeftQuickSlotIcon(newID);
+        }
     }
 
     public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID)
