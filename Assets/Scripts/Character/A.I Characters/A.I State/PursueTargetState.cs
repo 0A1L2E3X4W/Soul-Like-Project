@@ -12,12 +12,12 @@ public class PursueTargetState : AIState
 
         if (!aiCharacter.navMeshAgent.enabled) { aiCharacter.navMeshAgent.enabled = true; }
 
-        //if (aiCharacter.aiCombatManager.enablePivot)
-        //{
-        //    if (aiCharacter.aiCombatManager.viewableAngle < aiCharacter.aiCombatManager.minFOV ||
-        //    aiCharacter.aiCombatManager.viewableAngle > aiCharacter.aiCombatManager.maxFOV)
-        //        aiCharacter.aiCombatManager.PivotTowardsTarget(aiCharacter);
-        //}
+        if (aiCharacter.aiCombatManager.enablePivot)
+        {
+            if (aiCharacter.aiCombatManager.viewableAngle < aiCharacter.aiCombatManager.minFOV ||
+            aiCharacter.aiCombatManager.viewableAngle > aiCharacter.aiCombatManager.maxFOV)
+                aiCharacter.aiCombatManager.PivotTowardsTarget(aiCharacter);
+        }
 
         aiCharacter.aiLocomotionManager.RotateTowardsAgent(aiCharacter);
 

@@ -53,6 +53,13 @@ public class AIManager : CharacterManager
         navMeshAgent.transform.localPosition = Vector3.zero;
         navMeshAgent.transform.localRotation = Quaternion.identity;
 
+        if (aiCombatManager.currentTarget != null)
+        {
+            aiCombatManager.targetsDir = aiCombatManager.currentTarget.transform.position - transform.position;
+            aiCombatManager.viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, aiCombatManager.targetsDir);
+            aiCombatManager.distanceFromTarget = Vector3.Distance(transform.position, aiCombatManager.currentTarget.transform.position);
+        }
+
         if (navMeshAgent.enabled)
         {
             Vector3 agentDestination = navMeshAgent.destination;
