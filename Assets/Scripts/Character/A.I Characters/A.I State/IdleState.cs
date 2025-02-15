@@ -7,7 +7,7 @@ public class IdleState : AIState
     {
         if (aiCharacter.characterCombatManager.currentTarget != null)
         {
-            return this;
+            return SwitchState(aiCharacter, aiCharacter.pursueTarget);
         }
         else
         {

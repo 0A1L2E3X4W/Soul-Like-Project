@@ -247,6 +247,9 @@ public class PlayerInputManager : MonoBehaviour
         if (player == null)
             return;
 
+        if (moveAmount != 0f) { player.playerNetworkManager.isMoving.Value = true; }
+        else { player.playerNetworkManager.isMoving.Value = false; }
+
         if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParams(0, moveAmount, player.playerNetworkManager.isSprinting.Value);

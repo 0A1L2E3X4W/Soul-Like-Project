@@ -28,6 +28,7 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> isChargingAtk = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isMoving = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("STATS")]
     public NetworkVariable<int> endurance =
@@ -52,6 +53,12 @@ public class CharacterNetworkManager : NetworkBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+    }
+
+    // IS MOVING
+    public void OnIsMovingChanged(bool oldState, bool newState)
+    {
+        character.anim.SetBool("IsMoving", isMoving.Value);
     }
 
     // STATS
