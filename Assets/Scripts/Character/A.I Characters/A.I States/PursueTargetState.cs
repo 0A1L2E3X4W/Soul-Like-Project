@@ -21,8 +21,8 @@ public class PursueTargetState : AIState
 
         aiCharacter.aiLocomotionManager.RotateTowardsAgent(aiCharacter);
 
-        //if (aiCharacter.aiCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance)
-        //    return SwitchState(aiCharacter, aiCharacter.combatStance);
+        if (aiCharacter.aiCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance)
+            return SwitchState(aiCharacter, aiCharacter.combatStance);
 
         NavMeshPath path = new();
         aiCharacter.navMeshAgent.CalculatePath(aiCharacter.aiCombatManager.currentTarget.transform.position, path);

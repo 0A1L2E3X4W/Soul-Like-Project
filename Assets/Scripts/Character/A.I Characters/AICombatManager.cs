@@ -5,6 +5,9 @@ public class AICombatManager : CharacterCombatManager
     [Header("MANAGER")]
     protected AIManager aiManager;
 
+    [Header("ACTION RECOVER")]
+    public float actionRecoveryTimer = 0f;
+
     [Header("DETECTION")]
     public float distanceFromTarget;
     [SerializeField] private float detectionRadius = 15f;
@@ -14,6 +17,9 @@ public class AICombatManager : CharacterCombatManager
     [Header("TARGET INFO")]
     public float viewableAngle;
     public Vector3 targetsDir;
+
+    [Header("ATK ROTATION SPEED")]
+    public float attackRotationSpeed = 25f;
 
     [Header("PIVOT")]
     public bool enablePivot = true;
@@ -108,6 +114,48 @@ public class AICombatManager : CharacterCombatManager
         else if (viewableAngle <= -146 && viewableAngle >= -180)
         {
             aiCharacter.characterAnimatorManager.PlayTargetActionAnim("Turn_L180", true);
+        }
+    }
+
+    public void RotateTowardsAgent(AIManager aiCharacter)
+    {
+        if (aiCharacter.aiNetworkManager.isMoving.Value)
+        {
+            aiCharacter.transform.rotation = aiCharacter.navMeshAgent.transform.rotation;
+        }
+    }
+
+    public void RotateTowardsTargetWhileAttacking(AIManager aiCharacter)
+    {
+        if (currentTarget == null)
+            return;
+
+        if (!aiCharacter.canRotate)
+            return;
+
+        if (!aiCharacter.isPerformingAction)
+            return;
+
+        Vector3 targetDir = currentTarget.transform.position - aiCharacter.transform.position;
+        targetDir.y = 0f;
+        targetDir.Normalize();
+
+        if (targetDir == Vector3.zero)
+            targetDir = aiCharacter.transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDir);
+
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+    }
+
+    public void HandleActionRecover(AIManager aiCharacter)
+    {
+        if (actionRecoveryTimer > 0)
+        {
+            if (!aiCharacter.isPerformingAction)
+            {
+                actionRecoveryTimer -= Time.deltaTime;
+            }
         }
     }
 }

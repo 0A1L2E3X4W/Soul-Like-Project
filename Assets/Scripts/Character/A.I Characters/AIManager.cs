@@ -18,6 +18,8 @@ public class AIManager : CharacterManager
     [Header("STATES")]
     public IdleState idle;
     public PursueTargetState pursueTarget;
+    public CombatStanceState combatStance;
+    public AttackState atk;
 
     protected override void Awake()
     {
@@ -30,8 +32,17 @@ public class AIManager : CharacterManager
 
         idle = Instantiate(idle);
         pursueTarget = Instantiate(pursueTarget);
+        combatStance = Instantiate(combatStance);
+        atk = Instantiate(atk);
 
         currentState = idle;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        aiCombatManager.HandleActionRecover(this);
     }
 
     protected override void FixedUpdate()
@@ -50,8 +61,7 @@ public class AIManager : CharacterManager
             currentState = nextState;
         }
 
-        navMeshAgent.transform.localPosition = Vector3.zero;
-        navMeshAgent.transform.localRotation = Quaternion.identity;
+        navMeshAgent.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
         if (aiCombatManager.currentTarget != null)
         {
