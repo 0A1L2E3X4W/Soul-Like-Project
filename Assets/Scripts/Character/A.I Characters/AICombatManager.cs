@@ -29,6 +29,7 @@ public class AICombatManager : CharacterCombatManager
         base.Awake();
 
         aiManager = GetComponent<AIManager>();
+        lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
     }
 
     public void FindTargetViaLineOfSight(AIManager aiCharacter)

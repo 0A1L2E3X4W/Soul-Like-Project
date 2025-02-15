@@ -15,9 +15,6 @@ MonoBehaviour:
   aiCharacterAtks:
   - {fileID: 11400000, guid: 4737026792262624c84fb40fb10f76f0, type: 2}
   - {fileID: 11400000, guid: c7138278edad24743a34c5a3d31f2b3b, type: 2}
-  choosenAtk: {fileID: 0}
-  previousAtk: {fileID: 0}
-  hasAtk: 0
   canCombo: 0
   chanceOfCombo: 25
   maxEngageDistance: 5

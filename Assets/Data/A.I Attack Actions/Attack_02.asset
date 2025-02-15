@@ -21,4 +21,4 @@ MonoBehaviour:
   minAtkAngle: -35
   maxAtkAngle: 35
   minAtkDistance: 0
-  maxAtkDistance: 2
+  maxAtkDistance: 2.5

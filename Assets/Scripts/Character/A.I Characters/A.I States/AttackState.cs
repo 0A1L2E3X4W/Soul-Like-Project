@@ -30,8 +30,8 @@ public class AttackState : AIState
         {
             if (currentAtk.comboAction != null)
             {
-                //hasPerformCombo = true;
-                //currentAtk.comboAction.AttemptPerformAction(aiCharacter);
+                hasPerformCombo = true;
+                currentAtk.comboAction.AttemptPerformAction(aiCharacter);
             }
         }
 
