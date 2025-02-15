@@ -8,6 +8,9 @@ public class CharacterSoundFXManager : MonoBehaviour
     [Header("DAMAGE GRUNTS")]
     [SerializeField] protected AudioClip[] damageGrunts;
 
+    [Header("ATK GRUNTS")]
+    [SerializeField] protected AudioClip[] atkGrunts;
+
     protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -27,5 +30,17 @@ public class CharacterSoundFXManager : MonoBehaviour
     public void PlayRollSoundFX()
     {
         audioSource.PlayOneShot(WorldSoundFXManager.Instance.rollSFX);
+    }
+
+    public virtual void PlayDamageGruntSFX()
+    {
+        if (damageGrunts.Length > 0)
+            PlaySFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(damageGrunts));
+    }
+
+    public virtual void PlayAtkGruntSFX()
+    {
+        if (atkGrunts.Length > 0)
+            PlaySFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(atkGrunts));
     }
 }

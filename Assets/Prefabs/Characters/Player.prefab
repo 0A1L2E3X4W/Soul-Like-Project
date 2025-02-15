@@ -648,6 +648,7 @@ MonoBehaviour:
   characterEquipmentManager: {fileID: 0}
   characterInventoryManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
+  characterGroup: 0
   isDead:
     m_InternalValue: 0
   isPerformingAction: 0
@@ -665,7 +666,6 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
   respawnCharacter: 0
-  switchRightWeapon: 0
 --- !u!114 &3772982453111213788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +698,10 @@ MonoBehaviour:
     m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
+  isChargingAtk:
+    m_InternalValue: 0
+  isMoving:
+    m_InternalValue: 0
   endurance:
     m_InternalValue: 1
   vitality:
@@ -709,6 +713,8 @@ MonoBehaviour:
   currentHealth:
     m_InternalValue: 0
   maxHealth:
+    m_InternalValue: 0
+  currentTargetNetworkID:
     m_InternalValue: 0
   characterName:
     m_InternalValue:
@@ -809,6 +815,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  isRolling: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -834,9 +841,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af6913934ceb034b92623b6dd0941af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   currentTarget: {fileID: 0}
   currentAtkType: 0
   lockOnTransform: {fileID: 5462706764816923567}
+  canComboOnMainHand: 0
+  canPerformRollAtk: 0
+  canPerformBackStepAtk: 0
+  lastAtkAnimPerformed: 
   currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &-6715717714024879221
 MonoBehaviour:
@@ -1095,7 +1107,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262c3f082dd4ed741aec1be85aab1596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
+  damageGrunts:
+  - {fileID: 8300000, guid: 164c4cd428e81554a89f938451aae22f, type: 3}
+  - {fileID: 8300000, guid: 5c25a8b6c2ef9624caf832fe0d756bbd, type: 3}
+  - {fileID: 8300000, guid: 616758222d84f6f47b8b9dd6a3e5d3b8, type: 3}
+  - {fileID: 8300000, guid: 7ed99645cac6f06438be178db3df164c, type: 3}
+  - {fileID: 8300000, guid: 7b85f48408e15f748a6a7de0f94963cf, type: 3}
+  - {fileID: 8300000, guid: 5d5f587ae155eb94f867257211a96f5e, type: 3}
+  - {fileID: 8300000, guid: 5ed176f89f549d24a83fa420c256201e, type: 3}
+  - {fileID: 8300000, guid: 0e1457ebf7dc95b4db34ba2fa89929fc, type: 3}
+  atkGrunts:
+  - {fileID: 8300000, guid: 0aadd833bb2d5c6459071cec3b57b6fc, type: 3}
+  - {fileID: 8300000, guid: bab2beee4e54b6b4884ba37eee560014, type: 3}
+  - {fileID: 8300000, guid: 479575cc89c3733419221428dae636ad, type: 3}
+  - {fileID: 8300000, guid: 7a043f0917c61774d94c1a6331f30f9c, type: 3}
+  - {fileID: 8300000, guid: 2ed46ddcc4f7dd549b61957f22cc624d, type: 3}
+  - {fileID: 8300000, guid: dfd9240fb951bf6498605be9a417b5de, type: 3}
+  - {fileID: 8300000, guid: a390f9932470d264da3696567a4a581c, type: 3}
+  - {fileID: 8300000, guid: ec37c89a97a3a194d98cecd9bb3a61d5, type: 3}
+  - {fileID: 8300000, guid: 5db80d54d2dafd348b6cae53c6d9924a, type: 3}
+  - {fileID: 8300000, guid: 37f1bb4806a676249891c3249bf962a2, type: 3}
 --- !u!1 &1074428374520301073
 GameObject:
   m_ObjectHideFlags: 0

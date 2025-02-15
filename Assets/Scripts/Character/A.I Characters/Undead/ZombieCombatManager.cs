@@ -25,6 +25,7 @@ public class ZombieCombatManager : AICombatManager
 
     public void OpenRightHandDamageCollider()
     {
+        aiManager.characterSoundFXManager.PlayAtkGruntSFX();
         rightHandDamageCollider.EnableDamageCollider();
     }
 
@@ -35,6 +36,7 @@ public class ZombieCombatManager : AICombatManager
 
     public void OpenLeftHandDamageCollider()
     {
+        aiManager.characterSoundFXManager.PlayAtkGruntSFX();
         leftHandDamageCollider.EnableDamageCollider();
     }
 

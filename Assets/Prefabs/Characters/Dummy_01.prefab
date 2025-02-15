@@ -2377,7 +2377,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f44e3414b77db14ebfbb1b40cbc92e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
+  damageGrunts:
+  - {fileID: 8300000, guid: a27508877976f7d418b22cef1d064352, type: 3}
+  - {fileID: 8300000, guid: 024bc1c073ad66b4e94dda9c8fabdd66, type: 3}
+  - {fileID: 8300000, guid: 7ed973e4913255d4f966a7bd5a3fedfb, type: 3}
+  atkGrunts:
+  - {fileID: 8300000, guid: 9df4210252690c24a86c353a96973836, type: 3}
+  - {fileID: 8300000, guid: d2600342e502e604fb6332850bfb54ca, type: 3}
+  - {fileID: 8300000, guid: 5042fda2def539844a51d746a90f3e33, type: 3}
+  - {fileID: 8300000, guid: ca14cd173aeed3846a1754d2f2033fcd, type: 3}
 --- !u!114 &578647107487791579
 MonoBehaviour:
   m_ObjectHideFlags: 0
