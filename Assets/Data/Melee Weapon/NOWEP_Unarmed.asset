@@ -28,11 +28,19 @@ MonoBehaviour:
   holyDamage: 0
   poiseDamage: 10
   lightAtkModifier_01: 0.8
+  lightAtkModifier_02: 1
   heavyAtkModifier_01: 1.2
+  heavyAtkModifier_02: 1.4
   chargedAtkModifier_01: 1.8
+  chargedAtkModifier_02: 2
   baseStaminaCost: 10
   lightAtkStaminaCostMultiplier: 0.8
   heavyAtkStaminaCostMultiplier: 1.2
   chargedAtkStaminaCostMultiplier: 1.8
   oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 59d19f0cb9c86ca4989d06437ce6d808, type: 2}
+  whooshes:
+  - {fileID: 8300000, guid: 8999bcfe292c07145b0cadf8ed54e5fa, type: 3}
+  - {fileID: 8300000, guid: bf6ffd93391addd41b884c49c63366c2, type: 3}
+  - {fileID: 8300000, guid: 1da17c15cf5c34343a53692827cec378, type: 3}
+  - {fileID: 8300000, guid: 8efe83ab07d24424a8ab7ec7f06a6bdc, type: 3}
