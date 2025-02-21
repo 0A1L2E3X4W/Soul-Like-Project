@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 329762855
+  GlobalObjectIdHash: 2578370031
   InScenePlacedSourceGlobalObjectIdHash: 329762855
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1566,6 +1566,11 @@ MonoBehaviour:
   pursueTarget: {fileID: 11400000, guid: 7504bdf20b314aa49830d0ea82ff2ef8, type: 2}
   combatStance: {fileID: 11400000, guid: f4566dce8ab709d449a6da3de4f9eccc, type: 2}
   atk: {fileID: 11400000, guid: 26a1b5a0649000d4dad0ac6dce31e27f, type: 2}
+  bossID: 0
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakened:
+    m_InternalValue: 0
 --- !u!114 &-5994966366814794758
 MonoBehaviour:
   m_ObjectHideFlags: 0

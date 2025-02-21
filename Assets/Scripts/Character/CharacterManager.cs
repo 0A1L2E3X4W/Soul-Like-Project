@@ -88,11 +88,15 @@ public class CharacterManager : NetworkBehaviour
         
     }
 
+    // NETWORK
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
 
         anim.SetBool("IsMoving", characterNetworkManager.isMoving.Value);
+        characterNetworkManager.OnIsActiveChanged(false, characterNetworkManager.isActive.Value);
+        characterNetworkManager.isActive.OnValueChanged += characterNetworkManager.OnIsActiveChanged;
+
         characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
     }
 
@@ -100,6 +104,7 @@ public class CharacterManager : NetworkBehaviour
     {
         base.OnNetworkDespawn();
 
+        characterNetworkManager.isActive.OnValueChanged -= characterNetworkManager.OnIsActiveChanged;
         characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
     }
 

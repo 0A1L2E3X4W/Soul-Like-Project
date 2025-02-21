@@ -6,6 +6,9 @@ public class CharacterNetworkManager : NetworkBehaviour
     [Header("MANAGER")]
     private CharacterManager character;
 
+    [Header("ACTIVE")]
+    public NetworkVariable<bool> isActive = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [Header("POSITION & ROTATION")]
     public Vector3 networkPositionVelocity;
     public float networkPostionSmoothTime = 0.1f;
@@ -53,6 +56,12 @@ public class CharacterNetworkManager : NetworkBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+    }
+
+    // IS ACTIVE
+    public virtual void OnIsActiveChanged(bool oldStatus, bool newStatus)
+    {
+        gameObject.SetActive(isActive.Value);
     }
 
     // IS MOVING

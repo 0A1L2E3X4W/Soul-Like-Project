@@ -24,4 +24,14 @@ public class CharacterSaveData
     [Header("RESOURCES")]
     public int currentHealth;
     public float currentStamina;
+
+    [Header("BOSS")]
+    public SerializableDictionary<int, bool> bossesAwakened;
+    public SerializableDictionary<int, bool> bossesDefeated;
+
+    public CharacterSaveData()
+    {
+        bossesAwakened = new SerializableDictionary<int, bool>();
+        bossesDefeated = new SerializableDictionary<int, bool>();
+    }
 }
