@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BossManager : AIManager
 {
@@ -10,6 +11,22 @@ public class BossManager : AIManager
     [Header("STATUS")]
     public NetworkVariable<bool> hasBeenDefeated = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> hasBeenAwakened = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("FOG WALL")]
+    [SerializeField] private List<FogWallsInteractable> fogWalls;
+
+    [SerializeField] bool wakeBoss = false;
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (wakeBoss)
+        {
+            wakeBoss = false;
+            WakeBoss();
+        }
+    }
 
     public override void OnNetworkSpawn()
     {
@@ -28,10 +45,39 @@ public class BossManager : AIManager
                 hasBeenAwakened.Value = WorldSaveGameManager.Instance.currentCharacterData.bossesAwakened[bossID];
             }
 
+            StartCoroutine(GetFogWallFromObjManager());
+
+            if (hasBeenAwakened.Value)
+            {
+                for (int i = 0; i < fogWalls.Count; i++)
+                {
+                    fogWalls[i].isActive.Value = true;
+                }
+            }
+
             if (hasBeenDefeated.Value)
             {
+                for (int i = 0; i < fogWalls.Count; i++)
+                {
+                    fogWalls[i].isActive.Value = false;
+                }
+
                 aiNetworkManager.isActive.Value = false;
             }
+        }
+    }
+
+    private IEnumerator GetFogWallFromObjManager()
+    {
+        while (WorldObjectManager.Instance.fogWalls.Count == 0)
+            yield return new WaitForEndOfFrame();
+
+        fogWalls = new();
+
+        foreach (var fogWall in WorldObjectManager.Instance.fogWalls)
+        {
+            if (fogWall.fogWallID == bossID)
+                fogWalls.Add(fogWall);
         }
     }
 
@@ -67,5 +113,29 @@ public class BossManager : AIManager
         WorldSaveGameManager.Instance.SaveGame();
 
         yield return new WaitForSeconds(5);
+    }
+
+    public void WakeBoss()
+    {
+        if (IsOwner)
+        {
+            hasBeenAwakened.Value = true;
+            currentState = idle;
+
+            if (!WorldSaveGameManager.Instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
+            {
+                WorldSaveGameManager.Instance.currentCharacterData.bossesAwakened.Add(bossID, true);
+            }
+            else
+            {
+                WorldSaveGameManager.Instance.currentCharacterData.bossesAwakened.Remove(bossID);
+                WorldSaveGameManager.Instance.currentCharacterData.bossesAwakened.Add(bossID, true);
+            }
+
+            for (int i = 0; i < fogWalls.Count; i++)
+            {
+                fogWalls[i].isActive.Value = true;
+            }
+        }
     }
 }
