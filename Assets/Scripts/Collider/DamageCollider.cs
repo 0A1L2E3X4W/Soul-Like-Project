@@ -36,6 +36,7 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
+    // DAMAGE TARGET
     protected virtual void DamageTarget(CharacterManager damageTarget)
     {
         if (charactersDamaged.Contains(damageTarget))

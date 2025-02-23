@@ -11,6 +11,10 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] private Image rightQuickSlotIcon;
     [SerializeField] private Image leftQuickSlotIcon;
 
+    [Header("BOSS HP BARS")]
+    public Transform bossHpBarParent;
+    public GameObject bossHpBarObj;
+
     public void RefreshHUD()
     {
         staminaBar.gameObject.SetActive(false);

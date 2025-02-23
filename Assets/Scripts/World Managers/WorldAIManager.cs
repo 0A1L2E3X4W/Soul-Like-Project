@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WorldAIManager : MonoBehaviour
 {
@@ -10,7 +9,10 @@ public class WorldAIManager : MonoBehaviour
 
     [Header("CHARACTERS")]
     [SerializeField] private List<AICharacterSpawner> aiCharacterSpawners;
-    [SerializeField] private List<GameObject> spawnedInCharacters;
+    [SerializeField] private List<AIManager> spawnedInCharacters;
+
+    [Header("BOSSES")]
+    [SerializeField] private List<BossManager> spawnedBosses;
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class WorldAIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // SPAWN & DESPAWN
     public void SpawnCharacter(AICharacterSpawner aiSpawner)
     {
         if (NetworkManager.Singleton.IsServer)
@@ -45,5 +48,29 @@ public class WorldAIManager : MonoBehaviour
     private void DisableAllCharacters()
     {
 
+    }
+
+    // BOSSES
+    public BossManager GetBossByID(int ID)
+    {
+        return spawnedBosses.FirstOrDefault(boss => boss.bossID == ID);
+    }
+
+    public void AddCharacterToSpawnedCharacterList(AIManager aiCharacter)
+    {
+        if (spawnedInCharacters.Contains(aiCharacter))
+            return;
+
+        spawnedInCharacters.Add(aiCharacter);
+
+        BossManager boss = aiCharacter as BossManager;
+
+        if (boss != null)
+        {
+            if (spawnedBosses.Contains(boss))
+                return;
+
+            spawnedBosses.Add(boss);
+        }
     }
 }

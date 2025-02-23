@@ -11,6 +11,9 @@ public class CharacterSoundFXManager : MonoBehaviour
     [Header("ATK GRUNTS")]
     [SerializeField] protected AudioClip[] atkGrunts;
 
+    [Header("FOOT STEP")]
+    [SerializeField] protected AudioClip[] footSteps;
+
     protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -42,5 +45,11 @@ public class CharacterSoundFXManager : MonoBehaviour
     {
         if (atkGrunts.Length > 0)
             PlaySFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(atkGrunts));
+    }
+
+    public virtual void PlayFootStepSFX()
+    {
+        if (footSteps.Length > 0)
+            PlaySFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(footSteps));
     }
 }

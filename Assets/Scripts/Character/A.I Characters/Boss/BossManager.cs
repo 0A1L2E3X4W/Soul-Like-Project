@@ -11,26 +11,34 @@ public class BossManager : AIManager
     [Header("STATUS")]
     public NetworkVariable<bool> hasBeenDefeated = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> hasBeenAwakened = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> bossFightIsActive = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("FOG WALL")]
     [SerializeField] private List<FogWallsInteractable> fogWalls;
 
-    [SerializeField] bool wakeBoss = false;
+    [Header("SLEEP")]
+    [SerializeField] private string sleepAnim = "Sleep_01";
+    [SerializeField] private string awakenAnim = "Awaken_01";
 
-    protected override void Update()
-    {
-        base.Update();
+    [Header("PHASE SHIFT")]
+    public float hpForPhaseShift = 70;
+    [SerializeField] private string phaseShiftAnim = "Phase_Change_01";
 
-        if (wakeBoss)
-        {
-            wakeBoss = false;
-            WakeBoss();
-        }
-    }
+    [Header("BOSS STATES")]
+    [SerializeField] private BossSleepState sleep;
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+
+        bossFightIsActive.OnValueChanged += OnBossFightIsActiveChanged;
+        OnBossFightIsActiveChanged(false, bossFightIsActive.Value);
+
+        if (IsOwner)
+        {
+            sleep = Instantiate(sleep);
+            currentState = sleep;
+        }
 
         if (IsServer)
         {
@@ -65,6 +73,18 @@ public class BossManager : AIManager
                 aiNetworkManager.isActive.Value = false;
             }
         }
+
+        if (!hasBeenAwakened.Value)
+        {
+            anim.Play(sleepAnim);
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        bossFightIsActive.OnValueChanged -= OnBossFightIsActiveChanged;
     }
 
     private IEnumerator GetFogWallFromObjManager()
@@ -87,6 +107,7 @@ public class BossManager : AIManager
         {
             characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
+            bossFightIsActive.Value = false;
 
             if (!manuallySelectDeathAnim)
             {
@@ -119,6 +140,12 @@ public class BossManager : AIManager
     {
         if (IsOwner)
         {
+            if (!hasBeenAwakened.Value)
+            {
+                characterAnimatorManager.PlayTargetActionAnim(awakenAnim, true);
+            }
+
+            bossFightIsActive.Value = true;
             hasBeenAwakened.Value = true;
             currentState = idle;
 
@@ -136,6 +163,25 @@ public class BossManager : AIManager
             {
                 fogWalls[i].isActive.Value = true;
             }
+        }
+    }
+
+    private void OnBossFightIsActiveChanged(bool oldStatus, bool newStatus)
+    {
+        if (bossFightIsActive.Value)
+        {
+            //WorldSoundFXManager.Instance.PlayBossTrack(bossIntroClip, bossFightLoopClip);
+
+            GameObject bossHPBar = Instantiate(
+                PlayerUIManager.Instance.playerUIHudManager.bossHpBarObj,
+                PlayerUIManager.Instance.playerUIHudManager.bossHpBarParent);
+
+            BossHPBar bossHpBar = bossHPBar.GetComponentInChildren<BossHPBar>();
+            bossHpBar.EnableBossHPBar(this);
+        }
+        else
+        {
+            //WorldSoundFXManager.Instance.StopBossMusic();
         }
     }
 }

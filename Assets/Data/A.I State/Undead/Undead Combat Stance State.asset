@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3318aa19c5a5f940a0d144d0c5bde30, type: 3}
+  m_Name: Undead Combat Stance State
+  m_EditorClassIdentifier: 
+  aiCharacterAtks:
+  - {fileID: 11400000, guid: 4737026792262624c84fb40fb10f76f0, type: 2}
+  - {fileID: 11400000, guid: c7138278edad24743a34c5a3d31f2b3b, type: 2}
+  canCombo: 0
+  chanceOfCombo: 25
+  maxEngageDistance: 5

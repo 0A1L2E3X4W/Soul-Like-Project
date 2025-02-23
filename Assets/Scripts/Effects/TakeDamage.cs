@@ -35,6 +35,9 @@ public class TakeDamage : InstanceCharacterEffect
 
     public override void ProcessEffect(CharacterManager character)
     {
+        if (character.characterNetworkManager.isInvulenerable.Value)
+            return;
+
         base.ProcessEffect(character);
 
         if (character.isDead.Value)

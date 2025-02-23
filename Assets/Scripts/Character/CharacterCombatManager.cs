@@ -55,4 +55,17 @@ public class CharacterCombatManager : NetworkBehaviour
     {
 
     }
+
+    // INVULNERABLE
+    public void EnableIsInvulenerable()
+    {
+        if (character.IsOwner)
+            character.characterNetworkManager.isInvulenerable.Value = true;
+    }
+
+    public void DisableIsInvulenerable()
+    {
+        if (character.IsOwner)
+            character.characterNetworkManager.isInvulenerable.Value = false;
+    }
 }

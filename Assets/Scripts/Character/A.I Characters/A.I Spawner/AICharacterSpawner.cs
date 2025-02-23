@@ -7,11 +7,6 @@ public class AICharacterSpawner : MonoBehaviour
     [SerializeField] private GameObject characterGameObject;
     [SerializeField] private GameObject instantiatedGameObject;
 
-    private void Awake()
-    {
-
-    }
-
     private void Start()
     {
         WorldAIManager.Instance.SpawnCharacter(this);
@@ -26,6 +21,8 @@ public class AICharacterSpawner : MonoBehaviour
             instantiatedGameObject.transform.position = transform.position;
             instantiatedGameObject.transform.rotation = transform.rotation;
             instantiatedGameObject.GetComponent<NetworkObject>().Spawn();
+
+            WorldAIManager.Instance.AddCharacterToSpawnedCharacterList(instantiatedGameObject.GetComponent<AIManager>());
         }
     }
 }

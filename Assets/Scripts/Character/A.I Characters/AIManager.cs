@@ -1,4 +1,3 @@
-using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +7,9 @@ public class AIManager : CharacterManager
     [HideInInspector] public AICombatManager aiCombatManager;
     [HideInInspector] public AINetworkManager aiNetworkManager;
     [HideInInspector] public AILocomotionManager aiLocomotionManager;
+
+    [Header("CHARACTER NAME")]
+    public string characterName = "";
 
     [Header("NAV MESH AGENT")]
     [HideInInspector] public NavMeshAgent navMeshAgent;
@@ -29,13 +31,20 @@ public class AIManager : CharacterManager
         aiCombatManager = GetComponent<AICombatManager>();
         aiNetworkManager = GetComponent<AINetworkManager>();
         aiLocomotionManager = GetComponent<AILocomotionManager>();
+    }
 
-        idle = Instantiate(idle);
-        pursueTarget = Instantiate(pursueTarget);
-        combatStance = Instantiate(combatStance);
-        atk = Instantiate(atk);
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
 
-        currentState = idle;
+        if (IsOwner)
+        {
+            idle = Instantiate(idle);
+            pursueTarget = Instantiate(pursueTarget);
+            combatStance = Instantiate(combatStance);
+            atk = Instantiate(atk);
+            currentState = idle;
+        }
     }
 
     protected override void Update()
