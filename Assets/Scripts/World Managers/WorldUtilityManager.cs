@@ -25,22 +25,22 @@ public class WorldUtilityManager : MonoBehaviour
 
     public bool AbleAtkTarget(CharacterGroup atkCharacter, CharacterGroup targetCharacter)
     {
-        if (atkCharacter == CharacterGroup.team01)
+        if (atkCharacter == CharacterGroup.Player)
         {
             switch (targetCharacter)
             {
-                case CharacterGroup.team01: return false;
-                case CharacterGroup.team02: return true;
+                case CharacterGroup.Player: return false;
+                case CharacterGroup.Undead: return true;
                 default:
                     break;
             }
         }
-        else if (atkCharacter == CharacterGroup.team02)
+        else if (atkCharacter == CharacterGroup.Undead)
         {
             switch (targetCharacter)
             {
-                case CharacterGroup.team01: return true;
-                case CharacterGroup.team02: return false;
+                case CharacterGroup.Player: return true;
+                case CharacterGroup.Undead: return false;
                 default:
                     break;
             }

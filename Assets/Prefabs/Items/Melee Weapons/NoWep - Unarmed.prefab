@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7825109325547089428}
   - component: {fileID: 4273255019960560380}
   m_Layer: 0
-  m_Name: NoWep_Unarmed
+  m_Name: NoWep - Unarmed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

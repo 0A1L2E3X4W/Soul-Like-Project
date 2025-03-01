@@ -18,6 +18,7 @@ public class CharacterSaveSlot : MonoBehaviour
         LoadSaveSlots();
     }
 
+    // LOAD SLOT
     private void LoadSaveSlots()
     {
         saveFileWriter = new();
@@ -174,6 +175,7 @@ public class CharacterSaveSlot : MonoBehaviour
         WorldSaveGameManager.Instance.LoadGame();
     }
 
+    // SELECT SLOT
     public void SelectCurrentSlot()
     {
         TitleScreenManager.Instance.SelectCharacterSlots(characterSlot);

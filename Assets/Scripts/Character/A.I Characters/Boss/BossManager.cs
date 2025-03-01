@@ -23,9 +23,14 @@ public class BossManager : AIManager
     [Header("PHASE SHIFT")]
     public float hpForPhaseShift = 70;
     [SerializeField] private string phaseShiftAnim = "Phase_Change_01";
+    [SerializeField] CombatStanceState phase02CombatStanceState;
 
     [Header("BOSS STATES")]
     [SerializeField] private BossSleepState sleep;
+
+    [Header("MUSIC")]
+    [SerializeField] AudioClip bossIntroClip;
+    [SerializeField] AudioClip bossFightLoopClip;
 
     public override void OnNetworkSpawn()
     {
@@ -103,11 +108,18 @@ public class BossManager : AIManager
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnim = false)
     {
+        PlayerUIManager.Instance.playerUIPopUpManager.SendBossDefeatedPopUp("GREAT ENEMTY FELLED");
+
         if (IsOwner)
         {
             characterNetworkManager.currentHealth.Value = 0;
             isDead.Value = true;
             bossFightIsActive.Value = false;
+
+            foreach (var fogWall in fogWalls)
+            {
+                fogWall.isActive.Value = false;
+            }
 
             if (!manuallySelectDeathAnim)
             {
@@ -170,7 +182,7 @@ public class BossManager : AIManager
     {
         if (bossFightIsActive.Value)
         {
-            //WorldSoundFXManager.Instance.PlayBossTrack(bossIntroClip, bossFightLoopClip);
+            WorldSoundFXManager.Instance.PlayBossTrack(bossIntroClip, bossFightLoopClip);
 
             GameObject bossHPBar = Instantiate(
                 PlayerUIManager.Instance.playerUIHudManager.bossHpBarObj,
@@ -181,7 +193,14 @@ public class BossManager : AIManager
         }
         else
         {
-            //WorldSoundFXManager.Instance.StopBossMusic();
+            WorldSoundFXManager.Instance.StopBossMusic();
         }
+    }
+
+    public void PhaseShift()
+    {
+        characterAnimatorManager.PlayTargetActionAnim(phaseShiftAnim, true);
+        combatStance = Instantiate(phase02CombatStanceState);
+        currentState = combatStance;
     }
 }

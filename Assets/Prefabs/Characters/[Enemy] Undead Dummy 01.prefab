@@ -1035,7 +1035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5431064499522434102}
   - component: {fileID: 9067142096463852129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Navmesh Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1937,7 +1937,7 @@ GameObject:
   - component: {fileID: 1246133320957776082}
   - component: {fileID: 578647107487791579}
   m_Layer: 6
-  m_Name: Dummy_01
+  m_Name: '[Enemy] Undead Dummy 01'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,7 +1970,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7247363960120507507}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051, type: 3}
+  m_Avatar: {fileID: 9000000, guid: f12895d5cd74f9b4c82a7a1a11b4c610, type: 3}
   m_Controller: {fileID: 9100000, guid: 4f5702501286f3843be9fc20852df75e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -2043,6 +2043,7 @@ MonoBehaviour:
   aiCombatManager: {fileID: 0}
   aiNetworkManager: {fileID: 0}
   aiLocomotionManager: {fileID: 0}
+  characterName: 
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 57ad0df84757aee4380f06a068d889f4, type: 2}
   idle: {fileID: 11400000, guid: 57ad0df84757aee4380f06a068d889f4, type: 2}
@@ -2117,6 +2118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  isActive:
+    m_InternalValue: 1
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPostionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
@@ -2139,6 +2142,8 @@ MonoBehaviour:
   isChargingAtk:
     m_InternalValue: 0
   isMoving:
+    m_InternalValue: 0
+  isInvulenerable:
     m_InternalValue: 0
   endurance:
     m_InternalValue: 1
@@ -2324,7 +2329,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2386,6 +2391,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d2600342e502e604fb6332850bfb54ca, type: 3}
   - {fileID: 8300000, guid: 5042fda2def539844a51d746a90f3e33, type: 3}
   - {fileID: 8300000, guid: ca14cd173aeed3846a1754d2f2033fcd, type: 3}
+  footSteps: []
 --- !u!114 &578647107487791579
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,6 +45,15 @@ public class AIManager : CharacterManager
             atk = Instantiate(atk);
             currentState = idle;
         }
+
+        aiNetworkManager.currentHealth.OnValueChanged += aiNetworkManager.CheckHp;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        aiNetworkManager.currentHealth.OnValueChanged -= aiNetworkManager.CheckHp;
     }
 
     protected override void Update()

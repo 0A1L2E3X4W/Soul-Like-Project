@@ -18,8 +18,8 @@ public enum CharacterSlot
 
 public enum CharacterGroup
 {
-    team01,
-    team02,
+    Player,
+    Undead,
 }
 
 public enum WeaponSlot

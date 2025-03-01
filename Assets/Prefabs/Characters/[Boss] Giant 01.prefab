@@ -1947,7 +1947,7 @@ GameObject:
   - component: {fileID: 1378685106038844261}
   - component: {fileID: -8317909634187358093}
   - component: {fileID: 8442357862139091782}
-  - component: {fileID: -5994966366814794758}
+  - component: {fileID: -6889771597224369605}
   - component: {fileID: 6079327473946030139}
   - component: {fileID: 3791953627590228226}
   - component: {fileID: 2598021600753973493}
@@ -1960,7 +1960,7 @@ GameObject:
   - component: {fileID: -8748328805401733530}
   - component: {fileID: 6441700080149906653}
   m_Layer: 6
-  m_Name: Boss_Giant_01
+  m_Name: '[Boss] Giant 01'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2123,10 +2123,13 @@ MonoBehaviour:
   awakenAnim: Awaken_01
   hpForPhaseShift: 70
   phaseShiftAnim: Phase_Change_01
+  phase02CombatStanceState: {fileID: 11400000, guid: 2838fd1a02a329d498c8ecb75fce5937, type: 2}
   sleep: {fileID: 11400000, guid: 4d08d696c422d774c9147de33f172ead, type: 2}
+  bossIntroClip: {fileID: 8300000, guid: 3aa20111625f30b4899256d58a3be25c, type: 3}
+  bossFightLoopClip: {fileID: 8300000, guid: 94a5615dc88dd3741bca6c6cb8259a6a, type: 3}
   giantSoundFXManager: {fileID: 0}
   giantCombatManager: {fileID: 0}
---- !u!114 &-5994966366814794758
+--- !u!114 &-6889771597224369605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2135,7 +2138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6980693267682459969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476b336192bca3344aaae8604af49286, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f33498bda5cf6a4596d2311d0e7e996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -2171,13 +2174,13 @@ MonoBehaviour:
   vitality:
     m_InternalValue: 1
   currentStamina:
-    m_InternalValue: 0
+    m_InternalValue: 600
   maxStamina:
-    m_InternalValue: 0
+    m_InternalValue: 600
   currentHealth:
-    m_InternalValue: 0
+    m_InternalValue: 600
   maxHealth:
-    m_InternalValue: 0
+    m_InternalValue: 600
   currentTargetNetworkID:
     m_InternalValue: 0
 --- !u!114 &6079327473946030139
