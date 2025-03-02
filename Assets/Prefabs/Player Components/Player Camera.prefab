@@ -56,7 +56,7 @@ MonoBehaviour:
   collideWithLayers:
     serializedVersion: 2
     m_Bits: 1
-  cameraSmoothSpeed: 1
+  cameraSmoothSpeed: 20
   horizontalLookAngle: 0
   verticalLookAngle: 0
   lockOnRadius: 20

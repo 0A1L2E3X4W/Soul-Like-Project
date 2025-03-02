@@ -44,6 +44,13 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private bool lockOnRightInput = false;
     private Coroutine lockOnCoroutine;
 
+    [Header("QUED INPUT")]
+    [SerializeField] private bool quedRbInput = false;
+    [SerializeField] private bool quedRtInput = false;
+    [SerializeField] private float quedInputTimer = 0f;
+    [SerializeField] private float defaultQuedInputTime = 0.35f;
+    [SerializeField] private bool quedInputIsActive = false;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -115,6 +122,10 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.LockOn.performed += i => lockOnInput = true;
             playerControls.PlayerActions.SeekRightTarget.performed += i => lockOnRightInput = true;
             playerControls.PlayerActions.SeekLeftTarget.performed += i => lockOnLeftInput = true;
+
+            // QUE INPUT
+            playerControls.PlayerActions.QuedRB.performed += i => QuedInput(ref quedRbInput);
+            playerControls.PlayerActions.QuedRT.performed += i => QuedInput(ref quedRtInput);
         }
 
         playerControls.Enable();
@@ -157,6 +168,8 @@ public class PlayerInputManager : MonoBehaviour
 
         HandleSwitchRightSlotInput();
         HandleSwitchLeftSlotInput();
+
+        HandleQuedInputs();
     }
 
     // LOCK ON
@@ -355,6 +368,53 @@ public class PlayerInputManager : MonoBehaviour
         {
             switchLeftSlotInput = false;
             player.playerEquipmentManager.SwitchLeftWeapon();
+        }
+    }
+
+    // QUED INPUT
+    private void QuedInput(ref bool quedInput)
+    {
+        quedRbInput = false;
+        quedRtInput = false;
+
+        if (player.isPerformingAction || player.playerNetworkManager.isJumping.Value)
+        {
+            quedInput = true;
+
+            quedInputTimer = defaultQuedInputTime;
+            quedInputIsActive = true;
+        }
+    }
+
+    private void ProcessQuedInput()
+    {
+        if (player.isDead.Value)
+            return;
+
+        if (quedRbInput)
+            rbInput = true;
+
+        if (quedRtInput)
+            rtInput = true;
+    }
+
+    private void HandleQuedInputs()
+    {
+        if (quedInputIsActive)
+        {
+            if (quedInputTimer > 0)
+            {
+                quedInputTimer -= Time.deltaTime;
+                ProcessQuedInput();
+            }
+            else
+            {
+                quedRbInput = false;
+                quedRtInput = false;
+
+                quedInputIsActive = false;
+                quedInputTimer = 0;
+            }
         }
     }
 }
