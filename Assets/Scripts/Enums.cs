@@ -36,4 +36,7 @@ public enum AtkType
     HeavyAtk02,
     ChargedAtk01,
     ChargedAtk02,
+    RunningAtk01,
+    RollingAtk01,
+    BackStepAtk01,
 }

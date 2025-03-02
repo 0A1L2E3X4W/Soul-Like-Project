@@ -20,6 +20,8 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.isRolling = false;
 
         character.characterCombatManager.DisableCombo();
+        character.characterCombatManager.DisableRollingAtk();
+        character.characterCombatManager.DisableBackStepAtk();
 
         if (character.IsOwner)
         {

@@ -68,4 +68,25 @@ public class CharacterCombatManager : NetworkBehaviour
         if (character.IsOwner)
             character.characterNetworkManager.isInvulenerable.Value = false;
     }
+
+    // ROLLING & BACKSTEP ATK
+    public void EnableRollingAtk()
+    {
+        if (character.IsOwner) { canPerformRollAtk = true; }
+    }
+
+    public void DisableRollingAtk()
+    {
+        if (character.IsOwner) { canPerformRollAtk = false; }
+    }
+
+    public void EnableBackStepAtk()
+    {
+        if (character.IsOwner) { canPerformBackStepAtk = true; }
+    }
+
+    public void DisableBackStepAtk()
+    {
+        if (character.IsOwner) { canPerformBackStepAtk = false; }
+    }
 }

@@ -6,6 +6,9 @@ public class LightAtkAction : WeaponItemAction
     [Header("ACTION ANIM")]
     [SerializeField] private string lightAtk01 = "Main_LightAtk_01";
     [SerializeField] private string lightAtk02 = "Main_LightAtk_02";
+    [SerializeField] private string runningAtk01 = "Main_Run_Attack_01";
+    [SerializeField] private string rollingAtk01 = "Main_Roll_Attack_01";
+    [SerializeField] private string backStepAtk01 = "Main_BackStep_Attack_01";
 
     public override void AttemptPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
@@ -19,6 +22,24 @@ public class LightAtkAction : WeaponItemAction
 
         if (!playerPerformingAction.isGrounded)
             return;
+
+        if (playerPerformingAction.characterNetworkManager.isSprinting.Value)
+        {
+            PerformRunningAttack(playerPerformingAction, weaponPerformingAction);
+            return;
+        }
+
+        if (playerPerformingAction.characterCombatManager.canPerformRollAtk)
+        {
+            PerformRollingAttack(playerPerformingAction, weaponPerformingAction);
+            return;
+        }
+
+        if (playerPerformingAction.characterCombatManager.canPerformBackStepAtk)
+        {
+            PerformBackStepAttack(playerPerformingAction, weaponPerformingAction);
+            return;
+        }
 
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }
@@ -42,5 +63,22 @@ public class LightAtkAction : WeaponItemAction
         {
             playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.LightAtk01, lightAtk01, true);
         }
+    }
+
+    private void PerformRunningAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+    {
+        playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.RunningAtk01, runningAtk01, true);
+    }
+
+    private void PerformRollingAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+    {
+        playerPerformingAction.playerCombatManager.canPerformRollAtk = false;
+        playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.RollingAtk01, rollingAtk01, true);
+    }
+
+    private void PerformBackStepAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+    {
+        playerPerformingAction.playerCombatManager.canPerformBackStepAtk = false;
+        playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.BackStepAtk01, backStepAtk01, true);
     }
 }

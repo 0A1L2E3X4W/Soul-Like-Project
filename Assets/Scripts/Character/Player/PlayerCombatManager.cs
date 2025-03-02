@@ -59,6 +59,15 @@ public class PlayerCombatManager : CharacterCombatManager
             case AtkType.ChargedAtk02:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAtkStaminaCostMultiplier;
                 break;
+            case AtkType.RunningAtk01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.runningAtkStaminaCostMultiplier;
+                break;
+            case AtkType.RollingAtk01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.rollingAtkStaminaCostMultiplier;
+                break;
+            case AtkType.BackStepAtk01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.backstepAtkStaminaCostMultiplier;
+                break;
             default:
                 break;
         }
