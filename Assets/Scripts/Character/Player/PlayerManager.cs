@@ -16,6 +16,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
 
+    [Header("--- PLAYER MANAGER ---")]
     [Header("DEBUG MENU")]
     [SerializeField] private bool respawnCharacter = false;
 
@@ -98,6 +99,9 @@ public class PlayerManager : CharacterManager
         {
             LoadGameFromCurrentCharacterData(ref WorldSaveGameManager.Instance.currentCharacterData);
         }
+
+        if (!IsOwner)
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHpChanged;
     }
 
     public override void OnNetworkDespawn()
@@ -131,6 +135,9 @@ public class PlayerManager : CharacterManager
 
         // ANIM FLAGS
         playerNetworkManager.isChargingAtk.OnValueChanged -= playerNetworkManager.OnIsChargingAtkChanged;
+
+        if (!IsOwner)
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHpChanged;
     }
 
     // SAVE & LOAD

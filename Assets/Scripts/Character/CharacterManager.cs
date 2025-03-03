@@ -19,7 +19,9 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterEquipmentManager characterEquipmentManager;
     [HideInInspector] public CharacterInventoryManager characterInventoryManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
+    [HideInInspector] public CharacterUIManager characterUIManager;
 
+    [Header("--- CHARACTER MANAGER ---")]
     [Header("CHARACTER GROUP")]
     public CharacterGroup characterGroup;
 
@@ -49,6 +51,8 @@ public class CharacterManager : NetworkBehaviour
         characterEquipmentManager = GetComponent<CharacterEquipmentManager>();
         characterInventoryManager = GetComponent<CharacterInventoryManager>();
         characterCombatManager = GetComponent<CharacterCombatManager>();
+
+        characterUIManager = GetComponent<CharacterUIManager>();
     }
 
     protected virtual void Update()
@@ -86,6 +90,16 @@ public class CharacterManager : NetworkBehaviour
     protected virtual void FixedUpdate()
     {
         
+    }
+
+    protected virtual void OnEnable()
+    {
+
+    }
+
+    protected virtual void OnDisable()
+    {
+
     }
 
     // NETWORK

@@ -8,6 +8,7 @@ public class AIManager : CharacterManager
     [HideInInspector] public AINetworkManager aiNetworkManager;
     [HideInInspector] public AILocomotionManager aiLocomotionManager;
 
+    [Header("--- AI CHARACTER MANAGER ---")]
     [Header("CHARACTER NAME")]
     public string characterName = "";
 
@@ -31,6 +32,22 @@ public class AIManager : CharacterManager
         aiCombatManager = GetComponent<AICombatManager>();
         aiNetworkManager = GetComponent<AINetworkManager>();
         aiLocomotionManager = GetComponent<AILocomotionManager>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        if (characterUIManager.hasFloatingHpBar)
+            characterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHpChanged;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        if (characterUIManager.hasFloatingHpBar)
+            characterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHpChanged;
     }
 
     public override void OnNetworkSpawn()
