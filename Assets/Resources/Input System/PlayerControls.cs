@@ -353,6 +353,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""577ff1ab-21fc-4133-84cf-243413e436bd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -641,6 +650,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Switch Left Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""058f9903-f3d1-4124-80cd-8f7608d9df20"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3d38895-c183-4941-8581-443e8994807e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -707,6 +738,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_HoldRT = m_PlayerActions.FindAction("Hold RT", throwIfNotFound: true);
         m_PlayerActions_SwitchRightWeapon = m_PlayerActions.FindAction("Switch Right Weapon", throwIfNotFound: true);
         m_PlayerActions_SwitchLeftWeapon = m_PlayerActions.FindAction("Switch Left Weapon", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -884,6 +916,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_SwitchRightWeapon;
     private readonly InputAction m_PlayerActions_SwitchLeftWeapon;
+    private readonly InputAction m_PlayerActions_Interact;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -901,6 +934,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @HoldRT => m_Wrapper.m_PlayerActions_HoldRT;
         public InputAction @SwitchRightWeapon => m_Wrapper.m_PlayerActions_SwitchRightWeapon;
         public InputAction @SwitchLeftWeapon => m_Wrapper.m_PlayerActions_SwitchLeftWeapon;
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -949,6 +983,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLeftWeapon.started += instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.performed += instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.canceled += instance.OnSwitchLeftWeapon;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -992,6 +1029,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLeftWeapon.started -= instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.performed -= instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.canceled -= instance.OnSwitchLeftWeapon;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -1078,6 +1118,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHoldRT(InputAction.CallbackContext context);
         void OnSwitchRightWeapon(InputAction.CallbackContext context);
         void OnSwitchLeftWeapon(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

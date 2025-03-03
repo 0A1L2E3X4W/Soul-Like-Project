@@ -15,6 +15,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
+    [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
     [Header("--- PLAYER MANAGER ---")]
     [Header("DEBUG MENU")]
@@ -33,6 +34,7 @@ public class PlayerManager : CharacterManager
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerInteractionManager = GetComponent<PlayerInteractionManager>();
     }
 
     protected override void Update()

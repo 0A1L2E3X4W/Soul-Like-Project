@@ -12,6 +12,10 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Network Join")]
     [SerializeField] bool startGameAsClient;
 
+    [Header("UI FLAGS")]
+    public bool menuWindowIsOpen = false;
+    public bool popUpWindowIsOpen = false;
+
     private void Awake()
     {
         if (Instance == null) { Instance = this; }

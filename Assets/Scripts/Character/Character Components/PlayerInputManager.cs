@@ -26,6 +26,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private bool dodgeInput = false;
     [SerializeField] private bool sprintInput = false;
     [SerializeField] private bool jumpInput = false;
+    [SerializeField] private bool interactionInput = false;
 
     [Header("SWITCH ITEMS / WEAPONS SLOTS")]
     [SerializeField] private bool switchRightSlotInput = false;
@@ -105,6 +106,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.SwitchRightWeapon.performed += i => switchRightSlotInput = true;
             playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switchLeftSlotInput = true;
+            playerControls.PlayerActions.Interact.performed += i => interactionInput = true;
 
             // HOLD ACTION
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -170,6 +172,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleSwitchLeftSlotInput();
 
         HandleQuedInputs();
+
+        HandleInteractionInput();
     }
 
     // LOCK ON
@@ -415,6 +419,17 @@ public class PlayerInputManager : MonoBehaviour
                 quedInputIsActive = false;
                 quedInputTimer = 0;
             }
+        }
+    }
+
+    // INTERACTION
+    private void HandleInteractionInput()
+    {
+        if (interactionInput)
+        {
+            interactionInput = false;
+
+            player.playerInteractionManager.Interact();
         }
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerUIPopUpManager : MonoBehaviour
 {
+    [Header("MESSAGE POP UP")]
+    [SerializeField] private GameObject popUpMessageGameObj;
+
+    [SerializeField] private TextMeshProUGUI popUpMessageText;
     [Header("DEATH POP UP")]
     [SerializeField] private GameObject deathPopUpGameObject;
     [SerializeField] private TextMeshProUGUI deathPopUpBackgroundText;
@@ -15,6 +19,20 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bossDefeatedPopUpBackgroundText;
     [SerializeField] private TextMeshProUGUI bossDefeatedPopUpText;
     [SerializeField] private CanvasGroup bossDefeatedPopUpCanvasGroup;
+
+    public void CloseAllPopUpWindows()
+    {
+        popUpMessageGameObj.SetActive(false);
+
+        PlayerUIManager.Instance.popUpWindowIsOpen = false;
+    }
+
+    public void SendPlayerMessagePopUp(string message)
+    {
+        PlayerUIManager.Instance.popUpWindowIsOpen = true;
+        popUpMessageText.text = message;
+        popUpMessageGameObj.SetActive(true);
+    }
 
     public void SendDeathPopUp()
     {
