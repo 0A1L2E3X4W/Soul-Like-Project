@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -209,7 +210,7 @@ public class WorldSaveGameManager : MonoBehaviour
         player.playerNetworkManager.endurance.Value = 10;
 
         SaveGame();
-        StartCoroutine(LoadWorldScene());
+        LoadWorldScene(worldSceneIndex);
     }
 
     // LOAD GAME
@@ -225,7 +226,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         currentCharacterData = saveFileDataWriter.LoadSaveGame();
 
-        StartCoroutine(LoadWorldScene());
+        LoadWorldScene(worldSceneIndex);
     }
 
     // SAVE GAME
@@ -289,11 +290,11 @@ public class WorldSaveGameManager : MonoBehaviour
         characterSlot09 = saveFileDataWriter.LoadSaveGame();
     }
 
-    public IEnumerator LoadWorldScene()
+    public void LoadWorldScene(int buildIndex)
     {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+        string worldScene = SceneUtility.GetScenePathByBuildIndex(buildIndex);
+        NetworkManager.Singleton.SceneManager.LoadScene(worldScene, LoadSceneMode.Single);
         player.LoadGameFromCurrentCharacterData(ref currentCharacterData);
-        yield return null;
     }
 
     public int GetWorldSceneIndex()

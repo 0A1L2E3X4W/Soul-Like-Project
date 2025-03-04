@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Interactable : NetworkBehaviour
 {
-    [Header("--- INTERACTABLE ---")]
+    [Header("[ INTERACTABLE ]")]
     [Header("SETTINGS")]
     public string interactableText;
     [SerializeField] protected Collider interactableCollider;
