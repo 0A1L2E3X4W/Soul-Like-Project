@@ -35,6 +35,16 @@ public class WorldAIManager : MonoBehaviour
         }
     }
 
+    public void ResetAllCharacters()
+    {
+        DespawnAllCharacters();
+
+        foreach (var spawner in aiCharacterSpawners)
+        {
+            spawner.AttemptSpawnCharacters();
+        }
+    }
+
     private void DespawnAllCharacters()
     {
         foreach (var character in spawnedInCharacters)
@@ -42,7 +52,7 @@ public class WorldAIManager : MonoBehaviour
             character.GetComponent<NetworkObject>().Despawn();
         }
 
-        //spawnedInCharacters = new List<GameObject>();
+        spawnedInCharacters.Clear();
     }
 
     private void DisableAllCharacters()

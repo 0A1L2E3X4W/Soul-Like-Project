@@ -29,8 +29,12 @@ public class CharacterSaveData
     public SerializableDictionary<int, bool> bossesAwakened;
     public SerializableDictionary<int, bool> bossesDefeated;
 
+    [Header("CHECK POINTS")]
+    public SerializableDictionary<int, bool> checkpoint;
+
     public CharacterSaveData()
     {
+        checkpoint = new SerializableDictionary<int, bool>();
         bossesAwakened = new SerializableDictionary<int, bool>();
         bossesDefeated = new SerializableDictionary<int, bool>();
     }

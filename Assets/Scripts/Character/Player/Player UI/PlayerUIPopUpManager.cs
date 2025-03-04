@@ -20,6 +20,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bossDefeatedPopUpText;
     [SerializeField] private CanvasGroup bossDefeatedPopUpCanvasGroup;
 
+    [Header("CHECKPOINT")]
+    [SerializeField] private GameObject checkpointPopUpGameObject;
+    [SerializeField] private TextMeshProUGUI checkpointPopUpBackgroundText;
+    [SerializeField] private TextMeshProUGUI checkpointPopUpText;
+    [SerializeField] private CanvasGroup checkpointPopUpCanvasGroup;
+
     public void CloseAllPopUpWindows()
     {
         popUpMessageGameObj.SetActive(false);
@@ -34,6 +40,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         popUpMessageGameObj.SetActive(true);
     }
 
+    // DEATH
     public void SendDeathPopUp()
     {
         deathPopUpGameObject.SetActive(true);
@@ -46,6 +53,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(WaitFadeOutPopUpOverTime(deathPopUpCanvasGroup, 2f, 5f));
     }
 
+    // BOSS DEFEATED
     public void SendBossDefeatedPopUp(string bossDefeatedMessage)
     {
         bossDefeatedPopUpText.text = bossDefeatedMessage;
@@ -59,6 +67,22 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 5f));
 
         StartCoroutine(WaitFadeOutPopUpOverTime(bossDefeatedPopUpCanvasGroup, 2f, 5f));
+    }
+
+    // CHECK POINT
+    public void SendCheckpointPopUp(string checkPointMessage)
+    {
+        checkpointPopUpText.text = checkPointMessage;
+        checkpointPopUpBackgroundText.text = checkPointMessage;
+
+        checkpointPopUpGameObject.SetActive(true);
+        checkpointPopUpBackgroundText.characterSpacing = 0f;
+
+        StartCoroutine(StretchPopUpTextOverTime(checkpointPopUpBackgroundText, 8f, 9f));
+
+        StartCoroutine(FadeInPopUpOverTime(checkpointPopUpCanvasGroup, 5f));
+
+        StartCoroutine(WaitFadeOutPopUpOverTime(checkpointPopUpCanvasGroup, 2f, 5f));
     }
 
     // POP UP ANIMATIONS
