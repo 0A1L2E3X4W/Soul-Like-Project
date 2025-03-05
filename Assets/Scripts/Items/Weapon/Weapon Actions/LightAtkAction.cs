@@ -23,6 +23,9 @@ public class LightAtkAction : WeaponItemAction
         if (!playerPerformingAction.isGrounded)
             return;
 
+        if (playerPerformingAction.IsOwner)
+            playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
+
         if (playerPerformingAction.characterNetworkManager.isSprinting.Value)
         {
             PerformRunningAttack(playerPerformingAction, weaponPerformingAction);

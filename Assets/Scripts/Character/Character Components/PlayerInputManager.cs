@@ -34,6 +34,7 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("BUMPER INPUTS")]
     [SerializeField] private bool rbInput = false;
+    [SerializeField] private bool lbInput = false;
 
     [Header("TRIGGER INPUTS")]
     [SerializeField] private bool rtInput = false;
@@ -114,6 +115,8 @@ public class PlayerInputManager : MonoBehaviour
 
             // RIGHT BUMPER
             playerControls.PlayerActions.RB.performed += i => rbInput = true;
+            playerControls.PlayerActions.LB.performed += i => lbInput = true;
+            playerControls.PlayerActions.LB.canceled += i => player.playerNetworkManager.isBlocking.Value = false;
 
             // RIGHT TRIGGER
             playerControls.PlayerActions.RT.performed += i => rtInput = true;
@@ -167,6 +170,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleRbInput();
         HandleRtInput();
         HandleHoldRtInput();
+        HandleLbInput();
 
         HandleSwitchRightSlotInput();
         HandleSwitchLeftSlotInput();
@@ -353,6 +357,20 @@ public class PlayerInputManager : MonoBehaviour
             {
                 player.playerNetworkManager.isChargingAtk.Value = holdRTInput;
             }
+        }
+    }
+
+    private void HandleLbInput()
+    {
+        if (lbInput)
+        {
+            lbInput = false;
+
+            player.playerNetworkManager.SetCharacterActionHand(false);
+
+            player.playerCombatManager.PerformWeaponBasedAction(
+                player.playerInventoryManager.currentLeftHandWeapon.oh_LB_Action,
+                player.playerInventoryManager.currentLeftHandWeapon);
         }
     }
 

@@ -5,6 +5,9 @@ public class WeaponItem : Item
     [Header("WEAPON MODEL")]
     public GameObject weaponModel;
 
+    [Header("MODEL INSTANTIATION")]
+    public WeaponModelType weaponModelType;
+
     [Header("WEAPON REQUIREMENTS")]
     public int strengthRequire = 0;
     public int dexterityRequire = 0;
@@ -42,9 +45,18 @@ public class WeaponItem : Item
     public float rollingAtkStaminaCostMultiplier = 1.3f;
     public float backstepAtkStaminaCostMultiplier = 1.3f;
 
+    [Header("WEAPON BLOCKING ABSORPTIONS")]
+    public float physicalBaseDamageAbsorption = 50;
+    public float magicBaseDamageAbsorption = 50;
+    public float fireBaseDamageAbsorption = 50;
+    public float holyBaseDamageAbsorption = 50;
+    public float lightningBaseDamageAbsorption = 50;
+    public float stability = 50;    // REDUCES STAMINA LOST FROM BLOCK 
+
     [Header("ACTIONS")]
     public WeaponItemAction oh_RB_Action;
     public WeaponItemAction oh_RT_Action;
+    public WeaponItemAction oh_LB_Action;
 
     [Header("ANIMATIONS")]
     public AnimatorOverrideController weaponAnim;

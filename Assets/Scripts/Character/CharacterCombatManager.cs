@@ -19,6 +19,7 @@ public class CharacterCombatManager : NetworkBehaviour
     public bool canComboOnMainHand = false;
     public bool canPerformRollAtk = false;
     public bool canPerformBackStepAtk = false;
+    public bool canBlock = true;
 
     [Header("LAST PERFORMED ACTION ANIM")]
     public string lastAtkAnimPerformed;

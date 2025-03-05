@@ -713,6 +713,8 @@ MonoBehaviour:
     m_InternalValue: 0
   isBlocking:
     m_InternalValue: 0
+  isAttacking:
+    m_InternalValue: 0
   endurance:
     m_InternalValue: 1
   vitality:
@@ -859,6 +861,7 @@ MonoBehaviour:
   canComboOnMainHand: 0
   canPerformRollAtk: 0
   canPerformBackStepAtk: 0
+  canBlock: 1
   lastAtkAnimPerformed: 
   currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &-6715717714024879221
@@ -877,6 +880,7 @@ MonoBehaviour:
   rightHandWeaponModel: {fileID: 0}
   rightWeaponManager: {fileID: 0}
   leftHandSlot: {fileID: 0}
+  leftHandShieldSlot: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
   leftWeaponManager: {fileID: 0}
 --- !u!114 &558594587427866616
@@ -896,12 +900,12 @@ MonoBehaviour:
   rightHandWeaponIndex: 0
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
-  - {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
-  - {fileID: 11400000, guid: 4021a724a397f584abe608cd72d67d43, type: 2}
+  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 4640e6f58da5e3740a23cd390e11251e, type: 2}
   leftHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
-  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 4640e6f58da5e3740a23cd390e11251e, type: 2}
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
 --- !u!114 &-7649883426742956672
 MonoBehaviour:
@@ -1679,6 +1683,52 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000017881393, y: 0.8161714, z: -0.04550442}
     m_Extent: {x: 1.0251002, y: 1.0201297, z: 0.3932507}
   m_DirtyAABB: 0
+--- !u!1 &2527807299770784188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4642813949950244242}
+  - component: {fileID: 4976526453312614395}
+  m_Layer: 6
+  m_Name: Right Weapon Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4642813949950244242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527807299770784188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3186262928551038524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4976526453312614395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527807299770784188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e924e54fa75d204d8a29e9f1cbd7dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponModel: {fileID: 0}
+  weaponSlot: 0
 --- !u!1 &2587493859116417854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +2006,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 251234606472913672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2965167101886207076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5031419804603454813}
+  - component: {fileID: 280206080377975006}
+  m_Layer: 6
+  m_Name: Left Weapon Slot - Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5031419804603454813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965167101886207076}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9889003, y: 0.011681713, z: -0.048676766, w: 0.13989371}
+  m_LocalPosition: {x: 0.152, y: 0.004, z: -0.009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 553105805350235617}
+  m_LocalEulerAnglesHint: {x: -15.994, y: 174.056, z: -177.811}
+--- !u!114 &280206080377975006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965167101886207076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e924e54fa75d204d8a29e9f1cbd7dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponModel: {fileID: 0}
+  weaponSlot: 2
 --- !u!1 &3246177943168365819
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,7 +5917,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3186262928551038524}
-  - component: {fileID: 2236957376528611273}
   - component: {fileID: 4309621414494701420}
   m_Layer: 7
   m_Name: Hand_R
@@ -5846,22 +5941,9 @@ Transform:
   - {fileID: 5734590943376203252}
   - {fileID: 8607170664759710172}
   - {fileID: 757170696190638300}
+  - {fileID: 4642813949950244242}
   m_Father: {fileID: 904699700171874061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2236957376528611273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410013354524729973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e924e54fa75d204d8a29e9f1cbd7dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeaponModel: {fileID: 0}
-  weaponSlot: 0
 --- !u!136 &4309621414494701420
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6259,6 +6341,7 @@ Transform:
   - {fileID: 5051437977415142411}
   - {fileID: 7617408168641416260}
   - {fileID: 7904889649496308938}
+  - {fileID: 5031419804603454813}
   m_Father: {fileID: 3591290706361264441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6641812911749538132

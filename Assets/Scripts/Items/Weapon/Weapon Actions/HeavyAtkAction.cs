@@ -20,6 +20,9 @@ public class HeavyAtkAction : WeaponItemAction
         if (!playerPerformingAction.isGrounded)
             return;
 
+        if (playerPerformingAction.IsOwner)
+            playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
+
         PerformHeavyAttack(playerPerformingAction, weaponPerformingAction);
     }
 

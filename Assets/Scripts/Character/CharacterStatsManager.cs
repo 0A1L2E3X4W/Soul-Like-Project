@@ -17,6 +17,7 @@ public class CharacterStatsManager : MonoBehaviour
     public float blockingFireAbsorption;
     public float blockingLightningAbsorption;
     public float blockingHolyAbsorption;
+    public float blockingStability = 0;
 
     protected virtual void Awake()
     {

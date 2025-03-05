@@ -22,10 +22,17 @@ public enum CharacterGroup
     Undead,
 }
 
+public enum WeaponModelType
+{
+    Weapon,
+    Shield,
+}
+
 public enum WeaponSlot
 {
-    RightHand,
-    LeftHand,
+    RightHandSlot,
+    LeftHandSlot,
+    LeftHandShieldSlot,
 }
 
 public enum AtkType

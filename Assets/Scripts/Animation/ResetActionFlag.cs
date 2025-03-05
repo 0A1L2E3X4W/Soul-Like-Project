@@ -27,6 +27,7 @@ public class ResetActionFlag : StateMachineBehaviour
         {
             character.characterNetworkManager.isJumping.Value = false;
             character.characterNetworkManager.isInvulenerable.Value = false;
+            character.characterNetworkManager.isAttacking.Value = false;
         }
     }
 

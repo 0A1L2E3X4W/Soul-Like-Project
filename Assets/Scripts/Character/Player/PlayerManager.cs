@@ -94,6 +94,9 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
+        // BLOCKING
+        playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
+
         // ANIM FLAGS
         playerNetworkManager.isChargingAtk.OnValueChanged += playerNetworkManager.OnIsChargingAtkChanged;
 
@@ -169,9 +172,11 @@ public class PlayerManager : CharacterManager
         Vector3 myPos = new(currentCharacterData.xPos, currentCharacterData.yPos, currentCharacterData.zPos);
         transform.position = myPos;
 
+        // STATS
         playerNetworkManager.vitality.Value = currentCharacterData.vitality;
         playerNetworkManager.endurance.Value = currentCharacterData.endurance;
 
+        // RESOURCES
         playerNetworkManager.maxHealth.Value = playerStatsManager.CalcuHealthBasedOnVitalityLV(playerNetworkManager.vitality.Value);
         playerNetworkManager.maxStamina.Value = playerStatsManager.CalcuStaminaBasedOnEnduranceLV(playerNetworkManager.endurance.Value);
 
@@ -183,8 +188,12 @@ public class PlayerManager : CharacterManager
 
     public void LoadOtherPlayerIntoServer()
     {
+        //  SYNC WEAPONS
         playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
         playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+
+        //  SYNC BLOCK STATUS
+        playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
 
         if (playerNetworkManager.isLockedOn.Value)
         {
