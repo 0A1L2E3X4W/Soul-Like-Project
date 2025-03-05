@@ -68,6 +68,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
             rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+
+            // ANIMATOR CONTROLLER
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnim);
         }
     }
 
@@ -84,6 +87,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
             leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
             leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
+
+            // ANIMATOR CONTROLLER
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentLeftHandWeapon.weaponAnim);
         }
     }
 

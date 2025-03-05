@@ -46,6 +46,9 @@ public class WeaponItem : Item
     public WeaponItemAction oh_RB_Action;
     public WeaponItemAction oh_RT_Action;
 
+    [Header("ANIMATIONS")]
+    public AnimatorOverrideController weaponAnim;
+
     [Header("WHOOSHES")]
     public AudioClip[] whooshes;
 }

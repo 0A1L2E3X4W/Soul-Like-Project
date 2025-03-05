@@ -669,6 +669,7 @@ MonoBehaviour:
   playerEquipmentManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
+  playerInteractionManager: {fileID: 0}
   respawnCharacter: 0
 --- !u!114 &3772982453111213788
 MonoBehaviour:
@@ -709,6 +710,8 @@ MonoBehaviour:
   isMoving:
     m_InternalValue: 0
   isInvulenerable:
+    m_InternalValue: 0
+  isBlocking:
     m_InternalValue: 0
   endurance:
     m_InternalValue: 1
@@ -894,7 +897,7 @@ MonoBehaviour:
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
   - {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
-  - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  - {fileID: 11400000, guid: 4021a724a397f584abe608cd72d67d43, type: 2}
   leftHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
@@ -914,6 +917,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationDelay: 0.8
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
 --- !u!114 &7297628794228016210
 MonoBehaviour:
   m_ObjectHideFlags: 0

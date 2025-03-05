@@ -90,11 +90,13 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
     // PLAY ATTACK ANIM
-    public virtual void PlayTargetAtkActionAnim(AtkType atkType, string targetAnim,
+    public virtual void PlayTargetAtkActionAnim(WeaponItem weapon, AtkType atkType, string targetAnim,
             bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
         character.characterCombatManager.currentAtkType = atkType;
         character.characterCombatManager.lastAtkAnimPerformed = targetAnim;
+
+        UpdateAnimatorController(weapon.weaponAnim);
 
         character.applyRootMotion = applyRootMotion;
         character.anim.CrossFade(targetAnim, 0.2f);
@@ -127,5 +129,10 @@ public class CharacterAnimatorManager : MonoBehaviour
         int randomIndex = Random.Range(0, finalList.Count);
 
         return finalList[randomIndex];
+    }
+
+    public void UpdateAnimatorController(AnimatorOverrideController weaponController)
+    {
+        character.anim.runtimeAnimatorController = weaponController;
     }
 }

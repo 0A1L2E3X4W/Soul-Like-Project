@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Broad Sword
+  m_Controller: {fileID: 9100000, guid: 285c0be68d06e9449a55e375c37f9c58, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -7827197647212710141, guid: 582f79a05bb86a34db56c59e7991d8e3, type: 3}
+    m_OverrideClip: {fileID: 160028319527718013, guid: 1d14dba0bdb9b314196dc978f4e3d9af, type: 3}
+  - m_OriginalClip: {fileID: -464222362278845334, guid: 29d698e35b3fd854ebc8256ab8f45a5e, type: 3}
+    m_OverrideClip: {fileID: 119410957127276747, guid: 500d4be8edf686a4281d45b26a707dcf, type: 3}

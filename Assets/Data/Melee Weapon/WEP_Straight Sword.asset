@@ -33,12 +33,19 @@ MonoBehaviour:
   heavyAtkModifier_02: 1.4
   chargedAtkModifier_01: 1.8
   chargedAtkModifier_02: 2
+  runningAtkModifier_01: 1.5
+  rollingAtkModifier_01: 1.4
+  backstepAtkModifier_01: 1.4
   baseStaminaCost: 20
   lightAtkStaminaCostMultiplier: 0.8
   heavyAtkStaminaCostMultiplier: 1.2
   chargedAtkStaminaCostMultiplier: 1.8
+  runningAtkStaminaCostMultiplier: 1.3
+  rollingAtkStaminaCostMultiplier: 1.3
+  backstepAtkStaminaCostMultiplier: 1.3
   oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 59d19f0cb9c86ca4989d06437ce6d808, type: 2}
+  weaponAnim: {fileID: 22100000, guid: d8daa16effa958845b2a6e9ba9f35bb1, type: 2}
   whooshes:
   - {fileID: 8300000, guid: 8999bcfe292c07145b0cadf8ed54e5fa, type: 3}
   - {fileID: 8300000, guid: bf6ffd93391addd41b884c49c63366c2, type: 3}

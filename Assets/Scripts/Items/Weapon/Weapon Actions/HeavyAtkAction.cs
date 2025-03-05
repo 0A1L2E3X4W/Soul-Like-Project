@@ -31,16 +31,19 @@ public class HeavyAtkAction : WeaponItemAction
 
             if (playerPerformingAction.playerCombatManager.lastAtkAnimPerformed == heavyAtk01)
             {
-                playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.HeavyAtk02, heavyAtk02, true);
+                playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(
+                    weaponPerformingAction,AtkType.HeavyAtk02, heavyAtk02, true);
             }
             else
             {
-                playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.HeavyAtk01, heavyAtk01, true);
+                playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(
+                    weaponPerformingAction, AtkType.HeavyAtk01, heavyAtk01, true);
             }
         }
         else if (!playerPerformingAction.isPerformingAction)
         {
-            playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(AtkType.HeavyAtk01, heavyAtk01, true);
+            playerPerformingAction.playerAnimatorManager.PlayTargetAtkActionAnim(
+                weaponPerformingAction, AtkType.HeavyAtk01, heavyAtk01, true);
         }
     }
 }

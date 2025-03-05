@@ -22,6 +22,6 @@ public class AIAtkAction : ScriptableObject
 
     public void AttemptPerformAction(AIManager aiCharacter)
     {
-        aiCharacter.characterAnimatorManager.PlayTargetAtkActionAnim(atkType, atkAnim, true);
+        aiCharacter.characterAnimatorManager.PlayTargetActionAnim(atkAnim, true);
     }
 }
