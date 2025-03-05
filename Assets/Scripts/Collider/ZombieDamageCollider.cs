@@ -43,4 +43,11 @@ public class ZombieDamageCollider : DamageCollider
                 damageEffect.contactPoint.x, damageEffect.contactPoint.y, damageEffect.contactPoint.z);
         }
     }
+
+    // BLOCKING
+    protected override void GetBlockingDotVal(CharacterManager damageTarget)
+    {
+        dirFromAtkToTarget = zombieCausingDamage.transform.position - damageTarget.transform.position;
+        dotvalFromAtkToDamageTarget = Vector3.Dot(dirFromAtkToTarget, damageTarget.transform.forward);
+    }
 }

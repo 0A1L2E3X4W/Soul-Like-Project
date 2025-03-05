@@ -116,4 +116,11 @@ public class MeleeWeaponDamageCollider : DamageCollider
         damage.lightningDamage *= modifier;
         damage.poiseDamage *= modifier;
     }
+
+    // BLOCKING
+    protected override void GetBlockingDotVal(CharacterManager damageTarget)
+    {
+        dirFromAtkToTarget = characterCausingDamage.transform.position - damageTarget.transform.position;
+        dotvalFromAtkToDamageTarget = Vector3.Dot(dirFromAtkToTarget, damageTarget.transform.forward);
+    }
 }

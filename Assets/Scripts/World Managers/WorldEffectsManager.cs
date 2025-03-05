@@ -7,6 +7,7 @@ public class WorldEffectsManager : MonoBehaviour
 
     [Header("DAMAGE")]
     public TakeDamage takeDamageEffect;
+    public TakeBlockedDamage takeBlockedDamageEffect;
 
     [Header("INSTANCE EFFECTS")]
     [SerializeField] List<InstanceCharacterEffect> instanceEffects;

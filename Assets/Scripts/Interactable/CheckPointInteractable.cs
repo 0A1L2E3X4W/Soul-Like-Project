@@ -80,7 +80,7 @@ public class CheckPointInteractable : Interactable
     private void RestAtCheckPoint(PlayerManager player)
     {
         PlayerUIManager.Instance.playerUIPopUpManager.SendCheckpointPopUp(activatedText);
-        Debug.Log("REST");
+
         interactableCollider.enabled = true;
         player.playerNetworkManager.currentHealth.Value = player.playerNetworkManager.maxHealth.Value;
         player.playerNetworkManager.currentStamina.Value = player.playerNetworkManager.maxStamina.Value;

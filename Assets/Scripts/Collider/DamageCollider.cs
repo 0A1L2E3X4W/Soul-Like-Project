@@ -19,6 +19,10 @@ public class DamageCollider : MonoBehaviour
     [Header("CHARACTER DAMAGED")]
     protected List<CharacterManager> charactersDamaged = new();
 
+    [Header("BLOCKING")]
+    protected Vector3 dirFromAtkToTarget;
+    protected float dotvalFromAtkToDamageTarget;
+
     protected virtual void Awake()
     {
 
@@ -32,6 +36,7 @@ public class DamageCollider : MonoBehaviour
         {
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
+            CheckForBlock(damageTarget);
             DamageTarget(damageTarget);
         }
     }
@@ -66,5 +71,35 @@ public class DamageCollider : MonoBehaviour
     {
         damageCollider.enabled = false;
         charactersDamaged.Clear();
+    }
+
+    // BLOCKING
+    protected virtual void CheckForBlock(CharacterManager damageTarget)
+    {
+        if (charactersDamaged.Contains(damageTarget))
+            return;
+
+        GetBlockingDotVal(damageTarget);
+
+        if (damageTarget.characterNetworkManager.isBlocking.Value && dotvalFromAtkToDamageTarget > 0.3f)
+        {
+            charactersDamaged.Add(damageTarget);
+            TakeBlockedDamage damageEffect = Instantiate(WorldEffectsManager.Instance.takeBlockedDamageEffect);
+
+            damageEffect.physicalDamage = physicalDamage;
+            damageEffect.magicDamage = magicDamage;
+            damageEffect.holyDamage = holyDamage;
+            damageEffect.fireDamage = fireDamage;
+            damageEffect.lightningDamage = lightningDamage;
+
+            damageEffect.contactPoint = contactPoint;
+            damageTarget.characterEffectsManager.ProcessInstanceEffect(damageEffect);
+        }
+    }
+
+    protected virtual void GetBlockingDotVal(CharacterManager damageTarget)
+    {
+        dirFromAtkToTarget = transform.position - damageTarget.transform.position;
+        dotvalFromAtkToDamageTarget = Vector3.Dot(dirFromAtkToTarget, damageTarget.transform.forward);
     }
 }

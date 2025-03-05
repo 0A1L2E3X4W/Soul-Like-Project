@@ -11,6 +11,13 @@ public class CharacterStatsManager : MonoBehaviour
     private float staminaRegenerationTimer = 0f;
     private float staminaTickTimer = 0f;
 
+    [Header("BLOCKING ABSORPTIONS")]
+    public float blockingPhysicalAbsorption;
+    public float blockingMagicAbsorption;
+    public float blockingFireAbsorption;
+    public float blockingLightningAbsorption;
+    public float blockingHolyAbsorption;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
@@ -39,6 +46,7 @@ public class CharacterStatsManager : MonoBehaviour
         return Mathf.RoundToInt(stamina);
     }
 
+    // REGENERATE STAMINA
     public virtual void RegenerateStamina()
     {
         if (!character.IsOwner)

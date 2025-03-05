@@ -40,3 +40,8 @@ public enum AtkType
     RollingAtk01,
     BackStepAtk01,
 }
+
+public enum DamageIntensity
+{
+    Ping, Light, Medium, Heavy, Colossal
+}
