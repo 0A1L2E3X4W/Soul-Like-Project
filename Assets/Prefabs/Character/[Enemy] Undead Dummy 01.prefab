@@ -118,6 +118,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 0
   zombieCausingDamage: {fileID: 0}
 --- !u!135 &7771707279921894742
 SphereCollider:
@@ -722,6 +723,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 0
   zombieCausingDamage: {fileID: 0}
 --- !u!1 &3071784709691563144
 GameObject:
@@ -2195,6 +2197,7 @@ MonoBehaviour:
   canComboOnMainHand: 0
   canPerformRollAtk: 0
   canPerformBackStepAtk: 0
+  canBlock: 1
   lastAtkAnimPerformed: 
   actionRecoveryTimer: 0
   distanceFromTarget: 0
@@ -2204,10 +2207,11 @@ MonoBehaviour:
   viewableAngle: 0
   targetsDir: {x: 0, y: 0, z: 0}
   attackRotationSpeed: 25
-  enablePivot: 1
+  enablePivot: 0
   rightHandDamageCollider: {fileID: 8367477272615379102}
   leftHandDamageCollider: {fileID: 1857753967741921384}
   baseDamage: 25
+  basePoiseDamage: 25
   atk01Multiplier: 1
   atk02Multiplier: 1.2
 --- !u!114 &-5691672501911741820
@@ -2249,6 +2253,10 @@ MonoBehaviour:
   isMoving:
     m_InternalValue: 0
   isInvulenerable:
+    m_InternalValue: 0
+  isBlocking:
+    m_InternalValue: 0
+  isAttacking:
     m_InternalValue: 0
   endurance:
     m_InternalValue: 1
@@ -2525,6 +2533,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationDelay: 0.8
   staminaRegenerationAmount: 2
+  blockingPhysicalAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
+  blockingStability: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 0
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!1 &7327765727363740728
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     private int vertical;
     private int horizontal;
 
-    [Header("DAMAGE ANIM")]
+    [Header("MEDIUM DAMAGE ANIM")]
     [SerializeField] private string hitForwardMedium01 = "Hit_Forward_Medium_01";
     [SerializeField] private string hitForwardMedium02 = "Hit_Forward_Medium_02";
     [SerializeField] private string hitBackwardMedium01 = "Hit_Backward_Medium_01";
@@ -20,13 +20,27 @@ public class CharacterAnimatorManager : MonoBehaviour
     [SerializeField] private string hitRightMedium01 = "Hit_Right_Medium_01";
     [SerializeField] private string hitRightMedium02 = "Hit_Right_Medium_02";
     [Space]
+    [SerializeField] string hitForwardPing_01 = "Hit_Forward_Ping_01";
+    [SerializeField] string hitForwardPing_02 = "Hit_Forward_Ping_02";
+    [SerializeField] string hitBackwardPing_01 = "Hit_Backward_Ping_01";
+    [SerializeField] string hitBackwardPing_02 = "Hit_Backward_Ping_02";
+    [SerializeField] string hitLeftPing_01 = "Hit_Left_Ping_01";
+    [SerializeField] string hitLeftPing_02 = "Hit_Left_Ping_02";
+    [SerializeField] string hitRightPing_01 = "Hit_Right_Ping_01";
+    [SerializeField] string hitRightPing_02 = "Hit_Right_Ping_02";
+    [Space]
     public string finalDamageAnimPlayed;
+
 
     [Header("DAMAGE ANIM LIST")]
     public List<string> forwardMidDamage = new();
     public List<string> backwardMidDamage = new();
     public List<string> rightMidDamage = new();
     public List<string> leftMidDamage = new();
+    public List<string> forwardPingDamage = new List<string>();
+    public List<string> backwardPingDamage = new List<string>();
+    public List<string> leftPingDamage = new List<string>();
+    public List<string> rightPingDamage = new List<string>();
 
     protected virtual void Awake()
     {
@@ -40,15 +54,21 @@ public class CharacterAnimatorManager : MonoBehaviour
     {
         forwardMidDamage.Add(hitForwardMedium01);
         forwardMidDamage.Add(hitForwardMedium02);
-
         backwardMidDamage.Add(hitBackwardMedium01);
         backwardMidDamage.Add(hitBackwardMedium02);
-
         rightMidDamage.Add(hitRightMedium01);
         rightMidDamage.Add(hitRightMedium02);
-
         leftMidDamage.Add(hitLeftMedium01);
         leftMidDamage.Add(hitLeftMedium02);
+
+        forwardPingDamage.Add(hitForwardPing_01);
+        forwardPingDamage.Add(hitForwardPing_02);
+        backwardPingDamage.Add(hitBackwardPing_01);
+        backwardPingDamage.Add(hitBackwardPing_02);
+        leftPingDamage.Add(hitLeftPing_01);
+        leftPingDamage.Add(hitLeftPing_02);
+        rightPingDamage.Add(hitRightPing_01);
+        rightPingDamage.Add(hitRightPing_02);
     }
 
     // LOCOMOTION

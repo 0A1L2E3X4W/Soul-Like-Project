@@ -926,6 +926,12 @@ MonoBehaviour:
   blockingFireAbsorption: 0
   blockingLightningAbsorption: 0
   blockingHolyAbsorption: 0
+  blockingStability: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 80
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!114 &7297628794228016210
 MonoBehaviour:
   m_ObjectHideFlags: 0
