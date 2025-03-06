@@ -61,6 +61,7 @@ public class WeaponItem : Item
     [Header("ANIMATIONS")]
     public AnimatorOverrideController weaponAnim;
 
-    [Header("WHOOSHES")]
+    [Header("SOUND FX")]
     public AudioClip[] whooshes;
+    public AudioClip[] blockingSFX;
 }

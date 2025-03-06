@@ -52,4 +52,9 @@ public class CharacterSoundFXManager : MonoBehaviour
         if (footSteps.Length > 0)
             PlaySFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(footSteps));
     }
+
+    public virtual void PlayBlockingSFX()
+    {
+
+    }
 }

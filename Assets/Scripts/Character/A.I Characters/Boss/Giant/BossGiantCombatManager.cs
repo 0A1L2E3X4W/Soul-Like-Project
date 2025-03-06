@@ -10,12 +10,15 @@ public class BossGiantCombatManager : AICombatManager
     [SerializeField] private StompDamageCollider stompCollider;
     public float stompAttackAOERadius = 1.5f;
 
-    [Header("DAMAGE")]
+    [Header("BASE DAMAGE")]
     [SerializeField] private int baseDamage = 50;
+    [SerializeField] private int basePoiseDamage = 25;
+    public float stompDamage = 60;
+
+    [Header("ATTACK MULTIPLIER")]
     [SerializeField] private float atk01Multiplier = 1.0f;
     [SerializeField] private float atk02Multiplier = 1.2f;
     [SerializeField] private float atk03Multiplier = 1.4f;
-    public float stompDamage = 60;
 
     [Header("VFX")]
     public GameObject stompImpactVFX;
@@ -32,18 +35,21 @@ public class BossGiantCombatManager : AICombatManager
     {
         aiManager.characterSoundFXManager.PlayAtkGruntSFX();
         giantDamageCollider.physicalDamage = baseDamage * atk01Multiplier;
+        giantDamageCollider.poiseDamage = basePoiseDamage * atk01Multiplier;
     }
 
     public void SetAtk02Damage()
     {
         aiManager.characterSoundFXManager.PlayAtkGruntSFX();
         giantDamageCollider.physicalDamage = baseDamage * atk02Multiplier;
+        giantDamageCollider.poiseDamage = basePoiseDamage * atk02Multiplier;
     }
 
     public void SetAtk03Damage()
     {
         aiManager.characterSoundFXManager.PlayAtkGruntSFX();
         giantDamageCollider.physicalDamage = baseDamage * atk03Multiplier;
+        giantDamageCollider.poiseDamage = basePoiseDamage * atk03Multiplier;
     }
 
     // DAMAGE COLLIDER

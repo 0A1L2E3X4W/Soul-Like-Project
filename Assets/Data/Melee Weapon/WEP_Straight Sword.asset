@@ -17,6 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 27b4e53ec0017d041a7b90a9b65d449d, type: 3}
   itemText: Old Sword
   weaponModel: {fileID: 7041866964253896751, guid: 8a6d791c356359c47886c92fbec73c1e, type: 3}
+  weaponModelType: 0
   strengthRequire: 1
   dexterityRequire: 1
   intelligenteRequire: 0
@@ -43,6 +44,12 @@ MonoBehaviour:
   runningAtkStaminaCostMultiplier: 1.3
   rollingAtkStaminaCostMultiplier: 1.3
   backstepAtkStaminaCostMultiplier: 1.3
+  physicalBaseDamageAbsorption: 50
+  magicBaseDamageAbsorption: 50
+  fireBaseDamageAbsorption: 50
+  holyBaseDamageAbsorption: 50
+  lightningBaseDamageAbsorption: 50
+  stability: 50
   oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 59d19f0cb9c86ca4989d06437ce6d808, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: bddafa8a661f19740b9a0efc475be1b4, type: 2}
@@ -52,3 +59,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bf6ffd93391addd41b884c49c63366c2, type: 3}
   - {fileID: 8300000, guid: 1da17c15cf5c34343a53692827cec378, type: 3}
   - {fileID: 8300000, guid: 8efe83ab07d24424a8ab7ec7f06a6bdc, type: 3}
+  blockingSFX:
+  - {fileID: 8300000, guid: f290051f770c7eb4480b94e38f2a93fb, type: 3}
+  - {fileID: 8300000, guid: 4baf3e34b7df8ba498e6725a455df070, type: 3}
+  - {fileID: 8300000, guid: 956c5da74ded6e34f904ce73da916f8e, type: 3}
+  - {fileID: 8300000, guid: 03d98709bc8a29d4088c26aa8783dc01, type: 3}

@@ -49,9 +49,14 @@ MonoBehaviour:
   fireBaseDamageAbsorption: 75
   holyBaseDamageAbsorption: 75
   lightningBaseDamageAbsorption: 75
-  stability: 50
+  stability: 1
   oh_RB_Action: {fileID: 11400000, guid: d01a5aada11ec0a4793d69e4a4cb9508, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 59d19f0cb9c86ca4989d06437ce6d808, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: bddafa8a661f19740b9a0efc475be1b4, type: 2}
   weaponAnim: {fileID: 22100000, guid: f6340bbd9dac1034cb84f1eca9c98fce, type: 2}
   whooshes: []
+  blockingSFX:
+  - {fileID: 8300000, guid: f290051f770c7eb4480b94e38f2a93fb, type: 3}
+  - {fileID: 8300000, guid: 4baf3e34b7df8ba498e6725a455df070, type: 3}
+  - {fileID: 8300000, guid: 956c5da74ded6e34f904ce73da916f8e, type: 3}
+  - {fileID: 8300000, guid: 03d98709bc8a29d4088c26aa8783dc01, type: 3}

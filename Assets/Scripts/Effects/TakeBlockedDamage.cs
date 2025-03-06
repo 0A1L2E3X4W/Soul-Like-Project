@@ -20,6 +20,10 @@ public class TakeBlockedDamage : InstanceCharacterEffect
     public float poiseDamage = 0f;
     public bool poiseIsBroken = false;
 
+    [Header("STAMINA")]
+    public float staminaDamage = 0;
+    public float finalStaminaDamage = 0;
+
     [Header("ANIMATIONS")]
     public bool playDamageAnim = true;
     public bool manuallySelectDamageAnim = false;
@@ -45,9 +49,12 @@ public class TakeBlockedDamage : InstanceCharacterEffect
             return;
 
         CalcuDamage(character);
+        CalculateStaminaDamage(character);
         PlayDirectionalBasedBlockedDamageAnim(character);
         PlayDamageSFX(character);
         PlayDamageVFX(character);
+
+        CheckForGuardBreak(character);
     }
 
     private void CalcuDamage(CharacterManager character)
@@ -79,14 +86,45 @@ public class TakeBlockedDamage : InstanceCharacterEffect
         character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
     }
 
+    private void CalculateStaminaDamage(CharacterManager character)
+    {
+        if (!character.IsOwner)
+            return;
+
+        finalStaminaDamage = staminaDamage;
+
+        float staminaDamageAbsorption = finalStaminaDamage * (character.characterStatsManager.blockingStability / 100);
+        float staminaDamageAfterAbsorption = finalStaminaDamage - staminaDamageAbsorption;
+
+        character.characterNetworkManager.currentStamina.Value -= staminaDamageAfterAbsorption;
+    }
+
+    private void CheckForGuardBreak(CharacterManager character)
+    {
+        //if (character.characterNetworkManager.currentStamina.Value <= 0)
+        //  PLAY SFX
+
+        if (!character.IsOwner)
+            return;
+
+        if (character.characterNetworkManager.currentStamina.Value <= 0)
+        {
+            character.characterAnimatorManager.PlayTargetActionAnim("Guard_Break_01", true);
+            character.characterNetworkManager.isBlocking.Value = false;
+        }
+    }
+
+    // VFX & SFX
     private void PlayDamageVFX(CharacterManager character)
     {
     }
 
     private void PlayDamageSFX(CharacterManager character)
     {
+        character.characterSoundFXManager.PlayBlockingSFX();
     }
 
+    // DAMAGE DIRECTION
     private void PlayDirectionalBasedBlockedDamageAnim(CharacterManager character)
     {
         if (!character.IsOwner)

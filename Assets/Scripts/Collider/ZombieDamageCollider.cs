@@ -29,6 +29,7 @@ public class ZombieDamageCollider : DamageCollider
         damageEffect.holyDamage = holyDamage;
         damageEffect.fireDamage = fireDamage;
         damageEffect.lightningDamage = lightningDamage;
+        damageEffect.poiseDamage = poiseDamage;
 
         damageEffect.contactPoint = contactPoint;
         damageEffect.angleHitFrom = Vector3.SignedAngle(
