@@ -33,6 +33,7 @@ public enum WeaponSlot
     RightHandSlot,
     LeftHandSlot,
     LeftHandShieldSlot,
+    BackSlot
 }
 
 public enum AtkType

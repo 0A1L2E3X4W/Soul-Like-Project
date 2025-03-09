@@ -40,6 +40,11 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private bool rtInput = false;
     [SerializeField] private bool holdRTInput = false;
 
+    [Header("TWO HAND INPUTS")]
+    [SerializeField] private bool twoHandInput = false;
+    [SerializeField] private bool twoHandRightInput = false;
+    [SerializeField] private bool twoHandLeftInput = false;
+
     [Header("LOCK ON INPUT")]
     [SerializeField] private bool lockOnInput = false;
     [SerializeField] private bool lockOnLeftInput = false;
@@ -131,6 +136,16 @@ public class PlayerInputManager : MonoBehaviour
             // QUE INPUT
             playerControls.PlayerActions.QuedRB.performed += i => QuedInput(ref quedRbInput);
             playerControls.PlayerActions.QuedRT.performed += i => QuedInput(ref quedRtInput);
+
+            // TWO HAND
+            playerControls.PlayerActions.TwoHandWeapon.performed += i => twoHandInput = true;
+            playerControls.PlayerActions.TwoHandWeapon.canceled += i => twoHandInput = false;
+
+            playerControls.PlayerActions.TwoHandRightWeapon.performed += i => twoHandRightInput = true;
+            playerControls.PlayerActions.TwoHandRightWeapon.canceled += i => twoHandRightInput = false;
+
+            playerControls.PlayerActions.TwoHandLeftWeapon.performed += i => twoHandLeftInput = true;
+            playerControls.PlayerActions.TwoHandLeftWeapon.canceled += i => twoHandLeftInput = false;
         }
 
         playerControls.Enable();
@@ -178,6 +193,50 @@ public class PlayerInputManager : MonoBehaviour
         HandleQuedInputs();
 
         HandleInteractionInput();
+
+        HandleTwoHandInput();
+    }
+
+    // TWO HAND
+    private void HandleTwoHandInput()
+    {
+        if (!twoHandInput)
+            return;
+
+        if (twoHandRightInput)
+        {
+            rbInput = false;
+            twoHandRightInput = false;
+            player.playerNetworkManager.isBlocking.Value = false;
+
+            if (player.playerNetworkManager.isTwoHandingRightWeapon.Value)
+            {
+                player.playerNetworkManager.isTwoHandingRightWeapon.Value = false;
+                return;
+            }
+            else
+            {
+                player.playerNetworkManager.isTwoHandingRightWeapon.Value = true;
+                return;
+            }
+        }
+        else if (twoHandLeftInput)
+        {
+            lbInput = false;
+            twoHandLeftInput = false;
+            player.playerNetworkManager.isBlocking.Value = false;
+
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                player.playerNetworkManager.isTwoHandingLeftWeapon.Value = false;
+                return;
+            }
+            else
+            {
+                player.playerNetworkManager.isTwoHandingLeftWeapon.Value = true;
+                return;
+            }
+        }
     }
 
     // LOCK ON
@@ -323,6 +382,9 @@ public class PlayerInputManager : MonoBehaviour
     // TRIGGER & BUMPER
     private void HandleRbInput()
     {
+        if (twoHandInput)
+            return;
+
         if (rbInput)
         {
             rbInput = false;
@@ -337,6 +399,9 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleRtInput()
     {
+        if (twoHandInput)
+            return;
+
         if (rtInput)
         {
             rtInput = false;

@@ -16,6 +16,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     public GameObject leftHandWeaponModel;
     [SerializeField] private WeaponManager leftWeaponManager;
 
+    [Header("BACK")]
+    public WeaponEquipSlot backSlot;
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,6 +52,10 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             else if (weaponSlot.weaponSlot == WeaponSlot.LeftHandShieldSlot)
             {
                 leftHandShieldSlot = weaponSlot;
+            }
+            else if (weaponSlot.weaponSlot == WeaponSlot.BackSlot)
+            {
+                backSlot = weaponSlot;
             }
         }
     }
@@ -276,5 +283,21 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         {
             leftWeaponManager.meleeWeaponDamageCollider.DisableDamageCollider();
         }
+    }
+
+    // TWO HAND
+    public void UndoTwoHandWeapon()
+    {
+
+    }
+
+    public void TwoHandRightWeapon()
+    {
+
+    }
+
+    public void TwoHandLeftWeapon()
+    {
+
     }
 }

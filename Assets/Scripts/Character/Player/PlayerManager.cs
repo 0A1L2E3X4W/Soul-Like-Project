@@ -97,6 +97,11 @@ public class PlayerManager : CharacterManager
         // BLOCKING
         playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
 
+        // TWO HANDING
+        playerNetworkManager.isTwoHandingWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandWeaponChanged;
+        playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandingRightWeaponChanged;
+        playerNetworkManager.isTwoHandingLeftWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandingLeftWeaponChanged;
+
         // ANIM FLAGS
         playerNetworkManager.isChargingAtk.OnValueChanged += playerNetworkManager.OnIsChargingAtkChanged;
 
@@ -137,6 +142,11 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        // TWO HANDING
+        playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandWeaponChanged;
+        playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;
+        playerNetworkManager.isTwoHandingLeftWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingLeftWeaponChanged;
 
         // ANIM FLAGS
         playerNetworkManager.isChargingAtk.OnValueChanged -= playerNetworkManager.OnIsChargingAtkChanged;
@@ -194,6 +204,10 @@ public class PlayerManager : CharacterManager
 
         //  SYNC BLOCK STATUS
         playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
+
+        //  SYNC TWO HAND STATUS
+        playerNetworkManager.OnIsTwoHandingRightWeaponChanged(false, playerNetworkManager.isTwoHandingRightWeapon.Value);
+        playerNetworkManager.OnIsTwoHandingLeftWeaponChanged(false, playerNetworkManager.isTwoHandingLeftWeapon.Value);
 
         if (playerNetworkManager.isLockedOn.Value)
         {

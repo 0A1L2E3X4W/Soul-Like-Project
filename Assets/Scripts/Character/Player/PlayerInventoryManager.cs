@@ -5,6 +5,7 @@ public class PlayerInventoryManager : CharacterInventoryManager
     [Header("CURRENT SLOT")]
     public WeaponItem currentRightHandWeapon;
     public WeaponItem currentLeftHandWeapon;
+    public WeaponItem currentTwoHandedWeapon;
 
     [Header("QUICK SLOTS")]
     public int rightHandWeaponIndex = 0;

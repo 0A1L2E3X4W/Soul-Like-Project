@@ -23,6 +23,16 @@ public class PlayerNetworkManager : CharacterNetworkManager
     public NetworkVariable<bool> isUsingLeftHand =
         new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    [Header("TWO HAND EQUIPMENT")]
+    public NetworkVariable<bool> isTwoHandingWeapon =
+        new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isTwoHandingRightWeapon =
+        new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> isTwoHandingLeftWeapon =
+        new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> currentWeaponBeingTwoHanded =
+            new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     protected override void Awake()
     {
         base.Awake();
@@ -112,6 +122,45 @@ public class PlayerNetworkManager : CharacterNetworkManager
         }
     }
 
+    // TWO HAND WEAPON
+    public void OnIsTwoHandWeaponChanged(bool oldStatus, bool newStatus)
+    {
+        if (!isTwoHandingWeapon.Value)
+        {
+            player.playerEquipmentManager.UndoTwoHandWeapon();
+        }
+    }
+
+    public void OnIsTwoHandingRightWeaponChanged(bool oldStatus, bool newStatus)
+    {
+        if (!isTwoHandingRightWeapon.Value)
+            return;
+
+        if (IsOwner)
+        {
+            currentWeaponBeingTwoHanded.Value = currentRightHandWeaponID.Value;
+            isTwoHandingWeapon.Value = true;
+        }
+
+        player.playerInventoryManager.currentTwoHandedWeapon = player.playerInventoryManager.currentRightHandWeapon;
+        player.playerEquipmentManager.TwoHandRightWeapon();
+    }
+
+    public void OnIsTwoHandingLeftWeaponChanged(bool oldStatus, bool newStatus)
+    {
+        if (!isTwoHandingLeftWeapon.Value)
+            return;
+
+        if (IsOwner)
+        {
+            currentWeaponBeingTwoHanded.Value = currentLeftHandWeaponID.Value;
+            isTwoHandingWeapon.Value = true;
+        }
+
+        player.playerInventoryManager.currentTwoHandedWeapon = player.playerInventoryManager.currentLeftHandWeapon;
+        player.playerEquipmentManager.TwoHandLeftWeapon();
+    }
+    
     // ITEM ACTION
     [ServerRpc]
     public void NotifyServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID)
