@@ -12,6 +12,12 @@ public class WorldEffectsManager : MonoBehaviour
     [Header("INSTANCE EFFECTS")]
     [SerializeField] List<InstanceCharacterEffect> instanceEffects;
 
+    [Header("STATIC EFFECTS")]
+    [SerializeField] List<StaticEffect> staticEffects;
+
+    [Header("TWO HANDING")]
+    public TwoHandingEffect twoHandingEffect;
+
     [Header("VFX")]
     public GameObject bloodSplatterVFX;
 
@@ -28,6 +34,11 @@ public class WorldEffectsManager : MonoBehaviour
         for (int i = 0; i < instanceEffects.Count; i++)
         {
             instanceEffects[i].instanceEffectID = i;
+        }
+
+        for (int i = 0; i < staticEffects.Count; i++)
+        {
+            staticEffects[i].staticEffectID = i;
         }
     }
 }

@@ -40,7 +40,13 @@ public class CharacterNetworkManager : NetworkBehaviour
     public NetworkVariable<int> endurance =
         new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> vitality =
-            new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> strength = 
+        new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("STATS MODIFIERS")]
+    public NetworkVariable<int> strengthModifer =
+        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("RESOURCES")]
     public NetworkVariable<float> currentStamina =

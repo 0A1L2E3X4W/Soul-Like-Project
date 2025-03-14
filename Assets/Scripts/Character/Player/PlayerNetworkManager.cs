@@ -134,6 +134,13 @@ public class PlayerNetworkManager : CharacterNetworkManager
             }
 
             player.playerEquipmentManager.UndoTwoHandWeapon();
+            player.playerEffectsManager.RemoveStaticEffect(WorldEffectsManager.Instance.twoHandingEffect.staticEffectID);
+        }
+        else
+        {
+            StaticEffect twoHandEffect = Instantiate(
+                WorldEffectsManager.Instance.twoHandingEffect);
+            player.playerEffectsManager.AddStaticEffects(twoHandEffect);
         }
 
         player.anim.SetBool("IsTwoHanding", isTwoHandingWeapon.Value);
