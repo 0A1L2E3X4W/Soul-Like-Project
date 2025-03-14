@@ -172,6 +172,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleTwoHandInput();
         HandleLockOnInput();
         HandleSwitchLockOnTargetInput();
 
@@ -193,8 +194,6 @@ public class PlayerInputManager : MonoBehaviour
         HandleQuedInputs();
 
         HandleInteractionInput();
-
-        HandleTwoHandInput();
     }
 
     // TWO HAND

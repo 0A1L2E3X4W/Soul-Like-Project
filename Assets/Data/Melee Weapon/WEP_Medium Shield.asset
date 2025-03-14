@@ -18,6 +18,7 @@ MonoBehaviour:
   itemText: 
   weaponModel: {fileID: 1970936570410851823, guid: 91f3e5e0ee5de0145b611fa57727aea4, type: 3}
   weaponModelType: 1
+  weaponClass: 1
   strengthRequire: 0
   dexterityRequire: 0
   intelligenteRequire: 0

@@ -315,24 +315,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Two Hand Right Weapon",
-                    "type": "Button",
-                    "id": "48b75ca3-1eae-4766-b143-3a85e38d56ac",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Two Hand Left Weapon",
-                    "type": "Button",
-                    "id": "6eee669c-f9af-4ad6-9d73-f97561ee33ba",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "LB",
                     "type": "Button",
                     "id": "6d75f67f-37fb-4555-93b2-c4e33e3545d8",
@@ -374,7 +356,25 @@
                     "id": "9ab90e17-7d7a-4b89-a202-d7dc586c910d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.15,pressPoint=0.5)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Two Hand Right Weapon",
+                    "type": "Button",
+                    "id": "48b75ca3-1eae-4766-b143-3a85e38d56ac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Two Hand Left Weapon",
+                    "type": "Button",
+                    "id": "6eee669c-f9af-4ad6-9d73-f97561ee33ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],

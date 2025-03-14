@@ -31,7 +31,7 @@ public class PlayerNetworkManager : CharacterNetworkManager
     public NetworkVariable<bool> isTwoHandingLeftWeapon =
         new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentWeaponBeingTwoHanded =
-            new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     protected override void Awake()
     {
@@ -127,8 +127,16 @@ public class PlayerNetworkManager : CharacterNetworkManager
     {
         if (!isTwoHandingWeapon.Value)
         {
+            if (IsOwner)
+            {
+                isTwoHandingLeftWeapon.Value = false;
+                isTwoHandingRightWeapon.Value = false;
+            }
+
             player.playerEquipmentManager.UndoTwoHandWeapon();
         }
+
+        player.anim.SetBool("IsTwoHanding", isTwoHandingWeapon.Value);
     }
 
     public void OnIsTwoHandingRightWeaponChanged(bool oldStatus, bool newStatus)

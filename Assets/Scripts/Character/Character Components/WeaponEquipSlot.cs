@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 
 public class WeaponEquipSlot : MonoBehaviour
@@ -16,7 +17,7 @@ public class WeaponEquipSlot : MonoBehaviour
         }
     }
 
-    public void LoadWeapon(GameObject weaponModel)
+    public void LoadWeaponToEquipSlot(GameObject weaponModel)
     {
         currentWeaponModel = weaponModel;
         weaponModel.transform.parent = transform;
@@ -24,5 +25,25 @@ public class WeaponEquipSlot : MonoBehaviour
         weaponModel.transform.localPosition = Vector3.zero;
         weaponModel.transform.localRotation = Quaternion.identity;
         weaponModel.transform.localScale = Vector3.one;
+    }
+
+    public void LoadWeaponToUnequipSlot(GameObject weaponModel, WeaponClass weaponClass, PlayerManager player)
+    {
+        currentWeaponModel = weaponModel;
+        weaponModel.transform.parent = transform;
+
+        switch (weaponClass)
+        {
+            case WeaponClass.StraightSword:
+                weaponModel.transform.localPosition = new(.064f, 0f, -.06f);
+                weaponModel.transform.localRotation = Quaternion.Euler(194, 90, -.22f);
+                break;
+            case WeaponClass.MediumShield:
+                weaponModel.transform.localPosition = new(.005f, .045f, .073f);
+                weaponModel.transform.localRotation = Quaternion.Euler(-12.6f, 67f, -180f);
+                break;
+            default:
+                break;
+        }
     }
 }

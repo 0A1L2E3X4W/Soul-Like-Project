@@ -8,6 +8,9 @@ public class WeaponItem : Item
     [Header("MODEL INSTANTIATION")]
     public WeaponModelType weaponModelType;
 
+    [Header("WEAPON CLASS")]
+    public WeaponClass weaponClass;
+
     [Header("WEAPON REQUIREMENTS")]
     public int strengthRequire = 0;
     public int dexterityRequire = 0;

@@ -28,6 +28,13 @@ public enum WeaponModelType
     Shield,
 }
 
+public enum WeaponClass
+{
+    StraightSword,
+    MediumShield,
+    Fist
+}
+
 public enum WeaponSlot
 {
     RightHandSlot,

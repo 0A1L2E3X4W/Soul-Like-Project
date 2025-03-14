@@ -35,6 +35,7 @@ Transform:
   - {fileID: 6958440299992045043}
   - {fileID: 5611772968805112878}
   - {fileID: 5462706764816923567}
+  - {fileID: 7315798966029815986}
   m_Father: {fileID: 742423760171758237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8993750439223726971
@@ -211,6 +212,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5013343006777122358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &518498906360117632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7315798966029815986}
+  - component: {fileID: 6319912625946368004}
+  m_Layer: 7
+  m_Name: Back Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7315798966029815986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518498906360117632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4482961893040652118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6319912625946368004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518498906360117632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e924e54fa75d204d8a29e9f1cbd7dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponModel: {fileID: 0}
+  weaponSlot: 3
 --- !u!1 &590393079269758019
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +855,14 @@ MonoBehaviour:
     m_InternalValue: 0
   isUsingLeftHand:
     m_InternalValue: 0
+  isTwoHandingWeapon:
+    m_InternalValue: 0
+  isTwoHandingRightWeapon:
+    m_InternalValue: 0
+  isTwoHandingLeftWeapon:
+    m_InternalValue: 0
+  currentWeaponBeingTwoHanded:
+    m_InternalValue: 0
 --- !u!114 &3065978345885485658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,13 +931,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b324387d1fa6904bbc3300aba0581fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHandSlot: {fileID: 0}
+  rightHandWeaponSlot: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
-  rightWeaponManager: {fileID: 0}
-  leftHandSlot: {fileID: 0}
+  rightHandWeaponManager: {fileID: 0}
+  leftHandWeaponSlot: {fileID: 0}
   leftHandShieldSlot: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
-  leftWeaponManager: {fileID: 0}
+  leftHandWeaponManager: {fileID: 0}
+  backSlot: {fileID: 0}
 --- !u!114 &558594587427866616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,11 +953,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentRightHandWeapon: {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
+  currentTwoHandedWeapon: {fileID: 0}
   rightHandWeaponIndex: 0
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
-  - {fileID: 11400000, guid: 4640e6f58da5e3740a23cd390e11251e, type: 2}
+  - {fileID: 11400000, guid: 7a0b6c0db25b3a648b3d6cd1d5a51f9a, type: 2}
   leftHandWeaponIndex: 0
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 785602480bcc7e34c87670034537aeda, type: 2}
@@ -1128,11 +1185,23 @@ MonoBehaviour:
   hitLeftMedium02: Hit_Left_Medium_02
   hitRightMedium01: Hit_Right_Medium_01
   hitRightMedium02: Hit_Right_Medium_02
+  hitForwardPing_01: Hit_Forward_Ping_01
+  hitForwardPing_02: Hit_Forward_Ping_02
+  hitBackwardPing_01: Hit_Backward_Ping_01
+  hitBackwardPing_02: Hit_Backward_Ping_02
+  hitLeftPing_01: Hit_Left_Ping_01
+  hitLeftPing_02: Hit_Left_Ping_02
+  hitRightPing_01: Hit_Right_Ping_01
+  hitRightPing_02: Hit_Right_Ping_02
   finalDamageAnimPlayed: 
   forwardMidDamage: []
   backwardMidDamage: []
   rightMidDamage: []
   leftMidDamage: []
+  forwardPingDamage: []
+  backwardPingDamage: []
+  leftPingDamage: []
+  rightPingDamage: []
 --- !u!114 &979792449994522011
 MonoBehaviour:
   m_ObjectHideFlags: 0
