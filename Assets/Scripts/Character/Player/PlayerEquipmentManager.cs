@@ -19,6 +19,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     [Header("BACK")]
     public WeaponEquipSlot backSlot;
 
+    [Header("DEBUG")]
+    [SerializeField] private bool equip = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,6 +38,53 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         LoadWeaponOnBothHand();
     }
 
+    private void Update()
+    {
+        if (equip)
+        {
+            equip = false;
+            DebugEquipItems();
+        }
+    }
+
+    private void DebugEquipItems()
+    {
+        Debug.Log("EQUIP NEW ITEM");
+        if (player.playerInventoryManager.bodyArmor != null)
+            LoadBodyEquipment(player.playerInventoryManager.bodyArmor);
+
+        if (player.playerInventoryManager.handArmor != null)
+            LoadHandEquipment(player.playerInventoryManager.handArmor);
+
+        if (player.playerInventoryManager.headArmor != null)
+            LoadHeadEquipment(player.playerInventoryManager.headArmor);
+
+        if (player.playerInventoryManager.legArmor != null)
+            LoadLegEquipment(player.playerInventoryManager.legArmor);
+    }
+
+    // ARMORS
+    public void LoadHeadEquipment(HeadEquipmentItem equipment)
+    {
+        player.playerStatsManager.CalculateTotalArmorAbsorption();
+    }
+
+    public void LoadBodyEquipment(BodyEquipmentItem equipment)
+    {
+        player.playerStatsManager.CalculateTotalArmorAbsorption();
+    }
+
+    public void LoadHandEquipment(HandEquipmentItem equipment)
+    {
+        player.playerStatsManager.CalculateTotalArmorAbsorption();
+    }
+
+    public void LoadLegEquipment(LegEquipmentItem equipment)
+    {
+        player.playerStatsManager.CalculateTotalArmorAbsorption();
+    }
+
+    // WEAPON
     private void InitWeaponSlots()
     {
         WeaponEquipSlot[] weaponSlots = GetComponentsInChildren<WeaponEquipSlot>();

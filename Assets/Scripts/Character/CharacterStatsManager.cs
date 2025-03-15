@@ -26,6 +26,19 @@ public class CharacterStatsManager : MonoBehaviour
     public float defaultPoiseResetTime = 8;     //  THE TIME IT TAKES FOR POISE DAMAGE TO RESET (MUST NOT BE HIT IN THE TIME OR IT WILL RESET)
     public float poiseResetTimer = 0;           //  THE CURRENT TIMER FOR POISE RESET
 
+    [Header("ARMOR ABSORPTIONS")]
+    public float armorPhysicalDamageAbsorption;
+    public float armorMagicalDamageAbsorption;
+    public float armorFireDamageAbsorption;
+    public float armorHolyDamageAbsorption;
+    public float armorLightningDamageAbsorption;
+
+    [Header("ARMOR RESISTANCE")]
+    public float armorImmunity;  // ROT & POISON
+    public float armorRobustness;// BLEED & FROST
+    public float armorFocus;     // MADNESS & SLEEP
+    public float armorVitality;  // DEATH CURSE
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();

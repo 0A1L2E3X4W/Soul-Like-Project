@@ -12,4 +12,10 @@ public class PlayerInventoryManager : CharacterInventoryManager
     public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];
     public int leftHandWeaponIndex = 0;
     public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[3];
+
+    [Header("ARMORS")]
+    public HeadEquipmentItem headArmor;
+    public BodyEquipmentItem bodyArmor;
+    public HandEquipmentItem handArmor;
+    public LegEquipmentItem legArmor;
 }

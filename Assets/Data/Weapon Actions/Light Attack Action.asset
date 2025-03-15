@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionID: 0
   lightAtk01: Main_LightAtk_01
+  lightAtk02: Main_LightAtk_02
+  runningAtk01: Main_Run_Attack_01
+  rollingAtk01: Main_Roll_Attack_01
+  backStepAtk01: Main_BackStep_Attack_01
+  twoHand_lightAtk_01: TH_LightAtk_01
+  twoHand_lightAtk_02: TH_LightAtk_02
+  twoHand_runningAtk_01: TH_RunAttack_01
+  twoHand_rollingAtk_01: TH_RollAttack_01
+  twoHand_backStepAtk_01: TH_BackStepAttack_01

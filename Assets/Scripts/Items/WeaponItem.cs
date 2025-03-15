@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponItem : Item
+public class WeaponItem : EquipmentItem
 {
     [Header("WEAPON MODEL")]
     public GameObject weaponModel;
