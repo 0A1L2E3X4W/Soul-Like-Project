@@ -17,4 +17,6 @@ public class ArmorItem : EquipmentItem
 
     [Header("POISE")]
     public float poise;
+
+    public EquipmentModel[] equipmentModels;
 }

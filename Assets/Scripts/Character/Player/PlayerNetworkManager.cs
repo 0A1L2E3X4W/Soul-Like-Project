@@ -13,7 +13,7 @@ public class PlayerNetworkManager : CharacterNetworkManager
 
     [Header("EQUIPMENT")]
     public NetworkVariable<int> currentWeaponBeingUsed =
-            new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentRightHandWeaponID =
         new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentLeftHandWeaponID =
@@ -32,6 +32,13 @@ public class PlayerNetworkManager : CharacterNetworkManager
         new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> currentWeaponBeingTwoHanded =
         new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [Header("ARMOR")]
+    public NetworkVariable<int> headArmorID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> bodyArmorID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> handArmorID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> legsArmorID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> ismale = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     protected override void Awake()
     {
@@ -175,7 +182,76 @@ public class PlayerNetworkManager : CharacterNetworkManager
         player.playerInventoryManager.currentTwoHandedWeapon = player.playerInventoryManager.currentLeftHandWeapon;
         player.playerEquipmentManager.TwoHandLeftWeapon();
     }
-    
+
+    // ARMORS
+    public void OnHeadArmorChanged(int oldValue, int newValue)
+    {
+        if (IsOwner)
+            return;
+
+        HeadEquipmentItem equipment = WorldItemDatabase.Instance.GetHeadEquipmentByID(headArmorID.Value);
+
+        if (equipment != null)
+        {
+            player.playerEquipmentManager.LoadHeadEquipment(Instantiate(equipment));
+        }
+        else
+        {
+            player.playerEquipmentManager.LoadHeadEquipment(null);
+        }
+    }
+
+    public void OnHandArmorChanged(int oldValue, int newValue)
+    {
+        if (IsOwner)
+            return;
+
+        HandEquipmentItem equipment = WorldItemDatabase.Instance.GetHandEquipmentByID(handArmorID.Value);
+
+        if (equipment != null)
+        {
+            player.playerEquipmentManager.LoadHandEquipment(Instantiate(equipment));
+        }
+        else
+        {
+            player.playerEquipmentManager.LoadHandEquipment(null);
+        }
+    }
+
+    public void OnLegsArmorChanged(int oldValue, int newValue)
+    {
+        if (IsOwner)
+            return;
+
+        LegsEquipmentItem equipment = WorldItemDatabase.Instance.GetLegsEquipmentByID(legsArmorID.Value);
+
+        if (equipment != null)
+        {
+            player.playerEquipmentManager.LoadLegEquipment(Instantiate(equipment));
+        }
+        else
+        {
+            player.playerEquipmentManager.LoadLegEquipment(null);
+        }
+    }
+
+    public void OnBodyArmorChanged(int oldValue, int newValue)
+    {
+        if (IsOwner)
+            return;
+
+        BodyEquipmentItem equipment = WorldItemDatabase.Instance.GetBodyEquipmentByID(bodyArmorID.Value);
+
+        if (equipment != null)
+        {
+            player.playerEquipmentManager.LoadBodyEquipment(Instantiate(equipment));
+        }
+        else
+        {
+            player.playerEquipmentManager.LoadBodyEquipment(null);
+        }
+    }
+
     // ITEM ACTION
     [ServerRpc]
     public void NotifyServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID)

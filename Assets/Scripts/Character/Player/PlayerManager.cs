@@ -94,6 +94,12 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
+        // EQUIP ARMOR
+        playerNetworkManager.headArmorID.OnValueChanged += playerNetworkManager.OnHeadArmorChanged;
+        playerNetworkManager.bodyArmorID.OnValueChanged += playerNetworkManager.OnBodyArmorChanged;
+        playerNetworkManager.handArmorID.OnValueChanged += playerNetworkManager.OnHandArmorChanged;
+        playerNetworkManager.legsArmorID.OnValueChanged += playerNetworkManager.OnLegsArmorChanged;
+
         // BLOCKING
         playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
 
@@ -142,6 +148,12 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
         playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+
+        // EQUIP ARMOR
+        playerNetworkManager.headArmorID.OnValueChanged -= playerNetworkManager.OnHeadArmorChanged;
+        playerNetworkManager.bodyArmorID.OnValueChanged -= playerNetworkManager.OnBodyArmorChanged;
+        playerNetworkManager.handArmorID.OnValueChanged -= playerNetworkManager.OnHandArmorChanged;
+        playerNetworkManager.legsArmorID.OnValueChanged -= playerNetworkManager.OnLegsArmorChanged;
 
         // TWO HANDING
         playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandWeaponChanged;
@@ -201,6 +213,12 @@ public class PlayerManager : CharacterManager
         //  SYNC WEAPONS
         playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
         playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+
+        //  SYNC ARMOR
+        playerNetworkManager.OnHeadArmorChanged(0, playerNetworkManager.headArmorID.Value);
+        playerNetworkManager.OnLegsArmorChanged(0, playerNetworkManager.legsArmorID.Value);
+        playerNetworkManager.OnBodyArmorChanged(0, playerNetworkManager.bodyArmorID.Value);
+        playerNetworkManager.OnHandArmorChanged(0, playerNetworkManager.handArmorID.Value);
 
         //  SYNC BLOCK STATUS
         playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);

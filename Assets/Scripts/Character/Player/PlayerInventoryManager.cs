@@ -17,5 +17,5 @@ public class PlayerInventoryManager : CharacterInventoryManager
     public HeadEquipmentItem headArmor;
     public BodyEquipmentItem bodyArmor;
     public HandEquipmentItem handArmor;
-    public LegEquipmentItem legArmor;
+    public LegsEquipmentItem legArmor;
 }

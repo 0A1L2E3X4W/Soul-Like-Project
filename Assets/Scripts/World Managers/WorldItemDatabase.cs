@@ -17,8 +17,8 @@ public class WorldItemDatabase : MonoBehaviour
     [Header("BODY EQUIPMENTS")]
     [SerializeField] private List<BodyEquipmentItem> bodyEquips = new();
 
-    [Header("LEG EQUIPMENTS")]
-    [SerializeField] private List<LegEquipmentItem> legEquips = new();
+    [Header("LEGS EQUIPMENTS")]
+    [SerializeField] private List<LegsEquipmentItem> legsEquips = new();
 
     [Header("HAND EQUIPMENTS")]
     [SerializeField] private List<HandEquipmentItem> handEquips = new();
@@ -49,7 +49,7 @@ public class WorldItemDatabase : MonoBehaviour
         }
 
         // LEG
-        foreach (var item in legEquips)
+        foreach (var item in legsEquips)
         {
             items.Add(item);
         }
@@ -76,9 +76,9 @@ public class WorldItemDatabase : MonoBehaviour
         return headEquips.FirstOrDefault(equipment => equipment.itemID == ID);
     }
 
-    public LegEquipmentItem GetLegEquipmentByID(int ID)
+    public LegsEquipmentItem GetLegsEquipmentByID(int ID)
     {
-        return legEquips.FirstOrDefault(equipment => equipment.itemID == ID);
+        return legsEquips.FirstOrDefault(equipment => equipment.itemID == ID);
     }
 
     public HandEquipmentItem GetHandEquipmentByID(int ID)

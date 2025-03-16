@@ -43,6 +43,33 @@ public enum WeaponSlot
     BackSlot
 }
 
+public enum EquipmentModelType
+{
+    FullHelmet,
+    OpenHelmet,
+    Hood,
+    HelmetAcessorie,
+    FaceCover,
+    Torso,
+    Back,
+    RightShoulder,
+    RightElbow,
+    RightUpperArm,
+    RightLowArm,
+    RightHand,
+    LeftShoulder,
+    LeftElbow,
+    LeftUpperArm,
+    LeftLowArm,
+    LeftHand,
+    Hips,
+    HipsAttachment,
+    RightLeg,
+    RightKnee,
+    LeftLeg,
+    LeftKnee,
+}
+
 public enum AtkType
 {
     LightAtk01,
